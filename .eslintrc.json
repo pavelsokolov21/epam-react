@@ -22,5 +22,8 @@
         "react"
     ],
     "rules": {
+        "quotes": "off",
+        "linebreak-style": "off",
+        "import/no-extraneous-dependencies": "off"
     }
 }

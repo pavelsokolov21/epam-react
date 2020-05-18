@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const PATHS = {
   src: path.join(__dirname, "../src"),
   dist: path.join(__dirname, "../dist"),
-  public: path.join(__dirname, "../public")
+  public: path.join(__dirname, "../public"),
 };
 
 module.exports = {
@@ -87,20 +87,20 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
+              name: "[path][name].[ext]",
             },
           },
         ],
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-            name: '[name].[ext]'
-        }
-    },
+          name: "[name].[ext]",
+        },
+      },
     ],
   },
 
