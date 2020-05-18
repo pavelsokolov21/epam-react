@@ -29,6 +29,8 @@
         "linebreak-style": "off",
         "quotes": ["error", "double"],
         "no-console": "error",
-        "react/prefer-stateless-function": "off"
+        "react/prefer-stateless-function": "off",
+        "react/button-has-type": "off",
+        "react/jsx-filename-extension": "off"
     }
 }
