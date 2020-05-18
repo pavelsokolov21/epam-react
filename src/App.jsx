@@ -1,9 +1,15 @@
 import React from "react";
-import Header from "./components/Header";
+import SimpleComponent from "./components/SimpleComponent";
+import Pure from "./components/Pure";
+import FuncComponent from "./components/FuncComponent";
+import ComponentWithState from "./components/ComponentWithState";
 
 const App = () => (
   <div>
-    <Header />
+    <SimpleComponent />
+    <Pure />
+    <FuncComponent />
+    <ComponentWithState />
   </div>
 );
 

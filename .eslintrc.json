@@ -19,11 +19,16 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
-        "quotes": "off",
+        "prettier/prettier": ["error", {
+           "endOfLine":"auto"
+         }],
         "linebreak-style": "off",
-        "import/no-extraneous-dependencies": "off"
+        "quotes": ["error", "double"],
+        "no-console": "error",
+        "react/prefer-stateless-function": "off"
     }
 }
