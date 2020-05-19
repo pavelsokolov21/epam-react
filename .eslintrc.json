@@ -26,6 +26,7 @@
         "prettier/prettier": ["error", {
            "endOfLine":"auto"
          }],
+        "import/no-unresolved": "off",
         "linebreak-style": "off",
         "quotes": ["error", "double"],
         "no-console": "error",

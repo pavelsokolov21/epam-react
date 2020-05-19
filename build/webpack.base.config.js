@@ -106,6 +106,10 @@ module.exports = {
 
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      components: `${PATHS.src}/components`,
+      containers: `${PATHS.src}/containers`,
+    },
   },
 
   plugins: [
