@@ -1,12 +1,29 @@
 import React from "react";
-import Button from "components/Button";
+import { createUseStyles } from "react-jss";
+import SearchButtonsContainer from "components/SearchButtonsContainer";
+import SearchInput from "components/SearchInput";
 
-const Search = () => (
-  <div>
-    <h2>Search field</h2>
-    <input type="text" />
-    <Button text="Title" width={100} background="rgb(255, 41, 41)" />
-  </div>
-);
+const useStyles = createUseStyles({
+  searchField: {
+    marginTop: 50,
+  },
+  searchTitle: {
+    fontSize: 14,
+    color: "white",
+    textTransform: "uppercase",
+  },
+});
+
+const Search = () => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.searchField}>
+      <h2 className={classes.searchTitle}>find your movie</h2>
+      <SearchInput />
+      <SearchButtonsContainer />
+    </div>
+  );
+};
 
 export default Search;
