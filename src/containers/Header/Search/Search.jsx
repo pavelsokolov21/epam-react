@@ -18,11 +18,11 @@ const Search = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.searchField}>
+    <form className={classes.searchField}>
       <h2 className={classes.searchTitle}>find your movie</h2>
       <SearchInput />
       <SearchButtonsContainer />
-    </div>
+    </form>
   );
 };
 

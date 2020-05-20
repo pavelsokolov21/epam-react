@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
+import FilmsContext from "../../context/FilmsContext";
 
 const useStyles = createUseStyles({
   searchInput: {
@@ -18,12 +19,15 @@ const useStyles = createUseStyles({
 
 const SearchInput = () => {
   const classes = useStyles();
+  const { onChangeSearchInput, searchInputValue } = useContext(FilmsContext);
 
   return (
     <input
       className={classes.searchInput}
       placeholder="Enter searching film"
       type="text"
+      value={searchInputValue}
+      onChange={({ target: { value } }) => onChangeSearchInput(value)}
     />
   );
 };

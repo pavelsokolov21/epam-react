@@ -5,6 +5,9 @@ const FilmsContext = createContext({
   foundFilms: [],
   searchBy: "title",
   searchInputValue: "",
+  searchBySwitcher: (buttonType) => {},
+  onChangeSearchInput: (value) => {},
+  submitValueFromInput: (e) => {},
 });
 
 export default FilmsContext;

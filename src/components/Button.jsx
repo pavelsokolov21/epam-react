@@ -20,12 +20,18 @@ const useStyles = createUseStyles({
   },
 });
 
-const Button = ({ text, isActive, onClick, ...props }) => {
+const Button = ({
+ text, isActive, onClick, ...props 
+}) => {
   const classes = useStyles(props);
   const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
 
   return (
-    <button onClick={onClick} className={buttonClass}>
+    <button
+      type={text === "search" ? "submit" : "text"}
+      onClick={onClick}
+      className={buttonClass}
+    >
       {text}
     </button>
   );

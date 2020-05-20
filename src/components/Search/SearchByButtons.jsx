@@ -18,9 +18,8 @@ const useStyles = createUseStyles({
 });
 
 const SearchByButtons = () => {
-  const context = useContext(FilmsContext);
+  const { searchBy, searchBySwitch } = useContext(FilmsContext);
   const classes = useStyles();
-  const { searchBy, searchBySwitch } = context;
 
   return (
     <div className={classes.searchBy}>

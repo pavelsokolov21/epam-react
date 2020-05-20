@@ -2,7 +2,12 @@
 import React, { useReducer } from "react";
 import PropTypes from "prop-types";
 import FilmsContext from "./FilmsContext";
-import { filmsReducer, searchBySwitch, searchFilms } from "./reducers";
+import {
+  filmsReducer,
+  searchBySwitcher,
+  onChangeSearchInput,
+  submitValueFromInput,
+} from "./reducers";
 
 const MainState = (props) => {
   const initialStateForSearch = {
@@ -15,7 +20,16 @@ const MainState = (props) => {
   );
 
   const switchSearchByBtn = (buttonType) => {
-    dispatch(searchBySwitch(buttonType));
+    dispatch(searchBySwitcher(buttonType));
+  };
+
+  const handleChangeInput = (value) => {
+    dispatch(onChangeSearchInput(value));
+  };
+
+  const submitFilmValue = (e) => {
+    e.preventDefault();
+    dispatch(submitValueFromInput());
   };
 
   const { children } = props;
@@ -25,6 +39,8 @@ const MainState = (props) => {
         searchBy: searchState.searchBy,
         searchInputValue: searchState.searchInputValue,
         searchBySwitch: switchSearchByBtn,
+        onChangeSearchInput: handleChangeInput,
+        submitValueFromInput: submitFilmValue,
       }}
     >
       {children}

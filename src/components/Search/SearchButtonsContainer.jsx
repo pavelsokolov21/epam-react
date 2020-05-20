@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
 import Button from "../Button";
 import SearchByButtons from "./SearchByButtons";
+import FilmsContext from "../../context/FilmsContext";
 
 const useStyles = createUseStyles({
   buttonsContainer: {
@@ -17,6 +18,7 @@ const useStyles = createUseStyles({
 
 const SearchButtonsContainer = () => {
   const classes = useStyles();
+  const { submitValueFromInput } = useContext(FilmsContext);
 
   return (
     <div className={classes.buttonsContainer}>
@@ -27,6 +29,7 @@ const SearchButtonsContainer = () => {
           fontSize={16}
           width={200}
           background="rgb(255, 41, 41)"
+          onClick={(e) => submitValueFromInput(e)}
         />
       </>
     </div>
