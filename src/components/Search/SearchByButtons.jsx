@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
 import Button from "../Button";
+import FilmsContext from "../../context/FilmsContext";
 
 const useStyles = createUseStyles({
   searchBy: {
@@ -17,7 +18,9 @@ const useStyles = createUseStyles({
 });
 
 const SearchByButtons = () => {
+  const context = useContext(FilmsContext);
   const classes = useStyles();
+  const { searchBy, searchBySwitch } = context;
 
   return (
     <div className={classes.searchBy}>
@@ -26,13 +29,15 @@ const SearchByButtons = () => {
         text="title"
         fontSize={12}
         width={100}
-        background="rgb(255, 41, 41)"
+        isActive={searchBy === "title"}
+        onClick={searchBySwitch.bind(this, "title")}
       />
       <Button
         text="genre"
         fontSize={12}
         width={100}
-        background="rgb(37, 37, 37)"
+        isActive={searchBy === "genre"}
+        onClick={searchBySwitch.bind(this, "genre")}
       />
     </div>
   );

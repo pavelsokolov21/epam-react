@@ -16,24 +16,32 @@ const useStyles = createUseStyles({
     fontWeight: 700,
   },
   active: {
-    background: "rgb(255, 41, 41)",
+    background: "rgb(255, 41, 41) !important",
   },
 });
 
-const Button = ({ text, isActive, ...props }) => {
+const Button = ({ text, isActive, onClick, ...props }) => {
   const classes = useStyles(props);
   const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
 
-  return <button className={buttonClass}>{text}</button>;
+  return (
+    <button onClick={onClick} className={buttonClass}>
+      {text}
+    </button>
+  );
 };
 
 Button.defaultProps = {
   isActive: false,
+  onClick: () => {
+    console.log("click");
+  },
 };
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default Button;
