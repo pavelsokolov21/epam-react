@@ -1,5 +1,5 @@
 /* eslint-disable comma-dangle */
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import PropTypes from "prop-types";
 import FilmsContext from "./FilmsContext";
 import {
@@ -7,20 +7,25 @@ import {
   searchBySwitcher,
   onChangeSearchInput,
   submitValueFromInput,
+  isLoadedFilms,
 } from "./reducers";
+import { getAllMovie } from "../services/instaservices";
 
 const MainState = (props) => {
-  const initialStateForSearch = {
+  const initialState = {
+    movies: [],
     searchBy: "title",
     searchInputValue: "",
   };
-  const [searchState, dispatch] = useReducer(
-    filmsReducer,
-    initialStateForSearch
-  );
+  const [state, dispatch] = useReducer(filmsReducer, initialState);
 
-  const switchSearchByBtn = (buttonType) => {
+  const switchSearchByBtn = (e, buttonType) => {
+    e.preventDefault();
     dispatch(searchBySwitcher(buttonType));
+  };
+
+  const filmsIsLoaded = (films) => {
+    dispatch(isLoadedFilms(films));
   };
 
   const handleChangeInput = (value) => {
@@ -36,11 +41,13 @@ const MainState = (props) => {
   return (
     <FilmsContext.Provider
       value={{
-        searchBy: searchState.searchBy,
-        searchInputValue: searchState.searchInputValue,
+        movies: state.movies,
+        searchBy: state.searchBy,
+        searchInputValue: state.searchInputValue,
         searchBySwitch: switchSearchByBtn,
         onChangeSearchInput: handleChangeInput,
         submitValueFromInput: submitFilmValue,
+        isLoadedFilms: filmsIsLoaded,
       }}
     >
       {children}

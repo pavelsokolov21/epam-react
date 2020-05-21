@@ -29,14 +29,14 @@ const SearchByButtons = () => {
         fontSize={12}
         width={100}
         isActive={searchBy === "title"}
-        onClick={searchBySwitch.bind(this, "title")}
+        onClick={(e) => searchBySwitch(e, "title")}
       />
       <Button
         text="genre"
         fontSize={12}
         width={100}
         isActive={searchBy === "genre"}
-        onClick={searchBySwitch.bind(this, "genre")}
+        onClick={(e) => searchBySwitch(e, "genre")}
       />
     </div>
   );
