@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import Container from "components/container";
 import { createUseStyles } from "react-jss";
+import Container from "components/container";
 import Film from "components/Film";
 import FilmsContext from "../../context/FilmsContext";
 import { getAllMovie } from "../../services/instaservices";
