@@ -9,7 +9,6 @@ import {
   submitValueFromInput,
   isLoadedFilms,
 } from "./reducers";
-import { getAllMovie } from "../services/instaservices";
 
 const MainState = (props) => {
   const initialState = {
@@ -25,6 +24,7 @@ const MainState = (props) => {
   };
 
   const filmsIsLoaded = (films) => {
+    console.log(films);
     dispatch(isLoadedFilms(films));
   };
 
