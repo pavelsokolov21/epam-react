@@ -23,3 +23,22 @@ export const filterFilms = (films, category, subStr) => {
 
   return newFilmsArray;
 };
+
+export const sortFilms = (films, sortBy) => {
+  const newFilmsArray = [...films];
+
+  return newFilmsArray.sort((firstFilm, secondFilms) => {
+    let firstOperand;
+    let secondOperand;
+
+    if (sortBy === "releaseDate") {
+      firstOperand = new Date(firstFilm.release_date);
+      secondOperand = new Date(secondFilms.release_date);
+    } else {
+      firstOperand = firstFilm.vote_average;
+      secondOperand = secondFilms.vote_average;
+    }
+
+    return secondOperand - firstOperand;
+  });
+};

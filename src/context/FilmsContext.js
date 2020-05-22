@@ -1,12 +1,13 @@
 import { createContext } from "react";
 
 const FilmsContext = createContext({
-  movies: [],
+  filmsData: [],
   foundFilms: [],
   searchBy: "title",
+  sortBy: "releaseDate",
   searchInputValue: "",
-  isLoadedFilms: false,
-  searchBySwitcher: (buttonType) => {},
+  switchSearchBy: (buttonType) => {},
+  switchSortBy: (buttonType) => {},
   onChangeSearchInput: (value) => {},
   submitValueFromInput: (e) => {},
 });

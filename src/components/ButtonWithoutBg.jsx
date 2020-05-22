@@ -9,7 +9,7 @@ const useStyles = createUseStyles({
     outline: "none",
     background: "none",
     border: "none",
-    cursur: "pointer",
+    cursor: "pointer",
   },
   active: {
     color: "rgb(255, 41, 41) !important",
@@ -18,12 +18,16 @@ const useStyles = createUseStyles({
 
 const ButtonWithoutBg = (props) => {
   const classes = useStyles();
-  const { text, isActive } = props;
+  const { text, isActive, onClick } = props;
   const className = `${classes.buttonWithoutBg} ${
     isActive ? classes.active : ""
   }`;
 
-  return <button className={className}>{text}</button>;
+  return (
+    <button onClick={onClick} className={className}>
+      {text}
+    </button>
+  );
 };
 
 ButtonWithoutBg.defaultProps = {
@@ -33,6 +37,7 @@ ButtonWithoutBg.defaultProps = {
 ButtonWithoutBg.propTypes = {
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ButtonWithoutBg;

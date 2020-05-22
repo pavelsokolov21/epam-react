@@ -5,31 +5,39 @@ import FilmsContext from "./FilmsContext";
 import {
   filmsReducer,
   searchBySwitcher,
+  sortBySwitcher,
   onChangeSearchInput,
   submitValueFromInput,
   isLoadedFilms,
 } from "./reducers";
 import { getAllMovie } from "../services/instaservices";
-import { parceToLineStr, filterFilms } from "../common";
+import { parceToLineStr, filterFilms, sortFilms } from "../common";
 
 const MainState = (props) => {
   const initialState = {
     filmsData: [],
     foundFilms: [],
     searchBy: "title",
+    sortBy: "releaseDate",
     searchInputValue: "",
   };
   const [state, dispatch] = useReducer(filmsReducer, initialState);
 
   useEffect(() => {
     getAllMovie().then((films) => {
-      dispatch(isLoadedFilms(films.data));
+      const sortedFilms = sortFilms(films.data, state.sortBy);
+      dispatch(isLoadedFilms(sortedFilms));
     });
   }, []);
 
-  const switchSearchByBtn = (e, buttonType) => {
+  const switchSearchBy = (e, buttonType) => {
     e.preventDefault();
     dispatch(searchBySwitcher(buttonType));
+  };
+
+  const switchSortBy = (buttonType) => {
+    const sortedFilms = sortFilms(state.foundFilms, buttonType);
+    dispatch(sortBySwitcher(sortedFilms, buttonType));
   };
 
   const handleChangeInput = (value) => {
@@ -39,16 +47,17 @@ const MainState = (props) => {
   const submitFilmValue = (e) => {
     e.preventDefault();
     const lowerCaseInputValue = parceToLineStr(state.searchInputValue);
+    const sortedFilms = sortFilms(state.filmsData, state.sortBy);
     let foundFilms = [];
 
     if (state.searchBy === "title") {
-      foundFilms = filterFilms(state.filmsData, "title", lowerCaseInputValue);
+      foundFilms = filterFilms(sortedFilms, "title", lowerCaseInputValue);
     } else {
-      foundFilms = filterFilms(state.filmsData, "genres", lowerCaseInputValue);
+      foundFilms = filterFilms(sortedFilms, "genres", lowerCaseInputValue);
     }
 
     if (state.searchInputValue.length === 0) {
-      dispatch(submitValueFromInput(state.filmsData));
+      dispatch(submitValueFromInput(sortedFilms));
     } else {
       dispatch(submitValueFromInput(foundFilms));
     }
@@ -58,8 +67,10 @@ const MainState = (props) => {
   const globalStateValue = {
     foundFilms: state.foundFilms,
     searchBy: state.searchBy,
+    sortBy: state.sortBy,
     searchInputValue: state.searchInputValue,
-    searchBySwitch: switchSearchByBtn,
+    switchSearchBy,
+    switchSortBy,
     onChangeSearchInput: handleChangeInput,
     submitValueFromInput: submitFilmValue,
   };

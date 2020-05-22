@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
 });
 
 const SearchByButtons = () => {
-  const { searchBy, searchBySwitch } = useContext(FilmsContext);
+  const { searchBy, switchSearchBy } = useContext(FilmsContext);
   const classes = useStyles();
 
   return (
@@ -29,14 +29,14 @@ const SearchByButtons = () => {
         fontSize={12}
         width={100}
         isActive={searchBy === "title"}
-        onClick={(e) => searchBySwitch(e, "title")}
+        onClick={(e) => switchSearchBy(e, "title")}
       />
       <Button
         text="genre"
         fontSize={12}
         width={100}
         isActive={searchBy === "genre"}
-        onClick={(e) => searchBySwitch(e, "genre")}
+        onClick={(e) => switchSearchBy(e, "genre")}
       />
     </div>
   );

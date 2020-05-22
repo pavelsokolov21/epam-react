@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
 import ButtonWithoutBg from "components/ButtonWithoutBg";
+import FilmsContext from "../context/FilmsContext";
 
 const useStyles = createUseStyles({
   sortButtonsContainer: {
@@ -19,13 +20,22 @@ const useStyles = createUseStyles({
 
 const SortButtonsContainer = () => {
   const classes = useStyles();
+  const { sortBy, switchSortBy } = useContext(FilmsContext);
 
   return (
     <div className={classes.sortButtonsContainer}>
       <p className={classes.sortButtonsTitle}>Sort by</p>
       <div className={classes.sortButtons}>
-        <ButtonWithoutBg isActive text="release date" />
-        <ButtonWithoutBg text="rating" />
+        <ButtonWithoutBg
+          onClick={switchSortBy.bind(this, "releaseDate")}
+          isActive={sortBy === "releaseDate"}
+          text="release date"
+        />
+        <ButtonWithoutBg
+          onClick={switchSortBy.bind(this, "rating")}
+          isActive={sortBy === "rating"}
+          text="rating"
+        />
       </div>
     </div>
   );
