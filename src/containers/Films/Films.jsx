@@ -9,6 +9,16 @@ const useStyles = createUseStyles({
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
   },
+  filmsNotFound: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  filmsNotFoundTitle: {
+    fontSize: 50,
+    color: "rgb(128, 128, 128)",
+  },
 });
 
 const Films = () => {
@@ -22,6 +32,18 @@ const Films = () => {
 
   if (!isLoaded) {
     return <div>Loading...</div>;
+  }
+
+  if (foundFilms.length === 0) {
+    return (
+      <main className={classes.filmsNotFoundContainer}>
+        <Container padding={20}>
+          <div className={classes.filmsNotFound}>
+            <h2 className={classes.filmsNotFoundTitle}>No films found</h2>
+          </div>
+        </Container>
+      </main>
+    );
   }
 
   const filmsData = foundFilms.map((film) => {
@@ -44,11 +66,19 @@ const Films = () => {
     );
   });
 
+  let content;
+  if (foundFilms.length === 0) {
+    content = (
+      <div className={classes.filmsNotFound}>
+        <h2 className={classes.filmsNotFoundTitle}>No films found</h2>
+      </div>
+    );
+  } else {
+    content = <div className={classes.films}>{filmsData}</div>;
+  }
   return (
     <main>
-      <Container padding={20}>
-        <div className={classes.films}>{filmsData}</div>
-      </Container>
+      <Container padding={20}>{content}</Container>
     </main>
   );
 };
