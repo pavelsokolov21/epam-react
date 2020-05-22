@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
-import Container from "components/container";
+import Wrapper from "components/Wrapper";
 import SortButtonsContainer from "components/SortButtonsContainer";
 import FilmsContext from "../../context/FilmsContext";
 
@@ -22,9 +22,9 @@ const SortSection = () => {
   if (foundFilms.length === 0) {
     return (
       <section className={classes.sortSection}>
-        <Container>
+        <Wrapper>
           <div />
-        </Container>
+        </Wrapper>
       </section>
     );
   }
@@ -38,12 +38,12 @@ const SortSection = () => {
 
   return (
     <section className={classes.sortSection}>
-      <Container>
+      <Wrapper>
         <div className={classes.sort}>
           <p>{textFoundMovies}</p>
           <SortButtonsContainer />
         </div>
-      </Container>
+      </Wrapper>
     </section>
   );
 };

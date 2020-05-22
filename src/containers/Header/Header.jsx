@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import Container from "components/Container";
+import Wrapper from "components/Wrapper";
 import Logo from "components/Logo";
 import Search from "./Search/Search";
 import bg from "../../img/header_background.jpg";
@@ -28,10 +28,10 @@ const Header = () => {
 
   return (
     <header className={classes.headerBg}>
-      <Container padding={20}>
+      <Wrapper padding={20}>
         <Logo />
         <Search />
-      </Container>
+      </Wrapper>
     </header>
   );
 };

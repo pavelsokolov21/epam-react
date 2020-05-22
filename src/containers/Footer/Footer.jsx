@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "components/Container";
+import Wrapper from "components/Wrapper";
 import Logo from "components/Logo";
 import { createUseStyles } from "react-jss";
 
@@ -14,9 +14,9 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Container padding={20}>
+      <Wrapper padding={20}>
         <Logo />
-      </Container>
+      </Wrapper>
     </footer>
   );
 };

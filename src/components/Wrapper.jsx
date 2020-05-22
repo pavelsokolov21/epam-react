@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 import PropTypes from "prop-types";
 
 const useStyles = createUseStyles({
-  container: {
+  wrapper: {
     position: "relative",
     zIndex: 5,
     maxWidth: "1200px",
@@ -12,20 +12,20 @@ const useStyles = createUseStyles({
   },
 });
 
-const Container = (props) => {
+const Wrapper = (props) => {
   const { padding, children } = props;
 
   const classes = useStyles(padding);
-  return <div className={classes.container}>{children}</div>;
+  return <div className={classes.wrapper}>{children}</div>;
 };
 
-Container.defaultProps = {
+Wrapper.defaultProps = {
   padding: 20,
 };
 
-Container.propTypes = {
+Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
   padding: PropTypes.number,
 };
 
-export default Container;
+export default Wrapper;
