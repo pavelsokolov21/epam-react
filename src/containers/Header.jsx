@@ -2,7 +2,7 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
 import Logo from "components/Logo";
-import Search from "./Search/Search";
+import Search from "./Search";
 import bg from "../../img/header_background.jpg";
 
 const useStyles = createUseStyles({

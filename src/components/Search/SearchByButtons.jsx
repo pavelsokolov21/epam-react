@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 import FilmsContext from "../../context/FilmsContext";
 
 const useStyles = createUseStyles({

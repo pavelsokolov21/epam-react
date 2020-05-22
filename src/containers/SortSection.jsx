@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
 import SortButtonsContainer from "components/SortButtonsContainer";
-import FilmsContext from "../../context/FilmsContext";
+import FilmsContext from "../context/FilmsContext";
 
 const useStyles = createUseStyles({
   sortSection: {

@@ -2,9 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
 import Film from "components/Film";
-import NoFound from "components/NoFound";
-import Loading from "components/Loading";
-import FilmsContext from "../../context/FilmsContext";
+import NoFound from "components/Intermediate/NoFound";
+import Loading from "components/Intermediate/Loading";
+import FilmsContext from "../context/FilmsContext";
 
 const useStyles = createUseStyles({
   films: {

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
-import ButtonWithoutBg from "components/ButtonWithoutBg";
+import ButtonWithoutBg from "components/Buttons/ButtonWithoutBg";
 import FilmsContext from "../context/FilmsContext";
 
 const useStyles = createUseStyles({
