@@ -9,10 +9,12 @@ import {
   submitValueFromInput,
   isLoadedFilms,
 } from "./reducers";
+import { getAllMovie } from "../services/instaservices";
 
 const MainState = (props) => {
   const initialState = {
-    movies: [],
+    filmsData: [],
+    foundFilms: [],
     searchBy: "title",
     searchInputValue: "",
   };
@@ -23,8 +25,13 @@ const MainState = (props) => {
     dispatch(searchBySwitcher(buttonType));
   };
 
+  useEffect(() => {
+    getAllMovie().then((films) => {
+      state.filmsData = films.data;
+      dispatch(isLoadedFilms(films.data));
+    });
+  }, []);
   const filmsIsLoaded = (films) => {
-    console.log(films);
     dispatch(isLoadedFilms(films));
   };
 
@@ -41,7 +48,7 @@ const MainState = (props) => {
   return (
     <FilmsContext.Provider
       value={{
-        movies: state.movies,
+        foundFilms: state.foundFilms,
         searchBy: state.searchBy,
         searchInputValue: state.searchInputValue,
         searchBySwitch: switchSearchByBtn,

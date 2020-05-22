@@ -15,20 +15,17 @@ const useStyles = createUseStyles({
 const Films = () => {
   const classes = useStyles();
   const [isLoaded, setIsLoaded] = useState(false);
-  const { movies, isLoadedFilms } = useContext(FilmsContext);
+  const { foundFilms, isLoadedFilms } = useContext(FilmsContext);
 
   useEffect(() => {
-    getAllMovie().then((films) => {
-      isLoadedFilms(films.data);
-      setIsLoaded(true);
-    });
+    setIsLoaded(true);
   }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
 
-  const filmsData = movies.map((film) => {
+  const filmsData = foundFilms.map((film) => {
     let genre = "";
     if (film.genres.length > 1) {
       genre = `${film.genres[0]} & ${film.genres[1]}`;

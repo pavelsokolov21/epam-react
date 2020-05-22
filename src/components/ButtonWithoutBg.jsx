@@ -9,6 +9,7 @@ const useStyles = createUseStyles({
     outline: "none",
     background: "none",
     border: "none",
+    cursur: "pointer",
   },
   active: {
     color: "rgb(255, 41, 41) !important",

@@ -1,7 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Container from "components/container";
-import ButtonWithoutBg from "components/ButtonWithoutBg";
 import SortButtonsContainer from "components/SortButtonsContainer";
 
 const useStyles = createUseStyles({
