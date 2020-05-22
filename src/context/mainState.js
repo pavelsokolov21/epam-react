@@ -10,7 +10,7 @@ import {
   isLoadedFilms,
 } from "./reducers";
 import { getAllMovie } from "../services/instaservices";
-import { parceToLineStr } from "../common";
+import { parceToLineStr, filterFilms } from "../common";
 
 const MainState = (props) => {
   const initialState = {
@@ -42,13 +42,11 @@ const MainState = (props) => {
     let foundFilms = [];
 
     if (state.searchBy === "title") {
-      state.filmsData.forEach((film) => {
-        const filmTitle = parceToLineStr(film.title);
-        if (filmTitle.indexOf(lowerCaseInputValue) !== -1) {
-          foundFilms = [...foundFilms, film];
-        }
-      });
+      foundFilms = filterFilms(state.filmsData, "title", lowerCaseInputValue);
+    } else {
+      foundFilms = filterFilms(state.filmsData, "genres", lowerCaseInputValue);
     }
+
     if (state.searchInputValue.length === 0) {
       dispatch(submitValueFromInput(state.filmsData));
     } else {
