@@ -13,8 +13,9 @@ export const onChangeSearchInput = (value) => ({
   payload: value,
 });
 
-export const submitValueFromInput = () => ({
+export const submitValueFromInput = (foundFilms) => ({
   type: SUBMIT_VALUE_FROM_INPUT,
+  payload: foundFilms,
 });
 
 export const isLoadedFilms = (films) => ({
@@ -29,7 +30,7 @@ export const filmsReducer = (state, action) => {
     case CHANGE_SEARCH_INPUT:
       return { ...state, searchInputValue: action.payload };
     case SUBMIT_VALUE_FROM_INPUT:
-      return { ...state, foundFilms: [] };
+      return { ...state, foundFilms: action.payload };
     case LOADED_FILMS:
       return {
         ...state,
