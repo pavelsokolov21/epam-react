@@ -3,7 +3,6 @@ import { createUseStyles } from "react-jss";
 import Container from "components/container";
 import Film from "components/Film";
 import FilmsContext from "../../context/FilmsContext";
-import { getAllMovie } from "../../services/instaservices";
 
 const useStyles = createUseStyles({
   films: {
@@ -15,7 +14,7 @@ const useStyles = createUseStyles({
 const Films = () => {
   const classes = useStyles();
   const [isLoaded, setIsLoaded] = useState(false);
-  const { foundFilms, isLoadedFilms } = useContext(FilmsContext);
+  const { foundFilms } = useContext(FilmsContext);
 
   useEffect(() => {
     setIsLoaded(true);

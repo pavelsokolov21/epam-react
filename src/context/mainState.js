@@ -20,19 +20,15 @@ const MainState = (props) => {
   };
   const [state, dispatch] = useReducer(filmsReducer, initialState);
 
-  const switchSearchByBtn = (e, buttonType) => {
-    e.preventDefault();
-    dispatch(searchBySwitcher(buttonType));
-  };
-
   useEffect(() => {
     getAllMovie().then((films) => {
-      state.filmsData = films.data;
       dispatch(isLoadedFilms(films.data));
     });
   }, []);
-  const filmsIsLoaded = (films) => {
-    dispatch(isLoadedFilms(films));
+
+  const switchSearchByBtn = (e, buttonType) => {
+    e.preventDefault();
+    dispatch(searchBySwitcher(buttonType));
   };
 
   const handleChangeInput = (value) => {
@@ -45,18 +41,16 @@ const MainState = (props) => {
   };
 
   const { children } = props;
+  const globalStateValue = {
+    foundFilms: state.foundFilms,
+    searchBy: state.searchBy,
+    searchInputValue: state.searchInputValue,
+    searchBySwitch: switchSearchByBtn,
+    onChangeSearchInput: handleChangeInput,
+    submitValueFromInput: submitFilmValue,
+  };
   return (
-    <FilmsContext.Provider
-      value={{
-        foundFilms: state.foundFilms,
-        searchBy: state.searchBy,
-        searchInputValue: state.searchInputValue,
-        searchBySwitch: switchSearchByBtn,
-        onChangeSearchInput: handleChangeInput,
-        submitValueFromInput: submitFilmValue,
-        isLoadedFilms: filmsIsLoaded,
-      }}
-    >
+    <FilmsContext.Provider value={globalStateValue}>
       {children}
     </FilmsContext.Provider>
   );

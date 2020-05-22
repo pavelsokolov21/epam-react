@@ -31,7 +31,11 @@ export const filmsReducer = (state, action) => {
     case SUBMIT_VALUE_FROM_INPUT:
       return { ...state, foundFilms: [] };
     case LOADED_FILMS:
-      return { ...state, foundFilms: action.payload };
+      return {
+        ...state,
+        filmsData: action.payload,
+        foundFilms: action.payload,
+      };
     default:
       return state;
   }
