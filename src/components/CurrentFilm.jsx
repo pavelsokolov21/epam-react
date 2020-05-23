@@ -8,11 +8,10 @@ const useStyles = createUseStyles({});
 const CurrentFilm = () => {
   const classes = useStyles();
   const { id } = useParams();
-  const { getMovie } = useContext(FilmsContext);
 
   useEffect(() => {}, [id]);
 
-  return <div />;
+  return <div>fake</div>;
 };
 
 export default CurrentFilm;

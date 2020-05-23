@@ -7,7 +7,7 @@ const useStyles = createUseStyles({
   film: {},
   filmImg: {
     width: "100%",
-    height: 450,
+    height: 480,
   },
   filmDescription: {
     display: "flex",
@@ -40,8 +40,8 @@ const useStyles = createUseStyles({
 
 const Film = (props) => {
   const classes = useStyles();
-  const {
- title, img, genre, dateRelease, } = props;
+  const { title, img, genre, dateRelease 
+} = props;
 
   return (
     <div className={classes.film}>

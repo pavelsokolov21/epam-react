@@ -1,9 +1,7 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
-import SearchWrapper from "components/Search/SearchWrapper";
-import CurrentFilm from "components/CurrentFilm";
+import PropTypes from "prop-types";
 import bg from "../img/header_background.jpg";
 
 const useStyles = createUseStyles({
@@ -24,19 +22,20 @@ const useStyles = createUseStyles({
   },
 });
 
-const Header = () => {
+const Header = ({ ContentComponent }) => {
   const classes = useStyles();
 
   return (
     <header className={classes.headerBg}>
       <Wrapper padding={20}>
-        <Switch>
-          <Route path="/" component={SearchWrapper} />
-          <Route path="/movies/:id" component={CurrentFilm} />
-        </Switch>
+        <ContentComponent />
       </Wrapper>
     </header>
   );
+};
+
+Header.propTypes = {
+  ContentComponent: PropTypes.func.isRequired,
 };
 
 export default Header;

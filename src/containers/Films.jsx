@@ -1,16 +1,20 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import { Link } from "react-router-dom";
 import Wrapper from "components/Wrapper";
 import Film from "components/Film";
 import NoFound from "components/Intermediate/NoFound";
 import Loading from "components/Intermediate/Loading";
-import FilmsContext from "../context/FilmsContext";
+import PropTypes from "prop-types";
 
 const useStyles = createUseStyles({
+  allFilms: {
+    marginTop: 50,
+  },
   films: {
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
+    gridGap: "100px",
   },
   waitingOrLoaded: {
     height: "100vh",
@@ -24,16 +28,15 @@ const useStyles = createUseStyles({
   },
 });
 
-const Films = () => {
+const Films = ({ films }) => {
   const classes = useStyles();
   const [isLoaded, setIsLoaded] = useState(false);
-  const { foundFilms } = useContext(FilmsContext);
 
   useEffect(() => {
-    if (foundFilms.length !== 0) {
+    if (films.length !== 0) {
       setIsLoaded(true);
     }
-  }, [foundFilms]);
+  }, [films]);
 
   let content;
   if (!isLoaded) {
@@ -42,14 +45,14 @@ const Films = () => {
         <Loading />
       </div>
     );
-  } else if (foundFilms.length === 0) {
+  } else if (films.length === 0) {
     content = (
       <div className={classes.waitingOrLoaded}>
         <NoFound text="No film found" />
       </div>
     );
   } else {
-    const filmsData = foundFilms.map((film) => {
+    const filmsData = films.map((film) => {
       let genre = "";
       if (film.genres.length > 1) {
         genre = `${film.genres[0]} & ${film.genres[1]}`;
@@ -59,9 +62,8 @@ const Films = () => {
 
       const dataRelease = film.release_date.slice(0, 4);
       return (
-        <Link to={`/movies/${film.id}`}>
+        <Link key={film.id} to={`/movies/${film.id}`}>
           <Film
-            key={film.id}
             img={film.poster_path}
             title={film.title}
             genre={genre}
@@ -74,10 +76,18 @@ const Films = () => {
     content = <div className={classes.films}>{filmsData}</div>;
   }
   return (
-    <main>
+    <main className={classes.allFilms}>
       <Wrapper padding={20}>{content}</Wrapper>
     </main>
   );
+};
+
+Films.defaultProps = {
+  films: [],
+};
+
+Films.propTypes = {
+  films: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Films;

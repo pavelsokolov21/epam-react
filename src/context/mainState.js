@@ -10,7 +10,7 @@ import {
   submitValueFromInput,
   isLoadedFilms,
 } from "./reducers";
-import { getAllMovie } from "../services/instaservices";
+import { getAllMovie, getMovieById } from "../services/instaservices";
 import { parceToLineStr, filterFilms, sortFilms } from "../common";
 
 const MainState = (props) => {

@@ -20,9 +20,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const Button = ({
- text, isActive, onClick, ...props 
-}) => {
+const Button = ({ text, isActive, onClick, ...props }) => {
   const classes = useStyles(props);
   const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
 

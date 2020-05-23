@@ -109,6 +109,7 @@ module.exports = {
     alias: {
       components: `${PATHS.src}/components`,
       containers: `${PATHS.src}/containers`,
+      context: `${PATHS.src}/context`,
     },
   },
 

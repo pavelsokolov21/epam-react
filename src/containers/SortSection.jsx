@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
-import SortButtonsContainer from "components/SortButtonsContainer";
-import FilmsContext from "../context/FilmsContext";
+import Default from "components/Default";
+import PropTypes from "prop-types";
 
 const useStyles = createUseStyles({
   sortSection: {
@@ -15,37 +15,37 @@ const useStyles = createUseStyles({
   },
 });
 
-const SortSection = () => {
+const SortSection = ({ films, text, SortButtons }) => {
   const classes = useStyles();
-  const { foundFilms } = useContext(FilmsContext);
 
-  if (foundFilms.length === 0) {
-    return (
-      <section className={classes.sortSection}>
-        <Wrapper>
-          <div />
-        </Wrapper>
-      </section>
+  let content;
+  if (films.length === 0) {
+    content = <></>;
+  } else {
+    content = (
+      <div className={classes.sort}>
+        <p>{text}</p>
+        <SortButtons />
+      </div>
     );
   }
-
-  let textFoundMovies = "";
-  if (foundFilms.length === 1) {
-    textFoundMovies = `${foundFilms.length} movie found`;
-  } else {
-    textFoundMovies = `${foundFilms.length} movies found`;
-  }
-
   return (
     <section className={classes.sortSection}>
-      <Wrapper>
-        <div className={classes.sort}>
-          <p>{textFoundMovies}</p>
-          <SortButtonsContainer />
-        </div>
-      </Wrapper>
+      <Wrapper>{content}</Wrapper>
     </section>
   );
+};
+
+SortSection.defaultProps = {
+  films: [],
+  text: "Nothing found",
+  SortButtons: Default,
+};
+
+SortSection.propTypes = {
+  films: PropTypes.arrayOf(PropTypes.object),
+  text: PropTypes.string,
+  SortButtons: PropTypes.func,
 };
 
 export default SortSection;
