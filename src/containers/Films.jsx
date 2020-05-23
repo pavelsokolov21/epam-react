@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
+import { Link } from "react-router-dom";
 import Wrapper from "components/Wrapper";
 import Film from "components/Film";
 import NoFound from "components/Intermediate/NoFound";
@@ -58,13 +59,15 @@ const Films = () => {
 
       const dataRelease = film.release_date.slice(0, 4);
       return (
-        <Film
-          key={film.id}
-          img={film.poster_path}
-          title={film.title}
-          genre={genre}
-          dateRelease={dataRelease}
-        />
+        <Link to={`/movies/${film.id}`}>
+          <Film
+            key={film.id}
+            img={film.poster_path}
+            title={film.title}
+            genre={genre}
+            dateRelease={dataRelease}
+          />
+        </Link>
       );
     });
 

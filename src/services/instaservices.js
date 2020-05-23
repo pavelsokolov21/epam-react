@@ -8,7 +8,7 @@ export const getAllMovie = () => {
   return res;
 };
 
-export const getmovieById = (id) => {
+export const getMovieById = (id) => {
   const res = fetch(`${apiBase}/${id}`)
     .then((res) => res.json())
     .catch((e) => console.error(e));

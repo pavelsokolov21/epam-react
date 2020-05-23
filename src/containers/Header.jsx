@@ -1,8 +1,9 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
-import Logo from "components/Logo";
-import Search from "./Search";
+import SearchWrapper from "components/Search/SearchWrapper";
+import CurrentFilm from "components/CurrentFilm";
 import bg from "../img/header_background.jpg";
 
 const useStyles = createUseStyles({
@@ -29,8 +30,10 @@ const Header = () => {
   return (
     <header className={classes.headerBg}>
       <Wrapper padding={20}>
-        <Logo />
-        <Search />
+        <Switch>
+          <Route path="/" component={SearchWrapper} />
+          <Route path="/movies/:id" component={CurrentFilm} />
+        </Switch>
       </Wrapper>
     </header>
   );
