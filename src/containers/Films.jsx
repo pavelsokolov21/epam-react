@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { createUseStyles } from "react-jss";
 import { Link } from "react-router-dom";
 import Wrapper from "components/Wrapper";
-import Film from "components/Film";
+import FilmCard from "components/FilmCard";
 import NoFound from "components/Intermediate/NoFound";
 import Loading from "components/Intermediate/Loading";
 import PropTypes from "prop-types";
@@ -69,7 +69,7 @@ const Films = ({ films }) => {
           key={film.id}
           to={`/movies/${film.id}`}
         >
-          <Film
+          <FilmCard
             img={film.poster_path}
             title={film.title}
             genre={genre}

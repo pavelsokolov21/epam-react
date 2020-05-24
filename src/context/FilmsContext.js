@@ -10,7 +10,9 @@ const FilmsContext = createContext({
   switchSearchBy: (buttonType) => {},
   switchSortBy: (buttonType) => {},
   onChangeSearchInput: (value) => {},
-  submitValueFromInput: (e) => {},
+  submitValueFromInput: () => {},
+  setDefaultFilms: () => {},
+  sortFilmsByGenre: () => {},
 });
 
 export default FilmsContext;

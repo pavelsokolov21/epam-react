@@ -38,10 +38,10 @@ const useStyles = createUseStyles({
   },
 });
 
-const Film = (props) => {
+const FilmCard = (props) => {
   const classes = useStyles();
-  const { title, img, genre, dateRelease 
-} = props;
+  const {
+ title, img, genre, dateRelease, } = props;
 
   return (
     <div className={classes.film}>
@@ -59,15 +59,15 @@ const Film = (props) => {
   );
 };
 
-Film.defaultProps = {
+FilmCard.defaultProps = {
   img: defaultImg,
 };
 
-Film.propTypes = {
+FilmCard.propTypes = {
   title: PropTypes.string.isRequired,
   img: PropTypes.string,
   genre: PropTypes.string.isRequired,
   dateRelease: PropTypes.string.isRequired,
 };
 
-export default Film;
+export default FilmCard;

@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "containers/Search";
+import Search from "./Search";
 import Logo from "../Logo";
 
 const SearchWrapper = () => (

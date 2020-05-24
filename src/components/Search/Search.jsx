@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import SearchButtonsContainer from "components/Search/SearchButtonsContainer";
-import SearchInput from "components/Search/SearchInput";
+import SearchButtonsContainer from "./SearchButtonsContainer";
+import SearchInput from "./SearchInput";
 
 const useStyles = createUseStyles({
   searchField: {
