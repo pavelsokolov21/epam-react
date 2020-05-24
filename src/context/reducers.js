@@ -3,6 +3,7 @@ export const CHANGE_SEARCH_INPUT = "CHANGE_SEARCH_INPUT";
 export const SUBMIT_VALUE_FROM_INPUT = "SUBMIT_VALUE_FROM_INPUT";
 export const LOADED_FILMS = "LOADED_FILMS";
 export const SORT_BY_SWITCH = "SORT_BY_SWITCH";
+export const SET_FILM = "SET_FILM";
 
 export const searchBySwitcher = (typeSearch) => ({
   type: SEARCH_BY_SWITCH,
@@ -29,6 +30,11 @@ export const isLoadedFilms = (films) => ({
   payload: films,
 });
 
+export const setCurrentFilm = (film) => ({
+  type: SET_FILM,
+  payload: film,
+});
+
 export const filmsReducer = (state, action) => {
   switch (action.type) {
     case SEARCH_BY_SWITCH:
@@ -49,6 +55,8 @@ export const filmsReducer = (state, action) => {
         filmsData: action.payload,
         foundFilms: action.payload,
       };
+    case SET_FILM:
+      return { ...state, currentFilm: action.payload };
     default:
       return state;
   }

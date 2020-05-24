@@ -9,6 +9,7 @@ import {
   onChangeSearchInput,
   setFoundFilms,
   isLoadedFilms,
+  setCurrentFilm,
 } from "./reducers";
 import { getAllMovie, getMovieById } from "../services/instaservices";
 import { filterFilms, sortFilms } from "../common";
@@ -20,6 +21,7 @@ const MainState = (props) => {
     searchBy: "title",
     sortBy: "releaseDate",
     searchInputValue: "",
+    currentFilm: {},
   };
   const [state, dispatch] = useReducer(filmsReducer, initialState);
 
@@ -51,6 +53,7 @@ const MainState = (props) => {
         "genres",
         filmById.genres[0]
       );
+      dispatch(setCurrentFilm(filmById));
       dispatch(setFoundFilms(foundFilms));
     });
   };
@@ -77,6 +80,7 @@ const MainState = (props) => {
     searchBy: state.searchBy,
     sortBy: state.sortBy,
     searchInputValue: state.searchInputValue,
+    currentFilm: state.currentFilm,
     switchSearchBy,
     switchSortBy,
     sortFilmsByGenre,

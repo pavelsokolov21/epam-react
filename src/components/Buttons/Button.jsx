@@ -6,7 +6,7 @@ const useStyles = createUseStyles({
   btn: {
     width: ({ width }) => width,
     background: ({ background }) => background || "rgb(37, 37, 37)",
-    color: "white",
+    color: ({ color }) => color || "white",
     cursor: "pointer",
     padding: "5px 8px",
     border: "none",
@@ -14,13 +14,16 @@ const useStyles = createUseStyles({
     borderRadius: 4,
     fontSize: ({ fontSize }) => fontSize || 12,
     fontWeight: 700,
+    textTransform: "uppercase",
   },
   active: {
     background: "rgb(255, 41, 41) !important",
   },
 });
 
-const Button = ({ text, isActive, onClick, ...props }) => {
+const Button = ({
+ text, isActive, onClick, ...props 
+}) => {
   const classes = useStyles(props);
   const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
 
@@ -37,9 +40,7 @@ const Button = ({ text, isActive, onClick, ...props }) => {
 
 Button.defaultProps = {
   isActive: false,
-  onClick: () => {
-    console.log("click");
-  },
+  onClick: () => {},
 };
 
 Button.propTypes = {

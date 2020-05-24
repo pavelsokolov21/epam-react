@@ -6,6 +6,7 @@ const FilmsContext = createContext({
   searchBy: "title",
   sortBy: "releaseDate",
   searchInputValue: "",
+  currentFilm: {},
   switchSearchBy: (buttonType) => {},
   switchSortBy: (buttonType) => {},
   onChangeSearchInput: (value) => {},
