@@ -48,13 +48,11 @@ const MainState = (props) => {
     e.preventDefault();
     const lowerCaseInputValue = parceToLineStr(state.searchInputValue);
     const sortedFilms = sortFilms(state.filmsData, state.sortBy);
-    let foundFilms = [];
-
-    if (state.searchBy === "title") {
-      foundFilms = filterFilms(sortedFilms, "title", lowerCaseInputValue);
-    } else {
-      foundFilms = filterFilms(sortedFilms, "genres", lowerCaseInputValue);
-    }
+    const foundFilms = filterFilms(
+      sortedFilms,
+      state.searchBy,
+      lowerCaseInputValue
+    );
 
     if (state.searchInputValue.length === 0) {
       dispatch(submitValueFromInput(sortedFilms));

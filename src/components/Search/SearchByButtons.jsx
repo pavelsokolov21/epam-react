@@ -35,8 +35,8 @@ const SearchByButtons = () => {
         text="genre"
         fontSize={12}
         width={100}
-        isActive={searchBy === "genre"}
-        onClick={(e) => switchSearchBy(e, "genre")}
+        isActive={searchBy === "genres"}
+        onClick={(e) => switchSearchBy(e, "genres")}
       />
     </div>
   );

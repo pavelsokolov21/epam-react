@@ -11,7 +11,7 @@ const CurrentFilm = () => {
 
   useEffect(() => {}, [id]);
 
-  return <div>fake</div>;
+  return <div>fake:{id}</div>;
 };
 
 export default CurrentFilm;

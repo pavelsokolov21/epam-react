@@ -2,7 +2,6 @@ export const parceToLineStr = (str) => str.toLowerCase().replace(/\s+/g, "");
 
 export const filterFilms = (films, category, subStr) => {
   let newFilmsArray = [];
-
   const addFilmIfEntry = (film, searchStr) => {
     const nameOfCategory = parceToLineStr(searchStr);
 
