@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { createUseStyles } from "react-jss";
 import { Link } from "react-router-dom";
 import Wrapper from "components/Wrapper";
@@ -6,6 +6,7 @@ import Film from "components/Film";
 import NoFound from "components/Intermediate/NoFound";
 import Loading from "components/Intermediate/Loading";
 import PropTypes from "prop-types";
+import FilmsContext from "../context/FilmsContext";
 
 const useStyles = createUseStyles({
   allFilms: {
@@ -31,6 +32,7 @@ const useStyles = createUseStyles({
 const Films = ({ films }) => {
   const classes = useStyles();
   const [isLoaded, setIsLoaded] = useState(false);
+  const { sortFilmsByGenre } = useContext(FilmsContext);
 
   useEffect(() => {
     if (films.length !== 0) {
@@ -62,7 +64,11 @@ const Films = ({ films }) => {
 
       const dataRelease = film.release_date.slice(0, 4);
       return (
-        <Link key={film.id} to={`/movies/${film.id}`}>
+        <Link
+          onClick={sortFilmsByGenre.bind(this, film.id)}
+          key={film.id}
+          to={`/movies/${film.id}`}
+        >
           <Film
             img={film.poster_path}
             title={film.title}

@@ -19,7 +19,7 @@ export const onChangeSearchInput = (value) => ({
   payload: value,
 });
 
-export const submitValueFromInput = (foundFilms) => ({
+export const setFoundFilms = (foundFilms) => ({
   type: SUBMIT_VALUE_FROM_INPUT,
   payload: foundFilms,
 });

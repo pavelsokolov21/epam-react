@@ -7,7 +7,7 @@ import {
   searchBySwitcher,
   sortBySwitcher,
   onChangeSearchInput,
-  submitValueFromInput,
+  setFoundFilms,
   isLoadedFilms,
 } from "./reducers";
 import { getAllMovie, getMovieById } from "../services/instaservices";
@@ -44,6 +44,11 @@ const MainState = (props) => {
     dispatch(onChangeSearchInput(value));
   };
 
+  const sortFilmsByGenre = (id) => {
+    const currentFilm = getMovieById(id);
+    const sortedFilms = filterFilms(state.filmsData, "genres");
+  };
+
   const submitFilmValue = (e) => {
     e.preventDefault();
     const lowerCaseInputValue = parceToLineStr(state.searchInputValue);
@@ -55,9 +60,9 @@ const MainState = (props) => {
     );
 
     if (state.searchInputValue.length === 0) {
-      dispatch(submitValueFromInput(sortedFilms));
+      dispatch(setFoundFilms(sortedFilms));
     } else {
-      dispatch(submitValueFromInput(foundFilms));
+      dispatch(setFoundFilms(foundFilms));
     }
   };
 
@@ -69,6 +74,7 @@ const MainState = (props) => {
     searchInputValue: state.searchInputValue,
     switchSearchBy,
     switchSortBy,
+    sortFilmsByGenre,
     onChangeSearchInput: handleChangeInput,
     submitValueFromInput: submitFilmValue,
   };

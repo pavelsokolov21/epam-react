@@ -1,23 +1,17 @@
 export const parceToLineStr = (str) => str.toLowerCase().replace(/\s+/g, "");
 
 export const filterFilms = (films, category, subStr) => {
-  let newFilmsArray = [];
-  const addFilmIfEntry = (film, searchStr) => {
-    const nameOfCategory = parceToLineStr(searchStr);
+  let newFilmsArray = [...films];
 
-    if (nameOfCategory.indexOf(subStr) !== -1) {
-      newFilmsArray = [...newFilmsArray, film];
-    }
-  };
-
-  films.forEach((film) => {
+  newFilmsArray = newFilmsArray.filter((film) => {
+    let nameOfCategory = "";
     if (Array.isArray(film[category])) {
-      film[category].forEach((genre) => {
-        addFilmIfEntry(film, genre);
-      });
+      nameOfCategory = parceToLineStr(film[category].join(""));
     } else {
-      addFilmIfEntry(film, film[category]);
+      nameOfCategory = parceToLineStr(film[category]);
     }
+
+    return nameOfCategory.indexOf(subStr) !== -1;
   });
 
   return newFilmsArray;
