@@ -2,6 +2,7 @@ export const parceToLineStr = (str) => str.toLowerCase().replace(/\s+/g, "");
 
 export const filterFilms = (films, category, subStr) => {
   let newFilmsArray = [...films];
+  const lowerCaseSubStr = parceToLineStr(subStr);
 
   newFilmsArray = newFilmsArray.filter((film) => {
     let nameOfCategory = "";
@@ -11,7 +12,7 @@ export const filterFilms = (films, category, subStr) => {
       nameOfCategory = parceToLineStr(film[category]);
     }
 
-    return nameOfCategory.indexOf(subStr) !== -1;
+    return nameOfCategory.indexOf(lowerCaseSubStr) !== -1;
   });
 
   return newFilmsArray;

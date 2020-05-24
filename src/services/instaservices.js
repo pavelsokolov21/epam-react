@@ -1,17 +1,17 @@
 const apiBase = "http://react-cdp-api.herokuapp.com/movies";
 
 export const getAllMovie = () => {
-  const res = fetch(`${apiBase}`)
+  const result = fetch(`${apiBase}`)
     .then((res) => res.json())
     .catch((e) => console.error(e));
 
-  return res;
+  return result;
 };
 
 export const getMovieById = (id) => {
-  const res = fetch(`${apiBase}/${id}`)
+  const result = fetch(`${apiBase}/${id}`)
     .then((res) => res.json())
     .catch((e) => console.error(e));
 
-  return res.json();
+  return result;
 };

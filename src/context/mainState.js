@@ -11,7 +11,7 @@ import {
   isLoadedFilms,
 } from "./reducers";
 import { getAllMovie, getMovieById } from "../services/instaservices";
-import { parceToLineStr, filterFilms, sortFilms } from "../common";
+import { filterFilms, sortFilms } from "../common";
 
 const MainState = (props) => {
   const initialState = {
@@ -45,18 +45,23 @@ const MainState = (props) => {
   };
 
   const sortFilmsByGenre = (id) => {
-    const currentFilm = getMovieById(id);
-    const sortedFilms = filterFilms(state.filmsData, "genres");
+    getMovieById(id).then((filmById) => {
+      const foundFilms = filterFilms(
+        state.filmsData,
+        "genres",
+        filmById.genres[0]
+      );
+      dispatch(setFoundFilms(foundFilms));
+    });
   };
 
   const submitFilmValue = (e) => {
     e.preventDefault();
-    const lowerCaseInputValue = parceToLineStr(state.searchInputValue);
     const sortedFilms = sortFilms(state.filmsData, state.sortBy);
     const foundFilms = filterFilms(
       sortedFilms,
       state.searchBy,
-      lowerCaseInputValue
+      state.searchInputValue
     );
 
     if (state.searchInputValue.length === 0) {
