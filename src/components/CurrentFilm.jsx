@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
     height: 500,
   },
   aboutFilmText: {
-    maxWidth: 820,
+    maxWidth: 740,
   },
   aboutFilmTextTitle: {
     color: "rgb(255, 41, 41)",
@@ -54,7 +54,7 @@ const useStyles = createUseStyles({
 
 const CurrentFilm = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const { currentFilm } = useContext(FilmsContext);
+  const { currentFilm, setDefaultFilms } = useContext(FilmsContext);
   const {
     title,
     poster_path,
@@ -81,6 +81,7 @@ const CurrentFilm = () => {
         <Logo />
         <Link to="/">
           <Button
+            onClick={setDefaultFilms}
             width={100}
             text="search"
             background="white"

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Header from "containers/Header";
 import CurrentFilm from "components/CurrentFilm";
 import SortSection from "containers/SortSection";
-import FilmsContainer from "containers/FilmsContainer";
+import Films from "containers/Films";
 import FilmsContext from "context/FilmsContext";
 
 const CurrentFilmPage = () => {
@@ -25,7 +25,7 @@ const CurrentFilmPage = () => {
     <>
       <Header ContentComponent={CurrentFilm} />
       <SortSection films={foundFilms} text={textFoundMovies} />
-      <FilmsContainer films={foundFilms} />
+      <Films films={foundFilms} />
     </>
   );
 };

@@ -32,8 +32,7 @@ const MainState = (props) => {
     });
   }, []);
 
-  const switchSearchBy = (e, buttonType) => {
-    e.preventDefault();
+  const switchSearchBy = (buttonType) => {
     dispatch(searchBySwitcher(buttonType));
   };
 
@@ -48,18 +47,20 @@ const MainState = (props) => {
 
   const sortFilmsByGenre = (id) => {
     getMovieById(id).then((filmById) => {
-      const foundFilms = filterFilms(
+      let foundFilms = filterFilms(
         state.filmsData,
         "genres",
         filmById.genres[0]
+      );
+      foundFilms = foundFilms.filter(
+        (film) => JSON.stringify(film) !== JSON.stringify(filmById)
       );
       dispatch(setCurrentFilm(filmById));
       dispatch(setFoundFilms(foundFilms));
     });
   };
 
-  const submitFilmValue = (e) => {
-    e.preventDefault();
+  const submitFilmValue = () => {
     const sortedFilms = sortFilms(state.filmsData, state.sortBy);
     const foundFilms = filterFilms(
       sortedFilms,
@@ -74,6 +75,11 @@ const MainState = (props) => {
     }
   };
 
+  const setDefaultFilms = () => {
+    const sortedFilms = sortFilms(state.filmsData, state.sortBy);
+    dispatch(setFoundFilms(sortedFilms));
+  };
+
   const { children } = props;
   const globalStateValue = {
     foundFilms: state.foundFilms,
@@ -84,6 +90,7 @@ const MainState = (props) => {
     switchSearchBy,
     switchSortBy,
     sortFilmsByGenre,
+    setDefaultFilms,
     onChangeSearchInput: handleChangeInput,
     submitValueFromInput: submitFilmValue,
   };

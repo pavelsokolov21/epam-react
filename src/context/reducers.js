@@ -1,6 +1,6 @@
 export const SEARCH_BY_SWITCH = "SEARCH_BY_SWITCH";
 export const CHANGE_SEARCH_INPUT = "CHANGE_SEARCH_INPUT";
-export const SUBMIT_VALUE_FROM_INPUT = "SUBMIT_VALUE_FROM_INPUT";
+export const SET_FOUND_FILMS = "SET_FOUND_FILMS";
 export const LOADED_FILMS = "LOADED_FILMS";
 export const SORT_BY_SWITCH = "SORT_BY_SWITCH";
 export const SET_FILM = "SET_FILM";
@@ -21,7 +21,7 @@ export const onChangeSearchInput = (value) => ({
 });
 
 export const setFoundFilms = (foundFilms) => ({
-  type: SUBMIT_VALUE_FROM_INPUT,
+  type: SET_FOUND_FILMS,
   payload: foundFilms,
 });
 
@@ -47,7 +47,7 @@ export const filmsReducer = (state, action) => {
       };
     case CHANGE_SEARCH_INPUT:
       return { ...state, searchInputValue: action.payload };
-    case SUBMIT_VALUE_FROM_INPUT:
+    case SET_FOUND_FILMS:
       return { ...state, foundFilms: action.payload };
     case LOADED_FILMS:
       return {

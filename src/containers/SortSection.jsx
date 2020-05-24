@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Wrapper from "components/Wrapper";
-import Default from "components/Default";
+import Default from "components/Intermediate/Default";
 import PropTypes from "prop-types";
 
 const useStyles = createUseStyles({
