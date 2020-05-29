@@ -5,6 +5,9 @@ import Films from "containers/Films";
 import SearchWrapper from "components/Search/SearchWrapper";
 import SortButtonsContainer from "components/SortButtonsContainer";
 import FilmsContext from "context/FilmsContext";
+import { connect } from "react-redux";
+import * as actions from "../../actions/actions";
+import { filterFilms, sortFilms } from "../../common";
 
 const HomePage = () => {
   const { foundFilms } = useContext(FilmsContext);
@@ -29,4 +32,29 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const mapStateToProps = (state) => {
+  const {
+    foundFilms, searchBy, sortBy, searchInputValue,
+  } = state;
+
+  return {
+    foundFilms,
+    searchBy,
+    sortBy,
+    searchInputValue,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  switchSearchBy: (buttonType) => dispatch(actions.searchBySwitcher(buttonType)),
+  switchSortBy: (foundFilms, buttonType) => {
+    const sortedFilms = sortFilms(foundFilms, buttonType);
+    dispatch(actions.sortBySwitcher(sortedFilms, buttonType));
+  },
+  handleChangeInput: (value) => dispatch(actions.onChangeSearchInput(value)),
+  submitFilmValue: () => {
+
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

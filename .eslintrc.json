@@ -23,9 +23,7 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": ["error", {
-           "endOfLine":"auto"
-         }],
+        "prettier/prettier": "off",
         "import/no-unresolved": "off",
         "linebreak-style": "off",
         "no-unused-expressions": "off",
