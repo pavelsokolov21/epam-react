@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -14,7 +15,7 @@ const useStyles = createUseStyles({
 
 const Sort = (props) => {
   const {
-    metaText, onClick, sortBy, optionalComponent,
+    metaText, optionalComponent,
   } = props;
   const classes = useStyles();
 
@@ -32,6 +33,16 @@ const Sort = (props) => {
       </div>
     </section>
   );
+};
+
+Sort.defaultProps = {
+  metaText: "",
+  optionalComponent: <></>,
+};
+
+Sort.propTypes = {
+  metaText: PropTypes.string,
+  optionalComponent: PropTypes.node,
 };
 
 export default Sort;

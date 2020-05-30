@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import Input from "./Input";
 import Button from "./Button";
@@ -53,6 +54,14 @@ const Search = (props) => {
       </div>
     </>
   );
+};
+
+Search.propTypes = {
+  searchBy: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  onChangeInput: PropTypes.string.isRequired,
+  searchBySwitcher: PropTypes.string.isRequired,
+  submitValue: PropTypes.string.isRequired,
 };
 
 export default Search;

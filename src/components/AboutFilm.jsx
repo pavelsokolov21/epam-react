@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import Button from "./Button";
@@ -94,6 +95,19 @@ const AboutFilm = ({ aboutFilm, onClick }) => {
       </div>
     </div>
   );
+};
+
+AboutFilm.propTypes = {
+  aboutFilm: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    runtime: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    setDefaultFilms: PropTypes.string.isRequired,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default AboutFilm;

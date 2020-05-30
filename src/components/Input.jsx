@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -31,6 +32,16 @@ const Input = (props) => {
       />
     </div>
   );
+};
+
+Input.defaultProps = {
+  placeholder: "",
+};
+
+Input.propTypes = {
+  text: PropTypes.string.isRequired,
+  onChange: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default Input;

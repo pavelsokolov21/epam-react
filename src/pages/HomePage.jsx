@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import Header from "../components/Header";
@@ -7,8 +8,8 @@ import Search from "../components/Search";
 import Films from "../components/Films";
 import Sort from "../components/Sort";
 import SortButtons from "../components/SortButtons";
-import { getAllMovie, getMovieById } from "../services/services";
-import { sortFilms, countFilmsFound, filterFilms } from "../common";
+import { getAllMovie } from "../services/services";
+import { sortFilms, countFilmsFound } from "../common";
 
 const HomePage = (props) => {
   const {
@@ -44,21 +45,33 @@ const HomePage = (props) => {
             searchBy={searchBy}
             inputValue={searchInputValue}
             onChangeInput={onChangeSearchInput}
-            submitValue={submitFilmValue.bind(this, filmsData, sortBy, searchBy, searchInputValue)}
+            submitValue={submitFilmValue.bind(
+              this,
+              filmsData,
+              sortBy,
+              searchBy,
+              searchInputValue,
+            )}
           />
         )}
       />
       <Sort
-        optionalComponent={foundFilms.length !== 0 && (
-          <SortButtons
-            sortBy={sortBy}
-            onClick={sortBySwitcher.bind(this, filmsData)}
-          />
-        )}
+        optionalComponent={
+          foundFilms.length !== 0 && (
+            <SortButtons
+              sortBy={sortBy}
+              onClick={sortBySwitcher.bind(this, filmsData)}
+            />
+          )
+        }
         metaText={countFilmsFound(foundFilms)}
         sortBy={sortBy}
       />
-      <Films getCurrentFilm={getCurrentFilm.bind(this, filmsData)} isLoaded={isLoaded} films={foundFilms} />
+      <Films
+        getCurrentFilm={getCurrentFilm.bind(this, filmsData)}
+        isLoaded={isLoaded}
+        films={foundFilms}
+      />
       <Footer />
     </>
   );
@@ -86,10 +99,24 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(actions.sortBySwitcher(sortedFilms, typeSort));
   },
   fetchFilmsDataSuccess: (filmsData) => dispatch(actions.fetchFilmsDataSuccess(filmsData)),
-  submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => (
-    dispatch(actions.submitFilmValue(filmsData, sortBy, searchBy, searchInputValue))
+  submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
+    actions.submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
   ),
   getCurrentFilm: (filmsData, id) => dispatch(actions.fetchFilm(filmsData, id)),
 });
+
+HomePage.propTypes = {
+  filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  foundFilms: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchBy: PropTypes.string.isRequired,
+  sortBy: PropTypes.string.isRequired,
+  searchInputValue: PropTypes.string.isRequired,
+  onChangeSearchInput: PropTypes.func.isRequired,
+  searchBySwitcher: PropTypes.func.isRequired,
+  sortBySwitcher: PropTypes.func.isRequired,
+  fetchFilmsDataSuccess: PropTypes.func.isRequired,
+  submitFilmValue: PropTypes.func.isRequired,
+  getCurrentFilm: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

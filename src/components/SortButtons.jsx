@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import ButtonWithoutBg from "./ButtonWithoutBg";
 
@@ -28,6 +29,11 @@ const SortButtons = (props) => {
       <ButtonWithoutBg onClick={onClick.bind(this, "rating")} isActive={sortBy === "rating"} text="rating" />
     </div>
   );
+};
+
+SortButtons.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
 };
 
 export default SortButtons;

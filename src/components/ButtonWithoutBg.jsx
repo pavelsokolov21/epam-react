@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -27,6 +28,17 @@ const ButtonWithoutBg = (props) => {
       {text}
     </button>
   );
+};
+
+ButtonWithoutBg.defaultProps = {
+  text: "DefaultText",
+  isActive: false,
+};
+
+ButtonWithoutBg.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  isActive: PropTypes.bool,
 };
 
 export default ButtonWithoutBg;

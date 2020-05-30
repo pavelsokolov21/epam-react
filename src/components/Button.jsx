@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -26,6 +27,17 @@ const Button = (props) => {
   const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
 
   return <button className={buttonClass} onClick={onClick}>{text}</button>;
+};
+
+Button.defaultProps = {
+  text: "DefaultText",
+  isActive: false,
+};
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  isActive: PropTypes.bool,
 };
 
 export default Button;

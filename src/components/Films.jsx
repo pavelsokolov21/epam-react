@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import FilmCard from "./FilmCard";
@@ -55,6 +56,12 @@ const Films = ({ films, isLoaded, getCurrentFilm }) => {
       </div>
     </main>
   );
+};
+
+Films.propTypes = {
+  films: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  getCurrentFilm: PropTypes.func.isRequired,
 };
 
 export default Films;

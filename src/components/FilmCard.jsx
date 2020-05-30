@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -56,6 +57,13 @@ const FilmCard = (props) => {
       </figure>
     </div>
   );
+};
+
+FilmCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  dateRelease: PropTypes.string.isRequired,
 };
 
 export default FilmCard;

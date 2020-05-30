@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import bg from "../img/header_background.jpg";
 
@@ -30,6 +31,10 @@ const Header = ({ component }) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  component: PropTypes.node.isRequired,
 };
 
 export default Header;
