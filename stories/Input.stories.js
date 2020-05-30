@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import SearchInput from "../src/components/Search/SearchInput";
+import SearchInput from "../src/components/Input";
 
-storiesOf("Inputs", module).add("default", () => <SearchInput />);
+storiesOf("Inputs", module).add("default", () => {
+  const [value, onChange] = useState("");
+
+  return (
+    <SearchInput
+      onChange={onChange}
+      text={value}
+      placeholder="enter films name"
+    />
+  );
+});

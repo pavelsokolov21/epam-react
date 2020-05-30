@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  film: {},
+  film: {
+    display: "flex",
+    justifyContent: "center",
+    maxWidth: 334,
+  },
   filmImg: {
-    width: "100%",
+    maxWidth: 334,
     height: 480,
   },
   filmDescription: {
