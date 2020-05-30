@@ -12,7 +12,7 @@ describe("Film reducer", () => {
     ];
   });
 
-  it("IS_LOADED_PAGE", () => {
+  it("should replace isLoadedPage", () => {
     const action = {
       type: constants.IS_LOADED_PAGE,
       payload: true,
@@ -24,7 +24,7 @@ describe("Film reducer", () => {
     });
   });
 
-  it("SEARCH_BY_SWITCH", () => {
+  it("should replace searchBy", () => {
     const action = {
       type: constants.SEARCH_BY_SWITCH,
       payload: "genres",
@@ -36,7 +36,7 @@ describe("Film reducer", () => {
     });
   });
 
-  it("CHANGE_SEARCH_INPUT", () => {
+  it("should replace searchInputValue", () => {
     const action = {
       type: constants.CHANGE_SEARCH_INPUT,
       payload: "test",
@@ -48,7 +48,7 @@ describe("Film reducer", () => {
     });
   });
 
-  it("SET_FOUND_FILMS", () => {
+  it("should replace foundFilms", () => {
     const action = {
       type: constants.SET_FOUND_FILMS,
       payload: data,
@@ -60,7 +60,7 @@ describe("Film reducer", () => {
     });
   });
 
-  it("LOADED_FILMS", () => {
+  it("should replace filmsData and foundFilms", () => {
     const action = {
       type: constants.LOADED_FILMS,
       payload: data,
@@ -73,7 +73,7 @@ describe("Film reducer", () => {
     });
   });
 
-  it("SORT_BY_SWITCH", () => {
+  it("should replace sortedFoundFilms", () => {
     const sortedFilms = sortFilms(data, "rating");
 
     const action = {
@@ -91,7 +91,7 @@ describe("Film reducer", () => {
     });
   });
 
-  it("SET_FILM", () => {
+  it("should replace currentFilm", () => {
     const film = { id: 1, name: "test 1" };
 
     const action = {
