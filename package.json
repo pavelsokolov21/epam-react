@@ -7,7 +7,8 @@
     "debug": "webpack-dev-server --open --hot --config ./build/webpack.dev.config.js",
     "prod": "webpack --config ./build/webpack.build.config.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "browserslist": [
     "> 1%",
@@ -23,6 +24,8 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -31,10 +34,12 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "file-loader": "^6.0.0",
+    "jest": "^26.0.1",
     "jss": "^10.1.1",
     "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",
+    "react-test-renderer": "^16.13.1",
     "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",

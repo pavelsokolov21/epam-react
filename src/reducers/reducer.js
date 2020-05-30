@@ -1,6 +1,6 @@
 import * as constants from "../constants/constants";
 
-const initialState = {
+export const initialState = {
   filmsData: [],
   foundFilms: [],
   searchBy: "title",
