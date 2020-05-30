@@ -7,10 +7,13 @@ const initialState = {
   sortBy: "releaseDate",
   searchInputValue: "",
   currentFilm: {},
+  isLoadedPage: false,
 };
 
 const filmsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case constants.IS_LOADED_PAGE:
+      return { ...state, isLoadedPage: action.payload };
     case constants.SEARCH_BY_SWITCH:
       return { ...state, searchBy: action.payload };
     case constants.SORT_BY_SWITCH:

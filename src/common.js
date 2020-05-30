@@ -36,3 +36,17 @@ export const sortFilms = (films, sortBy) => {
     return secondOperand - firstOperand;
   });
 };
+
+export const countFilmsFound = (films) => {
+  let text;
+
+  if (films.length === 0) {
+    text = "";
+  } else if (films.length === 1) {
+    text = "1 movie found";
+  } else {
+    text = `${films.length} movies found`;
+  }
+
+  return text;
+};

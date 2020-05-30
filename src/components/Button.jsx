@@ -1,10 +1,9 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import PropTypes from "prop-types";
 
 const useStyles = createUseStyles({
   btn: {
-    width: ({ width }) => width,
+    width: ({ width }) => width || 100,
     background: ({ background }) => background || "rgb(37, 37, 37)",
     color: ({ color }) => color || "white",
     cursor: "pointer",
@@ -21,32 +20,12 @@ const useStyles = createUseStyles({
   },
 });
 
-const Button = ({
- text, isActive, onClick, ...props 
-}) => {
+const Button = (props) => {
+  const { onClick, text, isActive } = props;
   const classes = useStyles(props);
   const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
 
-  return (
-    <button
-      type={text === "search" ? "submit" : "text"}
-      onClick={onClick}
-      className={buttonClass}
-    >
-      {text}
-    </button>
-  );
-};
-
-Button.defaultProps = {
-  isActive: false,
-  onClick: () => {},
-};
-
-Button.propTypes = {
-  text: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
-  onClick: PropTypes.func,
+  return <button className={buttonClass} onClick={onClick}>{text}</button>;
 };
 
 export default Button;

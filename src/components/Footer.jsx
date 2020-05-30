@@ -1,7 +1,6 @@
 import React from "react";
-import Wrapper from "components/Wrapper";
-import Logo from "components/Logo";
 import { createUseStyles } from "react-jss";
+import Logo from "./Logo";
 
 const useStyles = createUseStyles({
   footer: {
@@ -14,9 +13,13 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Wrapper padding={20}>
-        <Logo />
-      </Wrapper>
+      <div className="container">
+        <div className="row">
+          <div className="footer-container">
+            <Logo />
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

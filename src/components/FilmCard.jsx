@@ -1,7 +1,5 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import PropTypes from "prop-types";
-import defaultImg from "../img/not-found.png";
 
 const useStyles = createUseStyles({
   film: {},
@@ -41,7 +39,8 @@ const useStyles = createUseStyles({
 const FilmCard = (props) => {
   const classes = useStyles();
   const {
- title, img, genre, dateRelease, } = props;
+    title, img, genre, dateRelease,
+  } = props;
 
   return (
     <div className={classes.film}>
@@ -57,17 +56,6 @@ const FilmCard = (props) => {
       </figure>
     </div>
   );
-};
-
-FilmCard.defaultProps = {
-  img: defaultImg,
-};
-
-FilmCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  img: PropTypes.string,
-  genre: PropTypes.string.isRequired,
-  dateRelease: PropTypes.string.isRequired,
 };
 
 export default FilmCard;

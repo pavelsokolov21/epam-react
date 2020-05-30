@@ -11,7 +11,9 @@ const useStyles = createUseStyles({
 const Logo = () => {
   const classes = useStyles();
 
-  return <h1 className={classes.logo}>netflixroulette</h1>;
+  return (
+    <div><h1 className={classes.logo}>netflixroulette</h1></div>
+  );
 };
 
 export default Logo;

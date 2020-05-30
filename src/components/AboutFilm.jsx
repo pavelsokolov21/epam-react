@@ -1,11 +1,8 @@
-/* eslint-disable camelcase */
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
-import FilmsContext from "../context/FilmsContext";
+import Button from "./Button";
 import Logo from "./Logo";
-import Button from "./Buttons/Button";
-import Loading from "./Intermediate/Loading";
 
 const useStyles = createUseStyles({
   currentFilm: {},
@@ -52,9 +49,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const CurrentFilm = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const { currentFilm, setDefaultFilms } = useContext(FilmsContext);
+const AboutFilm = ({ aboutFilm, onClick }) => {
   const {
     title,
     poster_path,
@@ -62,18 +57,10 @@ const CurrentFilm = () => {
     release_date,
     runtime,
     overview,
-  } = currentFilm;
+    setDefaultFilms,
+  } = aboutFilm;
+
   const classes = useStyles();
-
-  useEffect(() => {
-    if (Object.keys(currentFilm).length !== 0) {
-      setIsLoaded(true);
-    }
-  }, [currentFilm]);
-
-  if (!isLoaded) {
-    return <Loading />;
-  }
 
   return (
     <div className={classes.currentFilm}>
@@ -81,7 +68,7 @@ const CurrentFilm = () => {
         <Logo />
         <Link to="/">
           <Button
-            onClick={setDefaultFilms}
+            onClick={onClick}
             width={100}
             text="search"
             background="white"
@@ -109,4 +96,4 @@ const CurrentFilm = () => {
   );
 };
 
-export default CurrentFilm;
+export default AboutFilm;
