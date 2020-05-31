@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes, { func, object } from "prop-types";
+import PropTypes, { object } from "prop-types";
 
 export default class ErrorBoundary extends Component {
   constructor() {

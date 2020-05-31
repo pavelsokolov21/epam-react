@@ -33,6 +33,7 @@
         "react/prefer-stateless-function": "off",
         "react/button-has-type": "off",
         "react/jsx-filename-extension": "off",
-        "react/jsx-no-bind": "off"
+        "react/jsx-no-bind": "off",
+        "react/jsx-props-no-spreading": "off"
     }
 }

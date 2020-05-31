@@ -30,7 +30,7 @@ const CurrentFilmPage = (props) => {
       <Header
         component={(
           <AboutFilm
-            onClick={goToHome.bind(this, filmsData, sortBy)}
+            goToHome={goToHome.bind(this, filmsData, sortBy)}
             aboutFilm={currentFilm}
           />
         )}

@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const AboutFilm = ({ aboutFilm, onClick }) => {
+const AboutFilm = ({ aboutFilm, goToHome }) => {
   const {
     title,
     poster_path,
@@ -58,7 +58,6 @@ const AboutFilm = ({ aboutFilm, onClick }) => {
     release_date,
     runtime,
     overview,
-    setDefaultFilms,
   } = aboutFilm;
 
   const classes = useStyles();
@@ -69,7 +68,7 @@ const AboutFilm = ({ aboutFilm, onClick }) => {
         <Logo />
         <Link to="/">
           <Button
-            onClick={onClick}
+            onClick={goToHome}
             width={100}
             text="search"
             background="white"
@@ -107,7 +106,7 @@ AboutFilm.propTypes = {
     overview: PropTypes.string.isRequired,
     setDefaultFilms: PropTypes.string.isRequired,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
+  goToHome: PropTypes.func.isRequired,
 };
 
 export default AboutFilm;
