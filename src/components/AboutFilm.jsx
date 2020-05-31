@@ -13,15 +13,15 @@ const useStyles = createUseStyles({
     alignItems: "center",
   },
   aboutFilm: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: "grid",
+    gridGap: 30,
+    gridTemplateColumns: "1fr 2fr",
     marginTop: 10,
   },
   aboutFilmImg: {
     height: 500,
   },
   aboutFilmText: {
-    maxWidth: 740,
   },
   aboutFilmTextTitle: {
     color: "rgb(255, 41, 41)",
