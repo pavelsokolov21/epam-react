@@ -19,14 +19,14 @@ const useStyles = createUseStyles({
 
 const Input = (props) => {
   const classes = useStyles();
-  const { text, onChange, placeholder } = props;
+  const { value, onChange, placeholder } = props;
 
   return (
     <div>
       <input
         className={classes.searchInput}
         placeholder={placeholder}
-        value={text}
+        value={value}
         onChange={({ target: { value } }) => onChange(value)}
         type="text"
       />
@@ -39,8 +39,8 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-  text: PropTypes.string.isRequired,
-  onChange: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 };
 

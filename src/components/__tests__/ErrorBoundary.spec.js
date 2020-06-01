@@ -5,7 +5,7 @@ import ErrorBoundary from "../ErrorBoundary";
 describe("ErrorBoundary", () => {
   let component;
   beforeEach(() => {
-    component = shallow(<ErrorBoundary />);
+    component = shallow(<ErrorBoundary><div /></ErrorBoundary>);
   });
 
   it("should set state hasError: true", () => {

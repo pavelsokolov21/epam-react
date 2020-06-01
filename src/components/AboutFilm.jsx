@@ -104,7 +104,6 @@ AboutFilm.propTypes = {
     release_date: PropTypes.string.isRequired,
     runtime: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
-    setDefaultFilms: PropTypes.string.isRequired,
   }).isRequired,
   goToHome: PropTypes.func.isRequired,
 };
