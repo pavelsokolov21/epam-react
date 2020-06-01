@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import * as actions from "../actions/actions";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Search from "../components/Search";
@@ -10,28 +7,27 @@ import Sort from "../components/Sort";
 import SortButtons from "../components/SortButtons";
 import { getAllMovie } from "../services/services";
 import { sortFilms, countFilmsFound } from "../common";
+import FilmsContext from "../context/FilmsContext";
 
-const HomePage = (props) => {
+const HomePage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const {
-    filmsData,
     foundFilms,
     searchBy,
     sortBy,
     searchInputValue,
     onChangeSearchInput,
-    searchBySwitcher,
-    sortBySwitcher,
-    fetchFilmsDataSuccess,
+    switchSearchBy,
+    switchSortBy,
+    fetchFilmsData,
     submitFilmValue,
-    getCurrentFilm,
-  } = props;
-
-  const [isLoaded, setIsLoaded] = useState(false);
+    fetchFilm,
+  } = useContext(FilmsContext);
 
   useEffect(() => {
     getAllMovie().then((films) => {
       const sortedFilms = sortFilms(films.data, sortBy);
-      fetchFilmsDataSuccess(sortedFilms);
+      fetchFilmsData(sortedFilms);
       setIsLoaded(true);
     });
   }, []);
@@ -41,17 +37,11 @@ const HomePage = (props) => {
       <Header
         component={(
           <Search
-            searchBySwitcher={searchBySwitcher}
+            searchBySwitcher={switchSearchBy}
             searchBy={searchBy}
             inputValue={searchInputValue}
             onChangeInput={onChangeSearchInput}
-            submitValue={submitFilmValue.bind(
-              this,
-              filmsData,
-              sortBy,
-              searchBy,
-              searchInputValue,
-            )}
+            submitValue={submitFilmValue}
           />
         )}
       />
@@ -60,7 +50,7 @@ const HomePage = (props) => {
           foundFilms.length !== 0 && (
             <SortButtons
               sortBy={sortBy}
-              onClick={sortBySwitcher.bind(this, filmsData)}
+              onClick={switchSortBy}
             />
           )
         }
@@ -68,7 +58,7 @@ const HomePage = (props) => {
         sortBy={sortBy}
       />
       <Films
-        getCurrentFilm={getCurrentFilm.bind(this, filmsData)}
+        getCurrentFilm={fetchFilm}
         isLoaded={isLoaded}
         films={foundFilms}
       />
@@ -77,46 +67,4 @@ const HomePage = (props) => {
   );
 };
 
-const mapStateToProps = ({
-  foundFilms,
-  searchInputValue,
-  searchBy,
-  sortBy,
-  filmsData,
-}) => ({
-  searchInputValue,
-  searchBy,
-  foundFilms,
-  sortBy,
-  filmsData,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeSearchInput: (value) => dispatch(actions.onChangeSearchInput(value)),
-  searchBySwitcher: (typeButton) => dispatch(actions.searchBySwitcher(typeButton)),
-  sortBySwitcher: (films, typeSort) => {
-    const sortedFilms = sortFilms(films, typeSort);
-    dispatch(actions.sortBySwitcher(sortedFilms, typeSort));
-  },
-  fetchFilmsDataSuccess: (filmsData) => dispatch(actions.fetchFilmsDataSuccess(filmsData)),
-  submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
-    actions.submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
-  ),
-  getCurrentFilm: (filmsData, id) => dispatch(actions.fetchFilm(filmsData, id)),
-});
-
-HomePage.propTypes = {
-  filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  foundFilms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  searchBy: PropTypes.string.isRequired,
-  sortBy: PropTypes.string.isRequired,
-  searchInputValue: PropTypes.string.isRequired,
-  onChangeSearchInput: PropTypes.func.isRequired,
-  searchBySwitcher: PropTypes.func.isRequired,
-  sortBySwitcher: PropTypes.func.isRequired,
-  fetchFilmsDataSuccess: PropTypes.func.isRequired,
-  submitFilmValue: PropTypes.func.isRequired,
-  getCurrentFilm: PropTypes.func.isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

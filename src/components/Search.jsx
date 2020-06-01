@@ -40,7 +40,7 @@ const Search = (props) => {
         <Logo />
       </div>
       <div className="row">
-        <Input placeholder="Enter searching film" value={inputValue} onChange={onChangeInput} />
+        <Input placeholder="Enter searching film" text={inputValue} onChange={onChangeInput} />
       </div>
       <div className="row">
         <div className={classes.buttonsContainer}>
@@ -59,9 +59,9 @@ const Search = (props) => {
 Search.propTypes = {
   searchBy: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
-  onChangeInput: PropTypes.string.isRequired,
-  searchBySwitcher: PropTypes.string.isRequired,
-  submitValue: PropTypes.string.isRequired,
+  onChangeInput: PropTypes.func.isRequired,
+  searchBySwitcher: PropTypes.func.isRequired,
+  submitValue: PropTypes.func.isRequired,
 };
 
 export default Search;
