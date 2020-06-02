@@ -27,14 +27,28 @@ const HomePage = (props) => {
   } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isError, setError] = useState(null);
 
   useEffect(() => {
     getAllMovie().then((films) => {
       const sortedFilms = sortFilms(films.data, sortBy);
       fetchFilmsDataSuccess(sortedFilms);
       setIsLoaded(true);
+    }, (error) => {
+      setIsLoaded(true);
+      setError(error);
     });
   }, []);
+
+  if (isError) {
+    return (
+      <div>
+        Error:
+        {" "}
+        {isError.message}
+      </div>
+    );
+  }
 
   return (
     <>

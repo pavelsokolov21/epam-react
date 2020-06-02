@@ -68,19 +68,10 @@ const mapDispatchToProps = (dispatch) => ({
 CurrentFilmPage.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   foundFilms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  currentFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
-    tagline: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    runtime: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired,
-    setDefaultFilms: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
+  currentFilm: PropTypes.object.isRequired,
   sortBy: PropTypes.string.isRequired,
   goToHome: PropTypes.func.isRequired,
-  isLoadedPage: PropTypes.func.isRequired,
+  isLoadedPage: PropTypes.bool.isRequired,
   getCurrentFilm: PropTypes.func.isRequired,
 };
 

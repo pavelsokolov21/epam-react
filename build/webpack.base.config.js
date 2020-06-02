@@ -19,6 +19,7 @@ module.exports = {
   output: {
     filename: "[name].[hash].bundle.js",
     path: `${PATHS.dist}`,
+    publicPath: "/",
   },
 
   optimization: {
