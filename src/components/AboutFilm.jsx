@@ -58,7 +58,6 @@ const AboutFilm = ({ aboutFilm, onClick }) => {
     release_date,
     runtime,
     overview,
-    setDefaultFilms,
   } = aboutFilm;
 
   const classes = useStyles();

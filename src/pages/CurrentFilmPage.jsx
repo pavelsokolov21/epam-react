@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
@@ -20,6 +21,11 @@ const CurrentFilmPage = (props) => {
     getCurrentFilm,
   } = props;
 
+  const { id } = useParams();
+  useEffect(() => {
+    getCurrentFilm(filmsData, id);
+  }, [id]);
+
   if (!isLoadedPage) {
     return <Loading />;
   }
@@ -37,7 +43,6 @@ const CurrentFilmPage = (props) => {
       />
       <Sort metaText={sortByText} />
       <Films
-        getCurrentFilm={getCurrentFilm.bind(this, filmsData)}
         isLoaded={isLoadedPage}
         films={foundFilms}
       />

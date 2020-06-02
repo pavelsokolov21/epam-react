@@ -23,7 +23,6 @@ const HomePage = (props) => {
     sortBySwitcher,
     fetchFilmsDataSuccess,
     submitFilmValue,
-    getCurrentFilm,
   } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -82,7 +81,6 @@ const HomePage = (props) => {
         sortBy={sortBy}
       />
       <Films
-        getCurrentFilm={getCurrentFilm.bind(this, filmsData)}
         isLoaded={isLoaded}
         films={foundFilms}
       />
@@ -130,7 +128,6 @@ HomePage.propTypes = {
   sortBySwitcher: PropTypes.func.isRequired,
   fetchFilmsDataSuccess: PropTypes.func.isRequired,
   submitFilmValue: PropTypes.func.isRequired,
-  getCurrentFilm: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

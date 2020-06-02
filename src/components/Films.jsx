@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const Films = ({ films, isLoaded, getCurrentFilm }) => {
+const Films = ({ films, isLoaded }) => {
   const classes = useStyles();
 
   const content = films.map((film) => {
@@ -32,7 +32,7 @@ const Films = ({ films, isLoaded, getCurrentFilm }) => {
       ? film.genres[0]
       : `${film.genres[0]} & ${film.genres[1]}`;
     return (
-      <Link onClick={getCurrentFilm.bind(this, film.id)} to={`/movies/${film.id}`} key={film.id}>
+      <Link to={`/movies/${film.id}`} key={film.id}>
         <FilmCard
           title={film.title}
           img={film.poster_path}
@@ -61,7 +61,6 @@ const Films = ({ films, isLoaded, getCurrentFilm }) => {
 Films.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoaded: PropTypes.bool.isRequired,
-  getCurrentFilm: PropTypes.func.isRequired,
 };
 
 export default Films;
