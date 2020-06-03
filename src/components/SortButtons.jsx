@@ -25,7 +25,7 @@ const SortButtons = (props) => {
   return (
     <div className={classes.sortButtonsContainer}>
       <p className={classes.sortButtonsTitle}>Sort by</p>
-      <ButtonWithoutBg onClick={onClick.bind(this, "releaseDate")} isActive={sortBy === "releaseDate"} text="release date" />
+      <ButtonWithoutBg onClick={onClick.bind(this, "release-date")} isActive={sortBy === "release-date"} text="release date" />
       <ButtonWithoutBg onClick={onClick.bind(this, "rating")} isActive={sortBy === "rating"} text="rating" />
     </div>
   );

@@ -25,7 +25,7 @@ export const sortFilms = (films, sortBy) => {
     let firstOperand;
     let secondOperand;
 
-    if (sortBy === "releaseDate") {
+    if (sortBy === "release-date") {
       firstOperand = new Date(firstFilm.release_date);
       secondOperand = new Date(secondFilms.release_date);
     } else {

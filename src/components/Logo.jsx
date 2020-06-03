@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -12,7 +13,11 @@ const Logo = () => {
   const classes = useStyles();
 
   return (
-    <div><h1 className={classes.logo}>netflixroulette</h1></div>
+    <div>
+      <Link to="/">
+        <h1 className={classes.logo}>netflixroulette</h1>
+      </Link>
+    </div>
   );
 };
 
