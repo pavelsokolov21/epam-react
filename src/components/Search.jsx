@@ -1,34 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
-import Input from "./Input";
-import Button from "./Button";
-import Logo from "./Logo";
+import { Input } from "./Input";
+import { Button } from "./Button";
+import { Logo } from "./Logo";
 
 const useStyles = createUseStyles({
   buttonsContainer: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: "20px",
     "& *": {
       textTransform: "uppercase",
     },
   },
   searchBy: {
     display: "flex",
-    width: 327,
+    width: "327px",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: "15px",
   },
   searchBySubtitle: {
-    fontWeight: 700,
+    fontWeight: "700px",
     color: "white",
   },
 });
 
-const Search = (props) => {
+export const Search = (props) => {
   const {
     searchBy, inputValue, onChangeInput, searchBySwitcher, submitValue,
   } = props;
@@ -40,16 +40,44 @@ const Search = (props) => {
         <Logo />
       </div>
       <div className="row">
-        <Input placeholder="Enter searching film" value={inputValue} onChange={onChangeInput} />
+        <Input
+          placeholder="Enter searching film"
+          value={inputValue}
+          onChange={onChangeInput}
+        />
       </div>
       <div className="row">
         <div className={classes.buttonsContainer}>
           <div className={classes.searchBy}>
             <p className={classes.searchBySubtitle}>Search by</p>
-            <Button text="title" isActive={searchBy === "title"} onClick={searchBySwitcher.bind(this, "title")} />
-            <Button text="genre" isActive={searchBy === "genres"} onClick={searchBySwitcher.bind(this, "genres")} />
+            <Button
+              type="primary"
+              active={searchBy === "title"}
+              onClick={() => searchBySwitcher("title")}
+            >
+              {" "}
+              title
+            </Button>
+            <Button
+              type="primary"
+              active={searchBy === "genres"}
+              onClick={() => searchBySwitcher("genres")}
+            >
+              {" "}
+              genre
+            </Button>
           </div>
-          <Button onClick={submitValue} text="search" fontSize={15} width={200} background="rgb(255, 41, 41)" />
+          <Button
+            type="primary"
+            onClick={submitValue}
+            fontSize={15}
+            width={200}
+            background="rgb(255, 41, 41)"
+          >
+            {" "}
+            search
+            {" "}
+          </Button>
         </div>
       </div>
     </>
@@ -63,5 +91,3 @@ Search.propTypes = {
   searchBySwitcher: PropTypes.func.isRequired,
   submitValue: PropTypes.func.isRequired,
 };
-
-export default Search;

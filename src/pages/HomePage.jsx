@@ -1,87 +1,70 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as actions from "../actions/actions";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Search from "../components/Search";
-import Films from "../components/Films";
-import Sort from "../components/Sort";
-import SortButtons from "../components/SortButtons";
-import { getAllMovie } from "../services/services";
-import { sortFilms, countFilmsFound } from "../common";
+import {
+  onChangeSearchInput,
+  toggleSearchBy,
+  toggleSortBy,
+  submitFilmValue,
+  fetchFilm,
+  fetchFilms,
+} from "../actions";
+import {
+  Header, Footer, Search, Films, Sort, SortButtons, Loading,
+} from "../components";
+import { sortFilms, countFilmsFound, sortDescriptors } from "../utils";
 
 const HomePage = (props) => {
   const {
+    isLoading,
     filmsData,
     foundFilms,
     searchBy,
     sortBy,
     searchInputValue,
     onChangeSearchInput,
-    searchBySwitcher,
-    sortBySwitcher,
-    fetchFilmsDataSuccess,
+    toggleSearchBy,
+    toggleSortBy,
+    fetchFilms,
     submitFilmValue,
   } = props;
 
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setError] = useState(null);
-
   useEffect(() => {
-    getAllMovie().then((films) => {
-      const sortedFilms = sortFilms(films.data, sortBy);
-      fetchFilmsDataSuccess(sortedFilms);
-      setIsLoaded(true);
-    }, (error) => {
-      setIsLoaded(true);
-      setError(error);
-    });
+    fetchFilms(sortBy);
   }, []);
 
-  if (isError) {
-    return (
-      <div>
-        Error:
-        {" "}
-        {isError.message}
-      </div>
-    );
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
     <>
-      <Header
-        component={(
-          <Search
-            searchBySwitcher={searchBySwitcher}
-            searchBy={searchBy}
-            inputValue={searchInputValue}
-            onChangeInput={onChangeSearchInput}
-            submitValue={submitFilmValue.bind(
-              this,
-              filmsData,
-              sortBy,
-              searchBy,
-              searchInputValue,
-            )}
-          />
-        )}
-      />
+      <Header>
+        <Search
+          searchBySwitcher={toggleSearchBy}
+          searchBy={searchBy}
+          inputValue={searchInputValue}
+          onChangeInput={onChangeSearchInput}
+          submitValue={() => submitFilmValue(
+            filmsData,
+            sortBy,
+            searchBy,
+            searchInputValue,
+          )}
+        />
+      </Header>
       <Sort
-        optionalComponent={
-          foundFilms.length !== 0 && (
-            <SortButtons
-              sortBy={sortBy}
-              onClick={sortBySwitcher.bind(this, filmsData)}
-            />
-          )
-        }
         metaText={countFilmsFound(foundFilms)}
-        sortBy={sortBy}
-      />
+      >
+        {foundFilms.length !== 0 && (
+        <SortButtons
+          films={filmsData}
+          sortBy={sortBy}
+          onClick={toggleSortBy}
+        />
+        )}
+      </Sort>
       <Films
-        isLoaded={isLoaded}
         films={foundFilms}
       />
       <Footer />
@@ -95,39 +78,68 @@ const mapStateToProps = ({
   searchBy,
   sortBy,
   filmsData,
+  isLoading,
 }) => ({
   searchInputValue,
   searchBy,
   foundFilms,
   sortBy,
   filmsData,
+  isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeSearchInput: (value) => dispatch(actions.onChangeSearchInput(value)),
-  searchBySwitcher: (typeButton) => dispatch(actions.searchBySwitcher(typeButton)),
-  sortBySwitcher: (films, typeSort) => {
-    const sortedFilms = sortFilms(films, typeSort);
-    dispatch(actions.sortBySwitcher(sortedFilms, typeSort));
+  onChangeSearchInput: (value) => dispatch(onChangeSearchInput(value)),
+  toggleSearchBy: (type) => dispatch(toggleSearchBy(type)),
+  toggleSortBy: (films, type) => {
+    const sortedFilms = sortFilms(films, sortDescriptors(type));
+    dispatch(toggleSortBy(sortedFilms, type));
   },
-  fetchFilmsDataSuccess: (filmsData) => dispatch(actions.fetchFilmsDataSuccess(filmsData)),
+  fetchFilms: (sortBy) => dispatch(fetchFilms(sortBy)),
   submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
-    actions.submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
+    submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
   ),
-  getCurrentFilm: (filmsData, id) => dispatch(actions.fetchFilm(filmsData, id)),
+  getCurrentFilm: (filmsData, id) => dispatch(fetchFilm(filmsData, id)),
 });
 
 HomePage.propTypes = {
-  filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  foundFilms: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filmsData: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    vote_count: PropTypes.number.isRequired,
+    release_date: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    budget: PropTypes.number.isRequired,
+    revenue: PropTypes.number.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runtime: PropTypes.number.isRequired,
+  })).isRequired,
+  foundFilms: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    vote_count: PropTypes.number.isRequired,
+    release_date: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    budget: PropTypes.number.isRequired,
+    revenue: PropTypes.number.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runtime: PropTypes.number.isRequired,
+  })).isRequired,
   searchBy: PropTypes.string.isRequired,
   sortBy: PropTypes.string.isRequired,
   searchInputValue: PropTypes.string.isRequired,
   onChangeSearchInput: PropTypes.func.isRequired,
-  searchBySwitcher: PropTypes.func.isRequired,
-  sortBySwitcher: PropTypes.func.isRequired,
-  fetchFilmsDataSuccess: PropTypes.func.isRequired,
+  toggleSearchBy: PropTypes.func.isRequired,
+  toggleSortBy: PropTypes.func.isRequired,
+  fetchFilms: PropTypes.func.isRequired,
   submitFilmValue: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);

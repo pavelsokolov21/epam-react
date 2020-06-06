@@ -4,7 +4,9 @@ const baseWebpackConfig = require("./webpack.base.config");
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: "development",
+
   devtool: "cheap-module-eval-source-map",
+
   devServer: {
     port: 8081,
     contentBase: baseWebpackConfig.externals.paths.dist,
@@ -14,6 +16,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     },
     historyApiFallback: true,
   },
+
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: "[file].map",

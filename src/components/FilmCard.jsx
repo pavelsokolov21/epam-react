@@ -6,46 +6,49 @@ const useStyles = createUseStyles({
   film: {
     display: "flex",
     justifyContent: "center",
-    maxWidth: 334,
+    maxWidth: "334px",
   },
   filmImg: {
-    maxWidth: 334,
-    height: 480,
+    maxWidth: "334px",
+    height: "480px",
   },
   filmDescription: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-start",
     padding: "0 5px",
-    margin: 7,
+    margin: "7px",
   },
   dateRelease: {
     display: "flex",
-    width: 35,
-    height: 20,
+    width: "35px",
+    height: "20px",
     justifyContent: "center",
     alignItems: "center",
     border: "1px solid rgb(122, 122, 122)",
-    borderRadius: 4,
-    fontSize: 12,
+    borderRadius: "4px",
+    fontSize: "12px",
     color: "rgb(138, 138, 138)",
   },
   title: {
-    fontSize: 16,
+    fontSize: "16px",
     color: "rgb(97, 97, 97)",
   },
   genre: {
-    fontSize: 12,
+    fontSize: "12px",
     color: "rgb(143, 143, 143)",
-    marginTop: 8,
+    marginTop: "8px",
   },
 });
 
-const FilmCard = (props) => {
+export const FilmCard = (props) => {
   const classes = useStyles();
   const {
-    title, img, genre, dateRelease,
+    title, img, genres, dateRelease,
   } = props;
+  const genre = genres.length === 1
+    ? genres[0]
+    : `${genres[0]} & ${genres[1]}`;
 
   return (
     <div className={classes.film}>
@@ -66,8 +69,6 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   title: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   dateRelease: PropTypes.string.isRequired,
 };
-
-export default FilmCard;

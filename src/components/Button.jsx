@@ -4,40 +4,53 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   btn: {
-    width: ({ width }) => width || 100,
-    background: ({ background }) => background || "rgb(37, 37, 37)",
-    color: ({ color }) => color || "white",
     cursor: "pointer",
-    padding: "5px 8px",
     border: "none",
     outline: "none",
-    borderRadius: 4,
-    fontSize: ({ fontSize }) => fontSize || 12,
-    fontWeight: 700,
-    textTransform: "uppercase",
+    fontSize: ({ fontSize }) => fontSize || "12px",
   },
-  active: {
-    background: "rgb(255, 41, 41) !important",
+  btn_primary: {
+    width: ({ width }) => width || "100px",
+    background: ({ background }) => background || "rgb(37, 37, 37)",
+    color: ({ color }) => color || "white",
+    padding: "5px 8px",
+    borderRadius: "4px",
+    fontWeight: "700px",
+    textTransform: "uppercase",
+    "&.active": {
+      background: "rgb(255, 41, 41) !important",
+    },
+  },
+  btn_secondary: {
+    color: "rgb(77, 77, 77)",
+    background: "none",
+    "&.active": {
+      color: "rgb(255, 41, 41) !important",
+    },
   },
 });
 
-const Button = (props) => {
-  const { onClick, text, isActive } = props;
-  const classes = useStyles(props);
-  const buttonClass = `${classes.btn} ${isActive ? classes.active : ""}`;
+export const Button = (props) => {
+  const {
+    onClick, children, active, type,
+  } = props;
 
-  return <button className={buttonClass} onClick={onClick}>{text}</button>;
+  const classes = useStyles(props);
+  const classByType = type === "secondary" ? classes.btn_secondary : classes.btn_primary;
+  const buttonClass = `${classes.btn} ${classByType} ${active ? "active" : ""}`;
+
+  return <button className={buttonClass} onClick={onClick}>{children}</button>;
 };
 
 Button.defaultProps = {
-  text: "DefaultText",
-  isActive: false,
+  children: "DefaultText",
+  active: false,
+  type: "primary",
 };
 
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.string,
-  isActive: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.node),
+  active: PropTypes.bool,
+  type: PropTypes.string,
 };
-
-export default Button;

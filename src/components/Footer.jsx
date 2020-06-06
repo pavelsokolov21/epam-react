@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import Logo from "./Logo";
+import { Logo } from "./Logo";
 
 const useStyles = createUseStyles({
   footer: {
@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const Footer = () => {
+export const Footer = () => {
   const classes = useStyles();
 
   return (
@@ -23,5 +23,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

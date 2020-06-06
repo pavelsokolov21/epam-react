@@ -21,20 +21,18 @@ const useStyles = createUseStyles({
   },
 });
 
-const Header = ({ component }) => {
+export const Header = ({ children }) => {
   const classes = useStyles();
 
   return (
     <header className={classes.headerBg}>
       <div className="container">
-        {component}
+        {children}
       </div>
     </header>
   );
 };
 
 Header.propTypes = {
-  component: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
-
-export default Header;

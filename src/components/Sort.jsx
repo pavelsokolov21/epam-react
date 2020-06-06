@@ -13,9 +13,9 @@ const useStyles = createUseStyles({
   },
 });
 
-const Sort = (props) => {
+export const Sort = (props) => {
   const {
-    metaText, optionalComponent,
+    metaText, children,
   } = props;
   const classes = useStyles();
 
@@ -27,7 +27,7 @@ const Sort = (props) => {
             <div>
               <p>{metaText}</p>
             </div>
-            {optionalComponent}
+            {children}
           </div>
         </div>
       </div>
@@ -37,12 +37,10 @@ const Sort = (props) => {
 
 Sort.defaultProps = {
   metaText: "",
-  optionalComponent: <></>,
+  children: [],
 };
 
 Sort.propTypes = {
   metaText: PropTypes.string,
-  optionalComponent: PropTypes.node,
+  children: PropTypes.node,
 };
-
-export default Sort;

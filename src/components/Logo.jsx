@@ -4,12 +4,12 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   logo: {
-    fontSize: 18,
+    fontSize: "18px",
     color: "rgb(250, 19, 19)",
   },
 });
 
-const Logo = () => {
+export const Logo = () => {
   const classes = useStyles();
 
   return (
@@ -20,5 +20,3 @@ const Logo = () => {
     </div>
   );
 };
-
-export default Logo;

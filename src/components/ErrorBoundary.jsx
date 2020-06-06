@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import PropTypes, { func, object } from "prop-types";
+import PropTypes from "prop-types";
 
-export default class ErrorBoundary extends Component {
+export class ErrorBoundary extends Component {
   constructor() {
     super();
 
@@ -26,5 +26,5 @@ export default class ErrorBoundary extends Component {
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.node.isRequired,
 };

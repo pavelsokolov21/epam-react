@@ -11,10 +11,8 @@ const useStyles = createUseStyles({
   },
 });
 
-const Loading = () => {
+export const Loading = () => {
   const classes = useStyles();
 
   return <div className={classes.loading}><img src={spinner} alt="Loading..." /></div>;
 };
-
-export default Loading;

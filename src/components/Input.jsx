@@ -4,33 +4,32 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   searchInput: {
+    display: "block",
     width: "100%",
-    height: 35,
+    height: "35px",
     padding: "0 10px",
     backgroundColor: "black",
     color: "white",
     border: "none",
     borderBottom: "1px solid rgb(255, 41, 41)",
-    borderRadius: 4,
+    borderRadius: "4px",
     outline: "none",
-    marginTop: 10,
+    marginTop: "10px",
   },
 });
 
-const Input = (props) => {
+export const Input = (props) => {
   const classes = useStyles();
   const { value, onChange, placeholder } = props;
 
   return (
-    <div>
-      <input
-        className={classes.searchInput}
-        placeholder={placeholder}
-        value={value}
-        onChange={({ target: { value } }) => onChange(value)}
-        type="text"
-      />
-    </div>
+    <input
+      className={classes.searchInput}
+      placeholder={placeholder}
+      value={value}
+      onChange={({ target: { value } }) => onChange(value)}
+      type="text"
+    />
   );
 };
 
@@ -43,5 +42,3 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 };
-
-export default Input;
