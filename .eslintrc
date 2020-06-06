@@ -4,7 +4,6 @@
         "es6": true
     },
     "extends": [
-        "plugin:react/recommended",
         "airbnb"
     ],
     "globals": {
@@ -24,6 +23,7 @@
     ],
     "rules": {
         "prettier/prettier": "off",
+        "no-shadow": "off",
         "import/no-unresolved": "off",
         "linebreak-style": "off",
         "no-unused-expressions": "off",
@@ -32,6 +32,6 @@
         "react/prefer-stateless-function": "off",
         "react/button-has-type": "off",
         "react/jsx-filename-extension": "off",
-        "react/jsx-no-bind": "off"
+        "import/prefer-default-export": "off"
     }
 }

@@ -1,7 +1,7 @@
-export const SEARCH_BY_SWITCH = "SEARCH_BY_SWITCH";
+export const TOGGLE_SEARCH_BY = "TOGGLE_SEARCH_BY";
 export const CHANGE_SEARCH_INPUT = "CHANGE_SEARCH_INPUT";
 export const SET_FOUND_FILMS = "SET_FOUND_FILMS";
-export const LOADED_FILMS = "LOADED_FILMS";
-export const SORT_BY_SWITCH = "SORT_BY_SWITCH";
+export const LOAD_FILMS_SUCCESS = "LOAD_FILMS_SUCCESS";
+export const SORT_BY_TYPE = "SORT_BY_TYPE";
 export const SET_FILM = "SET_FILM";
-export const IS_LOADED_PAGE = "IS_LOADED_PAGE";
+export const IS_LOADING = "IS_LOADING";

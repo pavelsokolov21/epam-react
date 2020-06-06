@@ -13,9 +13,11 @@ module.exports = {
   externals: {
     paths: PATHS,
   },
+
   entry: {
     app: `${PATHS.src}/index.js`,
   },
+
   output: {
     filename: "[name].[hash].bundle.js",
     path: `${PATHS.dist}`,

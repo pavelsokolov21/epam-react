@@ -1,42 +1,48 @@
-import * as constants from "../constants/constants";
+import {
+  TOGGLE_SEARCH_BY,
+  CHANGE_SEARCH_INPUT,
+  SET_FOUND_FILMS,
+  LOAD_FILMS_SUCCESS,
+  SORT_BY_TYPE,
+  SET_FILM,
+  IS_LOADING,
+} from "../constants";
 
 const initialState = {
   filmsData: [],
   foundFilms: [],
   searchBy: "title",
-  sortBy: "releaseDate",
+  sortBy: "release-date",
   searchInputValue: "",
   currentFilm: {},
-  isLoadedPage: false,
+  isLoading: true,
 };
 
-const filmsReducer = (state = initialState, action) => {
+export const filmsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case constants.IS_LOADED_PAGE:
-      return { ...state, isLoadedPage: action.payload };
-    case constants.SEARCH_BY_SWITCH:
+    case IS_LOADING:
+      return { ...state, isLoading: action.payload };
+    case TOGGLE_SEARCH_BY:
       return { ...state, searchBy: action.payload };
-    case constants.SORT_BY_SWITCH:
+    case SORT_BY_TYPE:
       return {
         ...state,
-        sortBy: action.payload.typeSort,
+        sortBy: action.payload.type,
         foundFilms: action.payload.sortedFoundFilms,
       };
-    case constants.CHANGE_SEARCH_INPUT:
+    case CHANGE_SEARCH_INPUT:
       return { ...state, searchInputValue: action.payload };
-    case constants.SET_FOUND_FILMS:
+    case SET_FOUND_FILMS:
       return { ...state, foundFilms: action.payload };
-    case constants.LOADED_FILMS:
+    case LOAD_FILMS_SUCCESS:
       return {
         ...state,
         filmsData: action.payload,
         foundFilms: action.payload,
       };
-    case constants.SET_FILM:
+    case SET_FILM:
       return { ...state, currentFilm: action.payload };
     default:
       return state;
   }
 };
-
-export default filmsReducer;

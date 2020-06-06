@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
-import Button from "./Button";
-import Logo from "./Logo";
+import { Button } from "./Button";
+import { Logo } from "./Logo";
 
 const useStyles = createUseStyles({
   currentFilm: {},
@@ -15,42 +15,42 @@ const useStyles = createUseStyles({
   aboutFilm: {
     display: "flex",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: "10px",
   },
   aboutFilmImg: {
-    height: 500,
+    height: "500px",
   },
   aboutFilmText: {
-    maxWidth: 740,
+    maxWidth: "740px",
   },
   aboutFilmTextTitle: {
     color: "rgb(255, 41, 41)",
-    fontSize: 30,
+    fontSize: "30px",
   },
   aboutFilmTextTagline: {
-    fontSize: 18,
-    fontWeight: 400,
+    fontSize: "18px",
+    fontWeight: "400px",
     color: "white",
-    marginTop: 8,
+    marginTop: "8px",
   },
   time: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 150,
-    marginTop: 12,
+    width: "150px",
+    marginTop: "12px",
   },
   timeItem: {
     display: "block",
     color: "white",
   },
   overview: {
-    marginTop: 35,
+    marginTop: "35px",
     color: "white",
   },
 });
 
-const AboutFilm = ({ aboutFilm, onClick }) => {
+export const AboutFilm = ({ aboutFilm, onClick }) => {
   const {
     title,
     poster_path,
@@ -69,11 +69,14 @@ const AboutFilm = ({ aboutFilm, onClick }) => {
         <Link to="/">
           <Button
             onClick={onClick}
-            width={100}
-            text="search"
+            width="100px"
+            type="primary"
             background="white"
             color="rgb(255, 41, 41)"
-          />
+          >
+            {" "}
+            search
+          </Button>
         </Link>
       </div>
       <div className={classes.aboutFilm}>
@@ -107,5 +110,3 @@ AboutFilm.propTypes = {
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
-
-export default AboutFilm;
