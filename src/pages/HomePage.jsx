@@ -99,7 +99,6 @@ const mapDispatchToProps = (dispatch) => ({
   submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
     submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
   ),
-  getCurrentFilm: (filmsData, id) => dispatch(fetchFilm(filmsData, id)),
 });
 
 HomePage.propTypes = {
