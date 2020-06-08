@@ -6,7 +6,6 @@ import {
   toggleSearchBy,
   toggleSortBy,
   submitFilmValue,
-  fetchFilm,
   fetchFilms,
 } from "../actions";
 import {
