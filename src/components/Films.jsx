@@ -27,24 +27,22 @@ const useStyles = createUseStyles({
 export const Films = ({ films }) => {
   const classes = useStyles();
 
-  const content = films.map((film) => (
-    <Link to={`/movies/${film.id}`} key={film.id}>
-      <FilmCard
-        title={film.title}
-        img={film.poster_path}
-        genres={film.genres}
-        dateRelease={film.release_date.slice(0, 4)}
-      />
-    </Link>
-  ));
   const notFound = <p className={classes.filmsNotFoundTitle}>Films not found</p>;
-
   return (
     <main>
       <div className="container">
         <div className="row">
           <div className={(films.length !== 0) ? classes.films : classes.default}>
-            {content}
+            {films.map((film) => (
+              <Link to={`/movies/${film.id}`} key={film.id}>
+                <FilmCard
+                  title={film.title}
+                  img={film.poster_path}
+                  genres={film.genres}
+                  dateRelease={film.release_date.slice(0, 4)}
+                />
+              </Link>
+            ))}
             {films.length === 0 && notFound}
           </div>
         </div>
