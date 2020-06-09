@@ -47,7 +47,7 @@ export const submitFilmValue = (filmsData, sortBy, searchBy, searchInputValue) =
       searchBy,
       searchInputValue,
     );
-
+    debugger;
     if (searchInputValue.length === 0) {
       dispatch(setFoundFilms(sortedFilms));
     } else {

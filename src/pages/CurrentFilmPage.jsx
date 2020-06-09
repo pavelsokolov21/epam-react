@@ -12,7 +12,6 @@ import {
   getSortedFilms,
   getCurrentFilm,
   getSortBy,
-
   getIsLoading,
 } from "../selectors";
 
