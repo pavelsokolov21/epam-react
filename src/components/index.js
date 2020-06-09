@@ -1,4 +1,4 @@
-export { AboutFilm } from "./AboutFilm";
+export { FilmInfo } from "./FilmInfo";
 export { Button } from "./Button";
 export { ErrorBoundary } from "./ErrorBoundary";
 export { FilmCard } from "./FilmCard";

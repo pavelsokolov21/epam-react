@@ -24,9 +24,9 @@ export const toggleSearchBy = (type) => ({
   payload: type,
 });
 
-export const toggleSortBy = (sortedFoundFilms, type) => ({
+export const toggleSortBy = (type) => ({
   type: SORT_BY_TYPE,
-  payload: { type, sortedFoundFilms },
+  payload: type,
 });
 
 export const onChangeSearchInput = (value) => ({

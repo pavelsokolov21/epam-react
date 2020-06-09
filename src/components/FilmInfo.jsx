@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const AboutFilm = ({ aboutFilm, onClick }) => {
+export const FilmInfo = ({ aboutFilm, onClick }) => {
   const {
     title,
     poster_path,
@@ -99,7 +99,7 @@ export const AboutFilm = ({ aboutFilm, onClick }) => {
   );
 };
 
-AboutFilm.propTypes = {
+FilmInfo.propTypes = {
   aboutFilm: PropTypes.shape({
     title: PropTypes.string.isRequired,
     poster_path: PropTypes.string.isRequired,

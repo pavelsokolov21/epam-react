@@ -2,10 +2,19 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
 import { goToHome, fetchFilm } from "../actions";
 import {
-  Header, Sort, Films, Loading, AboutFilm, Footer,
+  Header, Sort, Films, Loading, FilmInfo, Footer,
 } from "../components";
+import {
+  getFilmsData,
+  getSortedFilms,
+  getCurrentFilm,
+  getSortBy,
+
+  getIsLoading,
+} from "../selectors";
 
 const CurrentFilmPage = (props) => {
   const {
@@ -31,7 +40,7 @@ const CurrentFilmPage = (props) => {
   return (
     <>
       <Header>
-        <AboutFilm
+        <FilmInfo
           onClick={() => goToHome(filmsData, sortBy)}
           aboutFilm={currentFilm}
         />
@@ -43,18 +52,12 @@ const CurrentFilmPage = (props) => {
   );
 };
 
-const mapStateToProps = ({
-  filmsData,
-  foundFilms,
-  currentFilm,
-  sortBy,
-  isLoading,
-}) => ({
-  filmsData,
-  foundFilms,
-  currentFilm,
-  sortBy,
-  isLoading,
+const mapStateToProps = (state) => ({
+  filmsData: getFilmsData(state),
+  foundFilms: getSortedFilms(state),
+  currentFilm: getCurrentFilm(state),
+  sortBy: getSortBy(state),
+  isLoading: getIsLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

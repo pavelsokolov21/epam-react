@@ -27,8 +27,7 @@ export const filmsReducer = (state = initialState, action) => {
     case SORT_BY_TYPE:
       return {
         ...state,
-        sortBy: action.payload.type,
-        foundFilms: action.payload.sortedFoundFilms,
+        sortBy: action.payload,
       };
     case CHANGE_SEARCH_INPUT:
       return { ...state, searchInputValue: action.payload };

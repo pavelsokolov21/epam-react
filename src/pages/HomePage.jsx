@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
 import {
   onChangeSearchInput,
   toggleSearchBy,
@@ -11,7 +12,15 @@ import {
 import {
   Header, Footer, Search, Films, Sort, SortButtons, Loading,
 } from "../components";
-import { sortFilms, countFilmsFound, sortDescriptors } from "../utils";
+import { countFilmsFound } from "../utils";
+import {
+  getFilmsData,
+  getSortedFilms,
+  getSearchInputValue,
+  getSearchBy,
+  getSortBy,
+  getIsLoading,
+} from "../selectors";
 
 const HomePage = (props) => {
   const {
@@ -57,7 +66,6 @@ const HomePage = (props) => {
       >
         {foundFilms.length !== 0 && (
         <SortButtons
-          films={filmsData}
           sortBy={sortBy}
           onClick={toggleSortBy}
         />
@@ -71,28 +79,20 @@ const HomePage = (props) => {
   );
 };
 
-const mapStateToProps = ({
-  foundFilms,
-  searchInputValue,
-  searchBy,
-  sortBy,
-  filmsData,
-  isLoading,
-}) => ({
-  searchInputValue,
-  searchBy,
-  foundFilms,
-  sortBy,
-  filmsData,
-  isLoading,
+const mapStateToProps = (state) => ({
+  foundFilms: getSortedFilms(state),
+  filmsData: getFilmsData(state),
+  searchInputValue: getSearchInputValue(state),
+  searchBy: getSearchBy(state),
+  sortBy: getSortBy(state),
+  isLoading: getIsLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeSearchInput: (value) => dispatch(onChangeSearchInput(value)),
   toggleSearchBy: (type) => dispatch(toggleSearchBy(type)),
-  toggleSortBy: (films, type) => {
-    const sortedFilms = sortFilms(films, sortDescriptors(type));
-    dispatch(toggleSortBy(sortedFilms, type));
+  toggleSortBy: (type) => {
+    dispatch(toggleSortBy(type));
   },
   fetchFilms: (sortBy) => dispatch(fetchFilms(sortBy)),
   submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
