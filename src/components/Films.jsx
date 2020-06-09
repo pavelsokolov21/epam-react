@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { FilmCard } from "./FilmCard";
-import { Loading } from "./Loading";
 
 const useStyles = createUseStyles({
   films: {
