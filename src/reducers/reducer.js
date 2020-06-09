@@ -1,3 +1,5 @@
+import { Map } from "immutable";
+
 import {
   TOGGLE_SEARCH_BY,
   CHANGE_SEARCH_INPUT,
@@ -10,37 +12,31 @@ import {
 
 const initialState = {
   filmsData: [],
-  foundFilms: [],
   searchBy: "title",
   sortBy: "release-date",
   searchInputValue: "",
-  currentFilm: {},
+  currentFilm: {
+
+  },
   isLoading: true,
 };
 
-export const filmsReducer = (state = initialState, action) => {
+export const filmsReducer = (state = Map(initialState), action) => {
   switch (action.type) {
     case IS_LOADING:
-      return { ...state, isLoading: action.payload };
+      return state.update("isLoading", () => action.payload);
     case TOGGLE_SEARCH_BY:
-      return { ...state, searchBy: action.payload };
+      return state.update("searchBy", () => action.payload);
     case SORT_BY_TYPE:
-      return {
-        ...state,
-        sortBy: action.payload,
-      };
+      return state.update("sortBy", () => action.payload);
     case CHANGE_SEARCH_INPUT:
-      return { ...state, searchInputValue: action.payload };
+      return state.update("searchInputValue", () => action.payload);
     case SET_FOUND_FILMS:
-      return { ...state, foundFilms: action.payload };
+      return state.update("filmsData", () => action.payload);
     case LOAD_FILMS_SUCCESS:
-      return {
-        ...state,
-        filmsData: action.payload,
-        foundFilms: action.payload,
-      };
+      return state.update("filmsData", () => action.payload);
     case SET_FILM:
-      return { ...state, currentFilm: action.payload };
+      return state.update("currentFilm", () => action.payload);
     default:
       return state;
   }

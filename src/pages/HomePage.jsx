@@ -4,17 +4,23 @@ import { connect } from "react-redux";
 
 import {
   onChangeSearchInput,
-  toggleSearchBy,
-  toggleSortBy,
+  setSearchBy,
+  setSortBy,
   submitFilmValue,
   fetchFilms,
+  isLoadingPage,
 } from "../actions";
 import {
-  Header, Footer, Search, Films, Sort, SortButtons, Loading,
+  Header,
+  Footer,
+  Search,
+  Films,
+  Sort,
+  SortButtons,
+  Loading,
 } from "../components";
 import { countFilmsFound } from "../utils";
 import {
-  getFilmsData,
   getSortedFilms,
   getSearchInputValue,
   getSearchBy,
@@ -26,7 +32,6 @@ const HomePage = (props) => {
   const {
     isLoading,
     filmsData,
-    foundFilms,
     searchBy,
     sortBy,
     searchInputValue,
@@ -35,6 +40,7 @@ const HomePage = (props) => {
     toggleSortBy,
     fetchFilms,
     submitFilmValue,
+    isLoadingPage,
   } = props;
 
   useEffect(() => {
@@ -54,7 +60,6 @@ const HomePage = (props) => {
           inputValue={searchInputValue}
           onChangeInput={onChangeSearchInput}
           submitValue={() => submitFilmValue(
-            filmsData,
             sortBy,
             searchBy,
             searchInputValue,
@@ -62,9 +67,9 @@ const HomePage = (props) => {
         />
       </Header>
       <Sort
-        metaText={countFilmsFound(foundFilms)}
+        metaText={countFilmsFound(filmsData)}
       >
-        {foundFilms.length !== 0 && (
+        {filmsData.length !== 0 && (
         <SortButtons
           sortBy={sortBy}
           onClick={toggleSortBy}
@@ -72,7 +77,8 @@ const HomePage = (props) => {
         )}
       </Sort>
       <Films
-        films={foundFilms}
+        films={filmsData}
+        onClick={() => isLoadingPage(true)}
       />
       <Footer />
     </>
@@ -80,8 +86,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  foundFilms: getSortedFilms(state),
-  filmsData: getFilmsData(state),
+  filmsData: getSortedFilms(state),
   searchInputValue: getSearchInputValue(state),
   searchBy: getSearchBy(state),
   sortBy: getSortBy(state),
@@ -90,44 +95,29 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeSearchInput: (value) => dispatch(onChangeSearchInput(value)),
-  toggleSearchBy: (type) => dispatch(toggleSearchBy(type)),
-  toggleSortBy: (type) => {
-    dispatch(toggleSortBy(type));
-  },
+  toggleSearchBy: (type) => dispatch(setSearchBy(type)),
+  toggleSortBy: (type) => dispatch(setSortBy(type)),
   fetchFilms: (sortBy) => dispatch(fetchFilms(sortBy)),
-  submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
-    submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
+  submitFilmValue: (sortBy, searchBy, searchInputValue) => dispatch(
+    submitFilmValue(sortBy, searchBy, searchInputValue),
   ),
+  isLoadingPage: (status) => dispatch(isLoadingPage(status)),
 });
 
 HomePage.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    tagline: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
-    vote_count: PropTypes.number.isRequired,
-    release_date: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
-    overview: PropTypes.string.isRequired,
-    budget: PropTypes.number.isRequired,
-    revenue: PropTypes.number.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runtime: PropTypes.number.isRequired,
-  })).isRequired,
-  foundFilms: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    tagline: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
-    vote_count: PropTypes.number.isRequired,
-    release_date: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
-    overview: PropTypes.string.isRequired,
-    budget: PropTypes.number.isRequired,
-    revenue: PropTypes.number.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runtime: PropTypes.number.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    tagline: PropTypes.string,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+    release_date: PropTypes.string,
+    poster_path: PropTypes.string,
+    overview: PropTypes.string,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string),
+    runtime: PropTypes.number,
   })).isRequired,
   searchBy: PropTypes.string.isRequired,
   sortBy: PropTypes.string.isRequired,
@@ -138,6 +128,7 @@ HomePage.propTypes = {
   fetchFilms: PropTypes.func.isRequired,
   submitFilmValue: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isLoadingPage: PropTypes.func.isRequired,
 };
 
 export const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);

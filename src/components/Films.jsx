@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Films = ({ films }) => {
+export const Films = ({ films, onClick }) => {
   const classes = useStyles();
 
   const notFound = <p className={classes.filmsNotFoundTitle}>Films not found</p>;
@@ -33,7 +33,7 @@ export const Films = ({ films }) => {
         <div className="row">
           <div className={(films.length !== 0) ? classes.films : classes.default}>
             {films.map((film) => (
-              <Link to={`/movies/${film.id}`} key={film.id}>
+              <Link onClick={onClick} to={`/movies/${film.id}`} key={film.id}>
                 <FilmCard
                   title={film.title}
                   img={film.poster_path}
@@ -52,4 +52,5 @@ export const Films = ({ films }) => {
 
 Films.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

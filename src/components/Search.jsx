@@ -55,16 +55,14 @@ export const Search = (props) => {
               active={searchBy === "title"}
               onClick={() => searchBySwitcher("title")}
             >
-              {" "}
-              title
+              &nbsp;title
             </Button>
             <Button
               type="primary"
               active={searchBy === "genres"}
               onClick={() => searchBySwitcher("genres")}
             >
-              {" "}
-              genre
+              &nbsp;genre
             </Button>
           </div>
           <Button
@@ -74,9 +72,7 @@ export const Search = (props) => {
             width={200}
             background="rgb(255, 41, 41)"
           >
-            {" "}
-            search
-            {" "}
+           &nbsp;search
           </Button>
         </div>
       </div>

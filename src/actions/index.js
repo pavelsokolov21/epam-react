@@ -1,7 +1,7 @@
 export {
-  toggleSearchBy,
+  setSearchBy,
   setFoundFilms,
-  toggleSortBy,
+  setSortBy,
   onChangeSearchInput,
   submitFilmValue,
   fetchFilmsDataSuccess,
@@ -9,5 +9,4 @@ export {
   isLoadingPage,
   fetchFilm,
   fetchFilms,
-  goToHome,
 } from "./actions";
