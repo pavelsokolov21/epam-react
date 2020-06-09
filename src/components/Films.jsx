@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { FilmCard } from "./FilmCard";
-import { Loading } from "./Loading";
 
 const useStyles = createUseStyles({
   films: {
@@ -24,11 +23,11 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Films = ({ films }) => {
+export const Films = ({ films, onClick }) => {
   const classes = useStyles();
 
   const content = films.map((film) => (
-    <Link to={`/movies/${film.id}`} key={film.id}>
+    <Link onClick={onClick} to={`/movies/${film.id}`} key={film.id}>
       <FilmCard
         title={film.title}
         img={film.poster_path}
@@ -55,4 +54,5 @@ export const Films = ({ films }) => {
 
 Films.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

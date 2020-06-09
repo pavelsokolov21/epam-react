@@ -16,7 +16,9 @@ const initialState = {
   searchBy: "title",
   sortBy: "release-date",
   searchInputValue: "",
-  currentFilm: {},
+  currentFilm: {
+
+  },
   isLoading: true,
 };
 

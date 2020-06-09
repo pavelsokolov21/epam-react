@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { goToHome, fetchFilm } from "../actions";
+import { goToHome, fetchFilm, isLoadingPage } from "../actions";
 import {
   Header, Sort, Films, Loading, FilmInfo, Footer,
 } from "../components";
@@ -27,6 +27,7 @@ const CurrentFilmPage = (props) => {
   } = props;
 
   const { id } = useParams();
+  console.log(isLoading);
   useEffect(() => {
     fetchFilm(filmsData, id);
   }, [id]);

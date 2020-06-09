@@ -8,6 +8,7 @@ import {
   toggleSortBy,
   submitFilmValue,
   fetchFilms,
+  isLoadingPage,
 } from "../actions";
 import {
   Header, Footer, Search, Films, Sort, SortButtons, Loading,
@@ -35,6 +36,7 @@ const HomePage = (props) => {
     toggleSortBy,
     fetchFilms,
     submitFilmValue,
+    isLoadingPage,
   } = props;
 
   useEffect(() => {
@@ -73,6 +75,7 @@ const HomePage = (props) => {
       </Sort>
       <Films
         films={foundFilms}
+        onClick={() => isLoadingPage(true)}
       />
       <Footer />
     </>
@@ -98,6 +101,7 @@ const mapDispatchToProps = (dispatch) => ({
   submitFilmValue: (filmsData, sortBy, searchBy, searchInputValue) => dispatch(
     submitFilmValue(filmsData, sortBy, searchBy, searchInputValue),
   ),
+  isLoadingPage: (status) => dispatch(isLoadingPage(status)),
 });
 
 HomePage.propTypes = {
@@ -138,6 +142,7 @@ HomePage.propTypes = {
   fetchFilms: PropTypes.func.isRequired,
   submitFilmValue: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isLoadingPage: PropTypes.func.isRequired,
 };
 
 export const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);

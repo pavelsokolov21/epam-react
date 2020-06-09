@@ -47,7 +47,6 @@ export const submitFilmValue = (filmsData, sortBy, searchBy, searchInputValue) =
       searchBy,
       searchInputValue,
     );
-    debugger;
     if (searchInputValue.length === 0) {
       dispatch(setFoundFilms(sortedFilms));
     } else {
@@ -78,7 +77,6 @@ export const setCurrentFilm = (film) => ({
 });
 
 export const fetchFilm = (filmsData, id) => (dispatch) => {
-  dispatch(isLoadingPage(true));
   getMovieById(id).then((filmById) => {
     let foundFilms = filterFilms(
       filmsData,
