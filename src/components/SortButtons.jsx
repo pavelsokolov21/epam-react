@@ -31,9 +31,7 @@ export const SortButtons = (props) => {
         active={sortBy === "release-date"}
         fontSize="15px"
       >
-        {" "}
-        release date
-
+        &nbsp;release date
       </Button>
       <Button
         type="secondary"
@@ -41,9 +39,7 @@ export const SortButtons = (props) => {
         active={sortBy === "rating"}
         fontSize="15px"
       >
-        {" "}
-        rating
-
+        &nbsp;rating
       </Button>
     </div>
   );

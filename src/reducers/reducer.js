@@ -12,7 +12,6 @@ import {
 
 const initialState = {
   filmsData: [],
-  foundFilms: [],
   searchBy: "title",
   sortBy: "release-date",
   searchInputValue: "",
@@ -33,10 +32,9 @@ export const filmsReducer = (state = Map(initialState), action) => {
     case CHANGE_SEARCH_INPUT:
       return state.update("searchInputValue", () => action.payload);
     case SET_FOUND_FILMS:
-      return state.update("foundFilms", () => action.payload);
+      return state.update("filmsData", () => action.payload);
     case LOAD_FILMS_SUCCESS:
-      state.update("filmsData", () => action.payload);
-      return state.update("foundFilms", () => action.payload);
+      return state.update("filmsData", () => action.payload);
     case SET_FILM:
       return state.update("currentFilm", () => action.payload);
     default:

@@ -1,5 +1,4 @@
 export {
-  getFilmsData,
   getSortedFilms,
   getSearchBy,
   getSortBy,

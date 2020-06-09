@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const FilmInfo = ({ aboutFilm, onClick }) => {
+export const FilmInfo = ({ aboutFilm }) => {
   const {
     title,
     poster_path,
@@ -68,13 +68,11 @@ export const FilmInfo = ({ aboutFilm, onClick }) => {
         <Logo />
         <Link to="/">
           <Button
-            onClick={onClick}
             width="100px"
             type="primary"
             background="white"
             color="rgb(255, 41, 41)"
           >
-            {" "}
             search
           </Button>
         </Link>
@@ -108,5 +106,4 @@ FilmInfo.propTypes = {
     runtime: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
 };

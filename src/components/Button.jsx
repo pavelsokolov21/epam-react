@@ -46,11 +46,12 @@ Button.defaultProps = {
   children: "DefaultText",
   active: false,
   type: "primary",
+  onClick: () => {},
 };
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  children: PropTypes.arrayOf(PropTypes.node),
+  onClick: PropTypes.func,
+  children: PropTypes.string,
   active: PropTypes.bool,
   type: PropTypes.string,
 };

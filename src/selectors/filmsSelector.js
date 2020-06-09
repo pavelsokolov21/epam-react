@@ -2,20 +2,14 @@ import { createSelector } from "reselect";
 import { sortFilms, sortDescriptors } from "../utils";
 
 const filmsDataSelector = (state) => state.get("filmsData");
-const foundFilmsSelector = (state) => state.get("foundFilms");
 const searchBySelector = (state) => state.get("searchBy");
 const isLoadingSelector = (state) => state.get("isLoading");
 const searchInputValueSelector = (state) => state.get("searchInputValue");
 const currentFilmSelector = (state) => state.get("currentFilm");
 const sortBySelector = (state) => state.get("sortBy");
 
-export const getFilmsData = createSelector(
-  filmsDataSelector,
-  (filmsData) => filmsData,
-);
-
 export const getSortedFilms = createSelector(
-  [sortBySelector, foundFilmsSelector],
+  [sortBySelector, filmsDataSelector],
   (sortBy, foundFilms) => sortFilms(foundFilms, sortDescriptors(sortBy)),
 );
 
