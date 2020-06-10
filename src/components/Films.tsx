@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { FilmCard } from "./FilmCard";
+import { Film } from "../types";
 
 const useStyles = createUseStyles({
   films: {
@@ -23,7 +23,12 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Films = ({ films, onClick }) => {
+interface Props {
+  films: Film[];
+  onClick: () => void;
+}
+
+export const Films: React.FC<Props> = ({ films, onClick }) => {
   const classes = useStyles();
 
   const notFound = <p className={classes.filmsNotFoundTitle}>Films not found</p>;
@@ -48,9 +53,4 @@ export const Films = ({ films, onClick }) => {
       </div>
     </main>
   );
-};
-
-Films.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onClick: PropTypes.func.isRequired,
 };

@@ -1,4 +1,5 @@
-import { initialState, filmsReducer } from "../reducer";
+import { Map } from "immutable";
+import { initialState, filmsReducer, FilmsReducerType } from "../reducer";
 import {
   TOGGLE_SEARCH_BY,
   CHANGE_SEARCH_INPUT,
@@ -9,14 +10,22 @@ import {
   IS_LOADING,
 } from "../../constants";
 
+interface StubFilm {
+  id: number;
+  name: string;
+  rating: number;
+}
+
 describe("Film reducer", () => {
-  let data;
+  let data: StubFilm[];
+  let state: FilmsReducerType;
   beforeEach(() => {
     data = [
       { id: 1, name: "test 1", rating: 8 },
       { id: 2, name: "test 2", rating: 10 },
       { id: 3, name: "test 3", rating: 2 },
     ];
+    state = Map(initialState);
   });
 
   it("should replace isLoading", () => {
@@ -25,8 +34,8 @@ describe("Film reducer", () => {
       payload: false,
     };
 
-    const rightState = initialState.update("isLoading", () => false);
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("isLoading", () => false);
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 
   it("should replace searchBy", () => {
@@ -35,8 +44,8 @@ describe("Film reducer", () => {
       payload: "genres",
     };
 
-    const rightState = initialState.update("searchBy", () => "genres");
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("searchBy", () => "genres");
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 
   it("should replace searchInputValue", () => {
@@ -45,8 +54,8 @@ describe("Film reducer", () => {
       payload: "test",
     };
 
-    const rightState = initialState.update("searchInputValue", () => "test");
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("searchInputValue", () => "test");
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 
   it("should replace filmsData", () => {
@@ -55,8 +64,8 @@ describe("Film reducer", () => {
       payload: data,
     };
 
-    const rightState = initialState.update("filmsData", () => data);
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("filmsData", () => data);
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 
   it("should loaded filmsData", () => {
@@ -64,8 +73,8 @@ describe("Film reducer", () => {
       type: LOAD_FILMS_SUCCESS,
       payload: data,
     };
-    const rightState = initialState.update("filmsData", () => data);
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("filmsData", () => data);
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 
   it("should replace sortedFoundFilms", () => {
@@ -74,8 +83,8 @@ describe("Film reducer", () => {
       payload: "rating",
     };
 
-    const rightState = initialState.update("sortBy", () => "rating");
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("sortBy", () => "rating");
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 
   it("should replace currentFilm", () => {
@@ -86,7 +95,7 @@ describe("Film reducer", () => {
       payload: film,
     };
 
-    const rightState = initialState.update("currentFilm", () => film);
-    expect(filmsReducer(initialState, action)).toEqual(rightState);
+    const rightState = state.update("currentFilm", () => film);
+    expect(filmsReducer(state, action)).toEqual(rightState);
   });
 });

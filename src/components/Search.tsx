@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
+import { SearchType, SortType } from "../types";
 
 const useStyles = createUseStyles({
   buttonsContainer: {
@@ -28,7 +28,15 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Search = (props) => {
+interface Props {
+  searchBy: SearchType;
+  inputValue: string;
+  onChangeInput: (value: string) => void;
+  toggleSearchBy: (type: string) => void;
+  submitValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
+}
+
+export const Search: React.FC<Props> = (props: Props) => {
   const {
     searchBy, inputValue, onChangeInput, toggleSearchBy, submitValue,
   } = props;
@@ -68,22 +76,14 @@ export const Search = (props) => {
           <Button
             type="primary"
             onClick={submitValue}
-            fontSize={15}
-            width={200}
+            fontSize="15px"
+            width="200px"
             background="rgb(255, 41, 41)"
           >
-           &nbsp;search
+            &nbsp;search
           </Button>
         </div>
       </div>
     </>
   );
-};
-
-Search.propTypes = {
-  searchBy: PropTypes.string.isRequired,
-  inputValue: PropTypes.string.isRequired,
-  onChangeInput: PropTypes.func.isRequired,
-  toggleSearchBy: PropTypes.func.isRequired,
-  submitValue: PropTypes.func.isRequired,
 };

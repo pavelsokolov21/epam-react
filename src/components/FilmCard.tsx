@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -41,7 +40,14 @@ const useStyles = createUseStyles({
   },
 });
 
-export const FilmCard = (props) => {
+interface Props {
+  title: string;
+  img: string;
+  genres: string[];
+  dateRelease: string;
+}
+
+export const FilmCard: React.FC<Props> = (props: Props) => {
   const classes = useStyles();
   const {
     title, img, genres, dateRelease,
@@ -64,11 +70,4 @@ export const FilmCard = (props) => {
       </figure>
     </div>
   );
-};
-
-FilmCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  dateRelease: PropTypes.string.isRequired,
 };

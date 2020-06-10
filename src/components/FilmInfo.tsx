@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { Button } from "./Button";
@@ -50,7 +49,18 @@ const useStyles = createUseStyles({
   },
 });
 
-export const FilmInfo = ({ filmInfo }) => {
+interface Props {
+  filmInfo: {
+    title: string;
+    poster_path: string;
+    tagline: string;
+    release_date: string;
+    runtime: number;
+    overview: string;
+  }
+}
+
+export const FilmInfo: React.FC<Props> = ({ filmInfo }) => {
   const {
     title,
     poster_path,
@@ -95,15 +105,4 @@ export const FilmInfo = ({ filmInfo }) => {
       </div>
     </div>
   );
-};
-
-FilmInfo.propTypes = {
-  filmInfo: PropTypes.shape({
-    title: PropTypes.string,
-    poster_path: PropTypes.string,
-    tagline: PropTypes.string,
-    release_date: PropTypes.string,
-    runtime: PropTypes.number,
-    overview: PropTypes.string,
-  }).isRequired,
 };

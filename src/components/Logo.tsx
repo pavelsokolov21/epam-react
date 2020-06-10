@@ -9,7 +9,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Logo = () => {
+export const Logo: React.FC = () => {
   const classes = useStyles();
 
   return (

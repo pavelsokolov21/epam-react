@@ -5,22 +5,26 @@
         "jest": true
     },
     "extends": [
+        "plugin:react/recommended",
         "airbnb"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "tsx": true
         },
-        "ecmaVersion": 11,
-        "sourceType": "module"
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "tsconfigRootDir": ".",
+        "project": "tsconfig.json"
     },
     "plugins": [
         "react",
-        "prettier"
+        "@typescript-eslint"
     ],
     "rules": {
         "prettier/prettier": "off",
@@ -33,6 +37,8 @@
         "react/prefer-stateless-function": "off",
         "react/button-has-type": "off",
         "react/jsx-filename-extension": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "import/extensions": "off",
+        "esModuleInterop": "off"
     }
 }

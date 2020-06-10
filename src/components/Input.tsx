@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -18,7 +17,13 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Input = (props) => {
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+}
+
+export const Input: React.FC<Props> = (props) => {
   const classes = useStyles();
   const { value, onChange, placeholder } = props;
 
@@ -31,14 +36,4 @@ export const Input = (props) => {
       type="text"
     />
   );
-};
-
-Input.defaultProps = {
-  placeholder: "",
-};
-
-Input.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
 };

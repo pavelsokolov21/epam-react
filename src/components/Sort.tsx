@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ReactNode } from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -13,7 +12,12 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Sort = (props) => {
+interface Props {
+  metaText: string;
+  children?: ReactNode
+}
+
+export const Sort: React.FC<Props> = (props: Props) => {
   const {
     metaText, children,
   } = props;
@@ -33,14 +37,4 @@ export const Sort = (props) => {
       </div>
     </section>
   );
-};
-
-Sort.defaultProps = {
-  metaText: "",
-  children: [],
-};
-
-Sort.propTypes = {
-  metaText: PropTypes.string,
-  children: PropTypes.node,
 };

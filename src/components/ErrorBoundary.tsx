@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
-export class ErrorBoundary extends Component {
-  constructor() {
-    super();
+interface State {
+  hasError: boolean;
+}
+
+export class ErrorBoundary extends Component<Readonly<{}>, State> {
+  constructor(props: Readonly<{}>) {
+    super(props);
 
     this.state = {
       hasError: false,
@@ -24,7 +27,3 @@ export class ErrorBoundary extends Component {
     return children;
   }
 }
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.node.isRequired,
-};

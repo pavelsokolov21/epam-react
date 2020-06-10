@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import { Button } from "./Button";
+import { SortType } from "../types";
 
 const useStyles = createUseStyles({
   sortButtonsContainer: {
@@ -18,7 +18,12 @@ const useStyles = createUseStyles({
   },
 });
 
-export const SortButtons = (props) => {
+interface Props {
+  onClick: (sortBy: SortType) => void;
+  sortBy: SortType;
+}
+
+export const SortButtons: React.FC<Props> = (props: Props) => {
   const classes = useStyles();
   const { onClick, sortBy } = props;
 
@@ -43,9 +48,4 @@ export const SortButtons = (props) => {
       </Button>
     </div>
   );
-};
-
-SortButtons.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
 };

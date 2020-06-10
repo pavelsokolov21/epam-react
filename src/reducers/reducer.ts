@@ -1,5 +1,6 @@
 import { Map } from "immutable";
 
+import { RootState } from "../types";
 import {
   TOGGLE_SEARCH_BY,
   CHANGE_SEARCH_INPUT,
@@ -10,16 +11,16 @@ import {
   IS_LOADING,
 } from "../constants";
 
-export const initialState = Map({
+export const initialState: RootState = {
   filmsData: [],
   searchBy: "title",
   sortBy: "release-date",
   searchInputValue: "",
   currentFilm: {},
   isLoading: true,
-});
+};
 
-export const filmsReducer = (state = initialState, action) => {
+export const filmsReducer = (state = Map(initialState), action) => {
   switch (action.type) {
     case IS_LOADING:
       return state.update("isLoading", () => action.payload);
@@ -39,3 +40,5 @@ export const filmsReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export type FilmsReducerType = ReturnType<typeof filmsReducer>;

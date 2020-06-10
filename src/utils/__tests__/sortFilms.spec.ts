@@ -1,8 +1,16 @@
 import { sortFilms } from "../sortFilms";
 import { sortDescriptors } from "../sortDescriptors";
 
+interface FakeFilm {
+  id: number;
+  title: string;
+  genres: string[];
+  vote_average: number;
+  release_date: string;
+}
+
 describe("filter films", () => {
-  let data;
+  let data: FakeFilm[];
   beforeEach(() => {
     data = [
       {

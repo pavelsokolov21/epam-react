@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import bg from "../img/header_background.jpg";
@@ -21,7 +21,11 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Header = ({ children }) => {
+interface Props {
+  children: ReactNode
+}
+
+export const Header: React.FC<Props> = ({ children }) => {
   const classes = useStyles();
 
   return (

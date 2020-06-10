@@ -1,7 +1,8 @@
 import { sortByDateDescriptor } from "./sortByDateDescriptor";
 import { sortByRatingDescriptor } from "./sortByRatingDescriptor";
+import { SortType } from "../types";
 
-export const sortDescriptors = (sortBy) => {
+export const sortDescriptors = (sortBy: SortType) => {
   switch (sortBy) {
     case "rating":
       return sortByRatingDescriptor;

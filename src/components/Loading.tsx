@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Loading = () => {
+export const Loading: React.FC = () => {
   const classes = useStyles();
 
   return <div className={classes.loading}><img src={spinner} alt="Loading..." /></div>;

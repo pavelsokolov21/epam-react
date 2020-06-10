@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   const classes = useStyles();
 
   return (
