@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search component should render with initial state 1`] = `
+Array [
+  <div
+    className="row"
+  >
+    <div>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <h1
+          className="logo-0-2-4"
+        >
+          netflixroulette
+        </h1>
+      </a>
+    </div>
+  </div>,
+  <div
+    className="row"
+  >
+    <input
+      className="searchInput-0-2-5"
+      onChange={[Function]}
+      placeholder="Enter searching film"
+      type="text"
+      value=""
+    />
+  </div>,
+  <div
+    className="row"
+  >
+    <div
+      className="buttonsContainer-0-2-1"
+    >
+      <div
+        className="searchBy-0-2-2"
+      >
+        <p
+          className="searchBySubtitle-0-2-3"
+        >
+          Search by
+        </p>
+        <button
+          className="btn-0-2-6 btn-d6-0-2-15 btn_primary-0-2-7 btn_primary-d7-0-2-16 active"
+          onClick={[Function]}
+        >
+           title
+        </button>
+        <button
+          className="btn-0-2-6 btn-d8-0-2-17 btn_primary-0-2-7 btn_primary-d9-0-2-18 "
+          onClick={[Function]}
+        >
+           genre
+        </button>
+      </div>
+      <button
+        className="btn-0-2-6 btn-d10-0-2-19 btn_primary-0-2-7 btn_primary-d11-0-2-20 "
+        onClick={[MockFunction]}
+      >
+         search
+      </button>
+    </div>
+  </div>,
+]
+`;

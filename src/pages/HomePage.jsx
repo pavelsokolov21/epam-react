@@ -55,7 +55,7 @@ const HomePage = (props) => {
     <>
       <Header>
         <Search
-          searchBySwitcher={toggleSearchBy}
+          toggleSearchBy={toggleSearchBy}
           searchBy={searchBy}
           inputValue={searchInputValue}
           onChangeInput={onChangeSearchInput}

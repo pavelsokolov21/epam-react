@@ -2,14 +2,12 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { mount } from "enzyme";
 import renderer from "react-test-renderer";
-import Films from "../Films";
+import { Films } from "../Films";
 
 describe("Films component", () => {
   let props;
   beforeEach(() => {
     props = {
-      getCurrentFilm: jest.fn(),
-      isLoaded: true,
       films: [
         {
           id: 1,
@@ -44,6 +42,7 @@ describe("Films component", () => {
           poster_path: "",
         },
       ],
+      onClick: jest.fn(),
     };
   });
 
@@ -52,8 +51,7 @@ describe("Films component", () => {
       <Router>
         <Films
           films={props.films}
-          isLoaded={props.isLoaded}
-          getCurrentFilm={props.getCurrentFilm}
+          onClick={props.onClick}
         />
       </Router>,
     ).toJSON();
@@ -66,8 +64,7 @@ describe("Films component", () => {
       <Router>
         <Films
           films={props.films}
-          isLoaded={props.isLoaded}
-          getCurrentFilm={props.getCurrentFilm}
+          onClick={props.onClick}
         />
       </Router>,
     );
@@ -75,27 +72,12 @@ describe("Films component", () => {
     expect(component.find(".row a").length).toBe(4);
   });
 
-  it("should render loading", () => {
-    const component = mount(
-      <Router>
-        <Films
-          films={props.films}
-          isLoaded={!props.isLoaded}
-          getCurrentFilm={props.getCurrentFilm}
-        />
-      </Router>,
-    );
-
-    expect(component.find(".row Loading").length).toBe(1);
-  });
-
   it("should return not found", () => {
     const component = mount(
       <Router>
         <Films
           films={[]}
-          isLoaded={props.isLoaded}
-          getCurrentFilm={props.getCurrentFilm}
+          onClick={props.onClick}
         />
       </Router>,
     );
@@ -108,13 +90,12 @@ describe("Films component", () => {
       <Router>
         <Films
           films={props.films}
-          isLoaded={props.isLoaded}
-          getCurrentFilm={props.getCurrentFilm}
+          onClick={props.onClick}
         />
       </Router>,
     );
 
-    expect(component.find(".row FilmCard").last().prop("genre")).toBe("Cartoons");
+    expect(component.find(".row FilmCard").last().find("p").text()).toBe("Cartoons");
   });
 
   it("should return multiply genre", () => {
@@ -122,12 +103,11 @@ describe("Films component", () => {
       <Router>
         <Films
           films={props.films}
-          isLoaded={props.isLoaded}
-          getCurrentFilm={props.getCurrentFilm}
+          onClick={props.onClick}
         />
       </Router>,
     );
 
-    expect(component.find(".row FilmCard").first().prop("genre")).toBe("Actions & Adventure");
+    expect(component.find(".row FilmCard").first().find("p").text()).toBe("Actions & Adventure");
   });
 });

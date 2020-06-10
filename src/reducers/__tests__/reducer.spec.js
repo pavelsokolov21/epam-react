@@ -1,6 +1,13 @@
-import filmsReducer, { initialState } from "../reducer";
-import * as constants from "../../constants/constants";
-import { sortFilms } from "../../common";
+import { initialState, filmsReducer } from "../reducer";
+import {
+  TOGGLE_SEARCH_BY,
+  CHANGE_SEARCH_INPUT,
+  SET_FOUND_FILMS,
+  LOAD_FILMS_SUCCESS,
+  SORT_BY_TYPE,
+  SET_FILM,
+  IS_LOADING,
+} from "../../constants";
 
 describe("Film reducer", () => {
   let data;
@@ -12,96 +19,74 @@ describe("Film reducer", () => {
     ];
   });
 
-  it("should replace isLoadedPage", () => {
+  it("should replace isLoading", () => {
     const action = {
-      type: constants.IS_LOADED_PAGE,
-      payload: true,
+      type: IS_LOADING,
+      payload: false,
     };
 
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      isLoadedPage: true,
-    });
+    const rightState = initialState.update("isLoading", () => false);
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 
   it("should replace searchBy", () => {
     const action = {
-      type: constants.SEARCH_BY_SWITCH,
+      type: TOGGLE_SEARCH_BY,
       payload: "genres",
     };
 
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      searchBy: "genres",
-    });
+    const rightState = initialState.update("searchBy", () => "genres");
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 
   it("should replace searchInputValue", () => {
     const action = {
-      type: constants.CHANGE_SEARCH_INPUT,
+      type: CHANGE_SEARCH_INPUT,
       payload: "test",
     };
 
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      searchInputValue: "test",
-    });
+    const rightState = initialState.update("searchInputValue", () => "test");
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 
-  it("should replace foundFilms", () => {
+  it("should replace filmsData", () => {
     const action = {
-      type: constants.SET_FOUND_FILMS,
+      type: SET_FOUND_FILMS,
       payload: data,
     };
 
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      foundFilms: data,
-    });
+    const rightState = initialState.update("filmsData", () => data);
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 
-  it("should replace filmsData and foundFilms", () => {
+  it("should loaded filmsData", () => {
     const action = {
-      type: constants.LOADED_FILMS,
+      type: LOAD_FILMS_SUCCESS,
       payload: data,
     };
-
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      filmsData: data,
-      foundFilms: data,
-    });
+    const rightState = initialState.update("filmsData", () => data);
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 
   it("should replace sortedFoundFilms", () => {
-    const sortedFilms = sortFilms(data, "rating");
-
     const action = {
-      type: constants.SORT_BY_SWITCH,
-      payload: {
-        typeSort: "rating",
-        sortedFoundFilms: sortedFilms,
-      },
+      type: SORT_BY_TYPE,
+      payload: "rating",
     };
 
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      sortBy: "rating",
-      foundFilms: sortedFilms,
-    });
+    const rightState = initialState.update("sortBy", () => "rating");
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 
   it("should replace currentFilm", () => {
     const film = { id: 1, name: "test 1" };
 
     const action = {
-      type: constants.SET_FILM,
+      type: SET_FILM,
       payload: film,
     };
 
-    expect(filmsReducer(initialState, action)).toEqual({
-      ...initialState,
-      currentFilm: film,
-    });
+    const rightState = initialState.update("currentFilm", () => film);
+    expect(filmsReducer(initialState, action)).toEqual(rightState);
   });
 });

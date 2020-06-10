@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export const FilmInfo = ({ aboutFilm }) => {
+export const FilmInfo = ({ filmInfo }) => {
   const {
     title,
     poster_path,
@@ -58,7 +58,7 @@ export const FilmInfo = ({ aboutFilm }) => {
     release_date,
     runtime,
     overview,
-  } = aboutFilm;
+  } = filmInfo;
 
   const classes = useStyles();
 
@@ -98,12 +98,12 @@ export const FilmInfo = ({ aboutFilm }) => {
 };
 
 FilmInfo.propTypes = {
-  aboutFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
-    tagline: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    runtime: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired,
+  filmInfo: PropTypes.shape({
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+    tagline: PropTypes.string,
+    release_date: PropTypes.string,
+    runtime: PropTypes.number,
+    overview: PropTypes.string,
   }).isRequired,
 };

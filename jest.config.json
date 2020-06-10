@@ -10,8 +10,8 @@
   },
   "collectCoverageFrom": [
     "src/components/**/*.(js|jsx)",
-    "src/common.js",
-    "src/reducers/**/*.js"
+    "src/reducers/**/*.js",
+    "src/utils/**/*.js"
   ],
   "testPathIgnorePatterns": [
     "<rootDir>/node_modules/",

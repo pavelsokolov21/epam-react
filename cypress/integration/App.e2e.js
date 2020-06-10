@@ -1,57 +1,57 @@
-describe('Search films', () => {
-  
+/* eslint-disable no-undef */
+describe("Search films", () => {
   beforeEach(() => {
     cy
-      .visit('/')
+      .visit("/")
       .wait(4000);
   });
 
-    it('should search films by title', () => {
-      cy.get("input")
-        .click()
-        .type("tomb");
-  
-      cy.get("button")
-        .contains("search")
-        .click();
-      
-      cy.get("main .row a").should("have.length", 1);
-    });
-  
-    it('should search films by genre', () => {
-      cy.get("input")
-        .click()
-        .type("Act");
-  
-      cy.get("button")
-        .contains("genre")
-        .click();
-  
-      cy.get("button")
-        .contains("search")
-        .click();
-      
-      cy.get("main .row a").should("have.length", 4);
-    });
-  
-    it("should render films not found", () => {
-      cy.get("input")
-        .click()
-        .type("testtestetst");
-  
-      cy.get("button")
-        .contains("search")
-        .click();
-  
-      cy.get("main .row p")
-        .should("have.text", "Films not found");
-    });
+  it("should search films by title", () => {
+    cy.get("input")
+      .click()
+      .type("tomb");
+
+    cy.get("button")
+      .contains("search")
+      .click();
+
+    cy.get("main .row a").should("have.length", 1);
+  });
+
+  it("should search films by genre", () => {
+    cy.get("input")
+      .click()
+      .type("Act");
+
+    cy.get("button")
+      .contains("genre")
+      .click();
+
+    cy.get("button")
+      .contains("search")
+      .click();
+
+    cy.get("main .row a").should("have.length", 4);
+  });
+
+  it("should render films not found", () => {
+    cy.get("input")
+      .click()
+      .type("testtestetst");
+
+    cy.get("button")
+      .contains("search")
+      .click();
+
+    cy.get("main .row p")
+      .should("have.text", "Films not found");
+  });
 });
 
 describe("Sort films", () => {
   beforeEach(() => {
     cy
-      .visit('/')
+      .visit("/")
       .wait(4000);
   });
 
@@ -70,7 +70,7 @@ describe("Sort films", () => {
 describe("One film", () => {
   beforeEach(() => {
     cy
-      .visit('/')
+      .visit("/")
       .wait(4000);
   });
 
@@ -97,5 +97,5 @@ describe("One film", () => {
       .click();
 
     cy.url().should("eq", "http://localhost:8081/");
-  })
+  });
 });

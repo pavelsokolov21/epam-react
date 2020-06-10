@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
-import AboutFilm from "../AboutFilm";
+import { FilmInfo } from "../FilmInfo";
 
 describe("AboutFilm component", () => {
   let props;
   beforeEach(() => {
     props = {
-      aboutFilm: {
+      filmInfo: {
         title: "Tomb Rider",
         poster_path: "",
         tagline: "blablabla",
@@ -15,14 +15,13 @@ describe("AboutFilm component", () => {
         runtime: 150,
         overview: "blablabla",
       },
-      goToHome: jest.fn(),
     };
   });
 
   it("should rendrer with initial state", () => {
     const tree = renderer.create(
       <Router>
-        <AboutFilm {...props} />
+        <FilmInfo {...props} />
       </Router>,
     ).toJSON();
 

@@ -10,18 +10,16 @@ import {
   IS_LOADING,
 } from "../constants";
 
-export const initialState = {
+export const initialState = Map({
   filmsData: [],
   searchBy: "title",
   sortBy: "release-date",
   searchInputValue: "",
-  currentFilm: {
-
-  },
+  currentFilm: {},
   isLoading: true,
-};
+});
 
-export const filmsReducer = (state = Map(initialState), action) => {
+export const filmsReducer = (state = initialState, action) => {
   switch (action.type) {
     case IS_LOADING:
       return state.update("isLoading", () => action.payload);

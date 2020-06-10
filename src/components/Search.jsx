@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
 
 export const Search = (props) => {
   const {
-    searchBy, inputValue, onChangeInput, searchBySwitcher, submitValue,
+    searchBy, inputValue, onChangeInput, toggleSearchBy, submitValue,
   } = props;
   const classes = useStyles();
 
@@ -53,14 +53,14 @@ export const Search = (props) => {
             <Button
               type="primary"
               active={searchBy === "title"}
-              onClick={() => searchBySwitcher("title")}
+              onClick={() => toggleSearchBy("title")}
             >
               &nbsp;title
             </Button>
             <Button
               type="primary"
               active={searchBy === "genres"}
-              onClick={() => searchBySwitcher("genres")}
+              onClick={() => toggleSearchBy("genres")}
             >
               &nbsp;genre
             </Button>
@@ -84,6 +84,6 @@ Search.propTypes = {
   searchBy: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
   onChangeInput: PropTypes.func.isRequired,
-  searchBySwitcher: PropTypes.func.isRequired,
+  toggleSearchBy: PropTypes.func.isRequired,
   submitValue: PropTypes.func.isRequired,
 };

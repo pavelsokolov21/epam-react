@@ -41,7 +41,7 @@ const CurrentFilmPage = (props) => {
     <>
       <Header>
         <FilmInfo
-          aboutFilm={currentFilm}
+          filmInfo={currentFilm}
         />
       </Header>
       <Sort metaText={sortByText} />
