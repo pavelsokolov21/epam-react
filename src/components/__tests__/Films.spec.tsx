@@ -5,7 +5,21 @@ import renderer from "react-test-renderer";
 import { Films } from "../Films";
 
 describe("Films component", () => {
-  let props;
+  interface FakeFilm {
+    id: number;
+    title: string;
+    genres: string[];
+    vote_average: number;
+    release_date: string;
+    poster_path: string;
+  }
+
+  interface Props {
+    films: FakeFilm[];
+    onClick: () => void;
+  }
+
+  let props: Props;
   beforeEach(() => {
     props = {
       films: [

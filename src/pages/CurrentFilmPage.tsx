@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
-import { Film, RootState } from "../types";
+import { Film } from "../types";
 import { fetchFilm, isLoadingPage } from "../actions";
 import {
   Header,
@@ -19,9 +19,10 @@ import {
   getCurrentFilm,
   getIsLoading,
 } from "../selectors";
+import { FilmsReducerType } from "../reducers";
 
 interface Props {
-  filmsData: Film[] | [];
+  filmsData: Film[];
   currentFilm: Film;
   isLoading: boolean;
   fetchFilm: (id: number) => void;
@@ -64,7 +65,7 @@ const CurrentFilmPage: React.FC<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: FilmsReducerType) => ({
   filmsData: getSortedFilms(state),
   currentFilm: getCurrentFilm(state),
   isLoading: getIsLoading(state),

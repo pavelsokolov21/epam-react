@@ -17,7 +17,7 @@ interface Props {
   children?: ReactNode
 }
 
-export const Sort: React.FC<Props> = (props: Props) => {
+export const Sort: React.FC<Props> = (props) => {
   const {
     metaText, children,
   } = props;

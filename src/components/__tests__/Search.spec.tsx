@@ -3,10 +3,19 @@ import { BrowserRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
 import { mount } from "enzyme";
 import { Search } from "../Search";
+import { SearchType, SortType } from "../../types";
 
 describe("Search component", () => {
-  let props; let
-    component;
+  interface Props {
+    searchBy: SearchType;
+    inputValue: string;
+    onChangeInput: (value: string) => void;
+    toggleSearchBy: (searchBy: SearchType) => void;
+    submitValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
+  }
+
+  let props: Props;
+  // let component ? ***how get type for this var***
   beforeEach(() => {
     props = {
       searchBy: "title",
@@ -15,12 +24,6 @@ describe("Search component", () => {
       toggleSearchBy: jest.fn(),
       submitValue: jest.fn(),
     };
-
-    component = mount(
-      <Router>
-        <Search {...props} />
-      </Router>,
-    );
   });
 
   it("should render with initial state", () => {
@@ -34,6 +37,12 @@ describe("Search component", () => {
   });
 
   it("should call function on click", () => {
+    const component = mount<Router>(
+      <Router>
+        <Search {...props} />
+      </Router>,
+    );
+
     component.find("Button").first().simulate("click");
     component.find("Button").at(1).simulate("click");
 
@@ -41,6 +50,11 @@ describe("Search component", () => {
   });
 
   it("should one button have active", () => {
+    const component = mount<Router>(
+      <Router>
+        <Search {...props} />
+      </Router>,
+    );
     const firstButton = component.find("Button").first();
     const secondButton = component.find("Button").at(1);
 

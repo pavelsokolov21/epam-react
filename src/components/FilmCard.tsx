@@ -47,7 +47,7 @@ interface Props {
   dateRelease: string;
 }
 
-export const FilmCard: React.FC<Props> = (props: Props) => {
+export const FilmCard: React.FC<Props> = (props) => {
   const classes = useStyles();
   const {
     title, img, genres, dateRelease,

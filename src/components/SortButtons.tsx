@@ -23,7 +23,7 @@ interface Props {
   sortBy: SortType;
 }
 
-export const SortButtons: React.FC<Props> = (props: Props) => {
+export const SortButtons: React.FC<Props> = (props) => {
   const classes = useStyles();
   const { onClick, sortBy } = props;
 

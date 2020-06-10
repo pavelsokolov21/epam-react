@@ -4,7 +4,18 @@ import renderer from "react-test-renderer";
 import { FilmInfo } from "../FilmInfo";
 
 describe("AboutFilm component", () => {
-  let props;
+  interface Props {
+    filmInfo: {
+      title: string;
+      poster_path: string;
+      tagline: string;
+      release_date: string;
+      runtime: number;
+      overview: string;
+    };
+  }
+
+  let props: Props;
   beforeEach(() => {
     props = {
       filmInfo: {
@@ -19,11 +30,13 @@ describe("AboutFilm component", () => {
   });
 
   it("should rendrer with initial state", () => {
-    const tree = renderer.create(
-      <Router>
-        <FilmInfo {...props} />
-      </Router>,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Router>
+          <FilmInfo {...props} />
+        </Router>,
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });

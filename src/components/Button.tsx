@@ -50,7 +50,7 @@ interface Props {
   color?: string;
 }
 
-export const Button: React.FC<Props> = (props: Props) => {
+export const Button: React.FC<Props> = (props) => {
   const {
     onClick,
     children,

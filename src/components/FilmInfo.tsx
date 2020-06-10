@@ -51,12 +51,12 @@ const useStyles = createUseStyles({
 
 interface Props {
   filmInfo: {
-    title: string;
-    poster_path: string;
-    tagline: string;
-    release_date: string;
-    runtime: number;
-    overview: string;
+    title?: string;
+    poster_path?: string;
+    tagline?: string;
+    release_date?: string;
+    runtime?: number;
+    overview?: string;
   }
 }
 

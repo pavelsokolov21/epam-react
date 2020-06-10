@@ -5,7 +5,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Sort } from "../Sort";
 
 describe("Sort component", () => {
-  let props;
+  interface Props {
+    metaText: string;
+  }
+
+  let props: Props;
   beforeEach(() => {
     props = {
       metaText: "meta text",
@@ -25,7 +29,7 @@ describe("Sort component", () => {
   });
 
   it("should rendre meta text", () => {
-    const component = mount(
+    const component = mount<Router>(
       <Router>
         <Sort metaText={props.metaText}>
           <div />

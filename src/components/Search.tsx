@@ -36,7 +36,7 @@ interface Props {
   submitValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
 }
 
-export const Search: React.FC<Props> = (props: Props) => {
+export const Search: React.FC<Props> = (props) => {
   const {
     searchBy, inputValue, onChangeInput, toggleSearchBy, submitValue,
   } = props;

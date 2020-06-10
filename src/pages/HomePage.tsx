@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
+
 import {
-  Film, SearchType, SortType, RootState,
+  Film, SearchType, SortType,
 } from "../types";
 import {
   onChangeSearchInput, setSearchBy, setSortBy, submitFilmValue, fetchFilms, isLoadingPage,
@@ -16,6 +16,7 @@ import { countFilmsFound } from "../utils";
 import {
   getSortedFilms, getSearchInputValue, getSearchBy, getSortBy, getIsLoading,
 } from "../selectors";
+import { FilmsReducerType } from "../reducers";
 
 interface Props {
   isLoading: boolean;
@@ -74,7 +75,7 @@ const HomePage: React.FC<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: FilmsReducerType) => ({
   filmsData: getSortedFilms(state),
   searchInputValue: getSearchInputValue(state),
   searchBy: getSearchBy(state),

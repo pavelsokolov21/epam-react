@@ -39,6 +39,7 @@
         "react/jsx-filename-extension": "off",
         "import/prefer-default-export": "off",
         "import/extensions": "off",
-        "esModuleInterop": "off"
+        "esModuleInterop": "off",
+        "react/prop-types": "off"
     }
 }
