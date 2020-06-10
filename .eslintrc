@@ -34,11 +34,6 @@
         "react/prefer-stateless-function": "off",
         "react/button-has-type": "off",
         "react/jsx-filename-extension": "off",
-<<<<<<< HEAD:.eslintrc
         "import/prefer-default-export": "off"
-=======
-        "react/jsx-no-bind": "off",
-        "react/jsx-props-no-spreading": "off"
->>>>>>> testing:.eslintrc.json
     }
 }

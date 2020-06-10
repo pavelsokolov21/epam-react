@@ -13,25 +13,15 @@ const useStyles = createUseStyles({
     alignItems: "center",
   },
   aboutFilm: {
-<<<<<<< HEAD:src/components/FilmInfo.jsx
     display: "flex",
     justifyContent: "space-between",
     marginTop: "10px",
-=======
-    display: "grid",
-    gridGap: 30,
-    gridTemplateColumns: "1fr 2fr",
-    marginTop: 10,
->>>>>>> testing:src/components/AboutFilm.jsx
   },
   aboutFilmImg: {
     height: "500px",
   },
   aboutFilmText: {
-<<<<<<< HEAD:src/components/FilmInfo.jsx
     maxWidth: "740px",
-=======
->>>>>>> testing:src/components/AboutFilm.jsx
   },
   aboutFilmTextTitle: {
     color: "rgb(255, 41, 41)",
@@ -60,11 +50,7 @@ const useStyles = createUseStyles({
   },
 });
 
-<<<<<<< HEAD:src/components/FilmInfo.jsx
 export const FilmInfo = ({ aboutFilm }) => {
-=======
-const AboutFilm = ({ aboutFilm, goToHome }) => {
->>>>>>> testing:src/components/AboutFilm.jsx
   const {
     title,
     poster_path,
@@ -82,14 +68,8 @@ const AboutFilm = ({ aboutFilm, goToHome }) => {
         <Logo />
         <Link to="/">
           <Button
-<<<<<<< HEAD:src/components/FilmInfo.jsx
             width="100px"
             type="primary"
-=======
-            onClick={goToHome}
-            width={100}
-            text="search"
->>>>>>> testing:src/components/AboutFilm.jsx
             background="white"
             color="rgb(255, 41, 41)"
           >
@@ -126,8 +106,4 @@ FilmInfo.propTypes = {
     runtime: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
   }).isRequired,
-<<<<<<< HEAD:src/components/FilmInfo.jsx
-=======
-  goToHome: PropTypes.func.isRequired,
->>>>>>> testing:src/components/AboutFilm.jsx
 };
