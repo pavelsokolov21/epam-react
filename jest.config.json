@@ -1,0 +1,23 @@
+{
+  "verbose": true,
+  "clearMocks": false,
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+  "setupFilesAfterEnv": [
+    "<rootDir>/setupTests.js"
+  ],
+  "moduleNameMapper": {
+    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+  },
+  "collectCoverageFrom": [
+    "src/components/**/*.(js|jsx)",
+    "src/common.js",
+    "src/reducers/**/*.js"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/node_modules/",
+    "<rootDir>/build/",
+    "<rootDir>/stories/",
+    "<rootDir>/.storybook/",
+    "<rootDir>/storybook-static/"
+  ]
+}

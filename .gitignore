@@ -1,4 +1,9 @@
 node_modules/
 dist/
 storybook-static/
+<<<<<<< HEAD
 coverage/
+=======
+__snapshots__/
+coverage/
+>>>>>>> testing

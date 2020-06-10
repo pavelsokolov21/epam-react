@@ -23,6 +23,7 @@ export const Input = (props) => {
   const { value, onChange, placeholder } = props;
 
   return (
+<<<<<<< HEAD
     <input
       className={classes.searchInput}
       placeholder={placeholder}
@@ -30,6 +31,17 @@ export const Input = (props) => {
       onChange={({ target: { value } }) => onChange(value)}
       type="text"
     />
+=======
+    <div>
+      <input
+        className={classes.searchInput}
+        placeholder={placeholder}
+        value={value}
+        onChange={({ target: { value } }) => onChange(value)}
+        type="text"
+      />
+    </div>
+>>>>>>> testing
   );
 };
 

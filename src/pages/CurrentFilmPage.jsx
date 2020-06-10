@@ -39,11 +39,22 @@ const CurrentFilmPage = (props) => {
   const sortByText = `Sorted by ${currentFilm.genres[0]} genre`;
   return (
     <>
+<<<<<<< HEAD
       <Header>
         <FilmInfo
           aboutFilm={currentFilm}
         />
       </Header>
+=======
+      <Header
+        component={(
+          <AboutFilm
+            goToHome={goToHome.bind(this, filmsData, sortBy)}
+            aboutFilm={currentFilm}
+          />
+        )}
+      />
+>>>>>>> testing
       <Sort metaText={sortByText} />
       <Films
         onClick={() => isLoadingPage(true)}

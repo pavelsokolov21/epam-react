@@ -10,7 +10,7 @@ import {
   IS_LOADING,
 } from "../constants";
 
-const initialState = {
+export const initialState = {
   filmsData: [],
   searchBy: "title",
   sortBy: "release-date",
