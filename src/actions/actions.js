@@ -7,7 +7,8 @@ import {
   SET_FILM,
   IS_LOADING,
 } from "../constants";
-import { getMovieById, getMovieByParams } from "../services/services";
+// import { getMovieById, getMovieByParams } from "../services/services";
+import { fetchFilmsFromDataBase } from "../services/services";
 
 export const isLoadingPage = (status) => ({
   type: IS_LOADING,
@@ -36,15 +37,33 @@ export const setFoundFilms = (foundFilms) => ({
 
 export const submitFilmValue = (sortBy, searchBy, searchInputValue) => (
   (dispatch) => {
+    const query = `
+      query GetFilms(
+        $searchBy: String,
+        $sortBy: String,
+        $search: String
+        ) {
+        getFilms(
+          searchBy: $searchBy,
+          sortBy: $sortBy,
+          search: $search
+        ) {
+          id title release_date poster_path genres vote_average
+        }
+      }
+    `;
+    const variables = {
+      searchBy,
+      sortBy,
+      search: searchInputValue,
+    };
     if (searchInputValue.length === 0) {
-      const params = `searchBy=${searchBy}&sortBy=${sortBy}`;
-      getMovieByParams(params).then((films) => {
-        dispatch(setFoundFilms(films));
+      fetchFilmsFromDataBase(query, variables).then(({ data: { getFilms } }) => {
+        dispatch(setFoundFilms(getFilms));
       });
     } else {
-      const params = `searchBy=${searchBy}&sortBy=${sortBy}&search=${searchInputValue}`;
-      getMovieByParams(params).then((films) => {
-        dispatch(setFoundFilms(films));
+      fetchFilmsFromDataBase(query, variables).then(({ data: { getFilms } }) => {
+        dispatch(setFoundFilms(getFilms));
       });
     }
   }
@@ -56,9 +75,18 @@ export const fetchFilmsDataSuccess = (films) => ({
 });
 
 export const fetchFilms = (sortBy) => (dispatch) => {
-  const params = `sortBy=${sortBy}`;
-  getMovieByParams(params).then((films) => {
-    dispatch(fetchFilmsDataSuccess(films));
+  const query = `
+    query GetFilms($sortBy: String) {
+      getFilms(sortBy: $sortBy) {
+        id title release_date poster_path genres vote_average
+      }
+    }
+  `;
+  const variables = {
+    sortBy,
+  };
+  fetchFilmsFromDataBase(query, variables).then(({ data: { getFilms } }) => {
+    dispatch(fetchFilmsDataSuccess(getFilms));
     dispatch(isLoadingPage(false));
   }).catch((e) => {
     dispatch(isLoadingPage(false));
@@ -72,13 +100,29 @@ export const setCurrentFilm = (film) => ({
 });
 
 export const fetchFilm = (id) => (dispatch) => {
-  getMovieById(id).then((filmById) => {
-    const params = `searchBy=genres&filter=${filmById.genres[0]}`;
-    getMovieByParams(params).then((films) => {
-      const dataWithoutCurrentFilm = films.filter(({ id }) => id !== filmById.id);
+  const query = `
+    query {
+      getFilm(id: ${id}) {
+        id title release_date poster_path tagline runtime overview genres
+      }
+    }
+  `;
+  fetchFilmsFromDataBase(query, {}).then(({ data: { getFilm } }) => {
+    const queryForAllFilm = `
+      query GetFilms($filter: String) {
+        getFilms(filter: $filter) {
+          id title release_date poster_path genres
+        }
+      }
+    `;
+    const variable = {
+      filter: getFilm.genres[0],
+    };
+    fetchFilmsFromDataBase(queryForAllFilm, variable).then(({ data: { getFilms } }) => {
+      const dataWithoutCurrentFilm = getFilms.filter(({ id }) => id !== getFilm.id);
       dispatch(setFoundFilms(dataWithoutCurrentFilm));
     });
-    dispatch(setCurrentFilm(filmById));
+    dispatch(setCurrentFilm(getFilm));
     dispatch(isLoadingPage(false));
   });
 };
