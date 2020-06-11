@@ -73,7 +73,7 @@ export const setCurrentFilm = (film) => ({
 
 export const fetchFilm = (id) => (dispatch) => {
   getMovieById(id).then((filmById) => {
-    const params = "searchBy=genres";
+    const params = `searchBy=genres&filter=${filmById.genres[0]}`;
     getMovieByParams(params).then((films) => {
       const dataWithoutCurrentFilm = films.filter(({ id }) => id !== filmById.id);
       dispatch(setFoundFilms(dataWithoutCurrentFilm));
