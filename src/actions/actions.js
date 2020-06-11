@@ -38,13 +38,13 @@ export const submitFilmValue = (sortBy, searchBy, searchInputValue) => (
   (dispatch) => {
     if (searchInputValue.length === 0) {
       const params = `searchBy=${searchBy}&sortBy=${sortBy}`;
-      getMovieByParams(params).then(({ data }) => {
-        dispatch(setFoundFilms(data));
+      getMovieByParams(params).then((films) => {
+        dispatch(setFoundFilms(films));
       });
     } else {
       const params = `searchBy=${searchBy}&sortBy=${sortBy}&search=${searchInputValue}`;
-      getMovieByParams(params).then(({ data }) => {
-        dispatch(setFoundFilms(data));
+      getMovieByParams(params).then((films) => {
+        dispatch(setFoundFilms(films));
       });
     }
   }
@@ -57,8 +57,8 @@ export const fetchFilmsDataSuccess = (films) => ({
 
 export const fetchFilms = (sortBy) => (dispatch) => {
   const params = `sortBy=${sortBy}`;
-  getMovieByParams(params).then(({ data }) => {
-    dispatch(fetchFilmsDataSuccess(data));
+  getMovieByParams(params).then((films) => {
+    dispatch(fetchFilmsDataSuccess(films));
     dispatch(isLoadingPage(false));
   }).catch((e) => {
     dispatch(isLoadingPage(false));
@@ -74,8 +74,8 @@ export const setCurrentFilm = (film) => ({
 export const fetchFilm = (id) => (dispatch) => {
   getMovieById(id).then((filmById) => {
     const params = "searchBy=genres";
-    getMovieByParams(params).then(({ data }) => {
-      const dataWithoutCurrentFilm = data.filter(({ id }) => id !== filmById.id);
+    getMovieByParams(params).then((films) => {
+      const dataWithoutCurrentFilm = films.filter(({ id }) => id !== filmById.id);
       dispatch(setFoundFilms(dataWithoutCurrentFilm));
     });
     dispatch(setCurrentFilm(filmById));

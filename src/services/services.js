@@ -1,4 +1,4 @@
-const apiBase = "http://react-cdp-api.herokuapp.com/movies";
+const apiBase = "http://localhost:8080/api/films";
 
 export const getMovieById = (id) => {
   const result = fetch(`${apiBase}/${id}`)
