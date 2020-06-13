@@ -24,7 +24,7 @@ exports[`AboutFilm component should rendrer with initial state 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn-0-2-12 btn-d0-0-2-15 btn_primary-0-2-13 btn_primary-d1-0-2-16 "
+        className="btn-0-2-12 btn-d0-0-2-13 undefined "
         onClick={[Function]}
       >
         search

@@ -10,13 +10,13 @@ exports[`SortButtons component should render with props 1`] = `
     Sort by
   </p>
   <button
-    className="btn-0-2-4 btn-d4-0-2-11 btn_secondary-0-2-6 "
+    className="btn-0-2-4 btn-d2-0-2-7 undefined "
     onClick={[Function]}
   >
      release date
   </button>
   <button
-    className="btn-0-2-4 btn-d6-0-2-13 btn_secondary-0-2-6 active"
+    className="btn-0-2-4 btn-d3-0-2-8 undefined active"
     onClick={[Function]}
   >
      rating
