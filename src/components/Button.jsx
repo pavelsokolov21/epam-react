@@ -8,24 +8,24 @@ const useStyles = createUseStyles({
     border: "none",
     outline: "none",
     fontSize: ({ fontSize }) => fontSize || "12px",
-  },
-  btn_primary: {
-    width: ({ width }) => width || "100px",
-    background: ({ background }) => background || "rgb(37, 37, 37)",
-    color: ({ color }) => color || "white",
-    padding: "5px 8px",
-    borderRadius: "4px",
-    fontWeight: "700px",
-    textTransform: "uppercase",
-    "&.active": {
-      background: "rgb(255, 41, 41) !important",
+    "&_primary": {
+      width: ({ width }) => width || "100px",
+      background: ({ background }) => background || "rgb(37, 37, 37)",
+      color: ({ color }) => color || "white",
+      padding: "5px 8px",
+      borderRadius: "4px",
+      fontWeight: "700px",
+      textTransform: "uppercase",
+      "&.active": {
+        background: "rgb(255, 41, 41) !important",
+      },
     },
-  },
-  btn_secondary: {
-    color: "rgb(77, 77, 77)",
-    background: "none",
-    "&.active": {
-      color: "rgb(255, 41, 41) !important",
+    "&_secondary": {
+      color: "rgb(77, 77, 77)",
+      background: "none",
+      "&.active": {
+        color: "rgb(255, 41, 41) !important",
+      },
     },
   },
 });
