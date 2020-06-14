@@ -6,7 +6,6 @@ import { Button } from "./Button";
 import { Logo } from "./Logo";
 
 const useStyles = createUseStyles({
-  currentFilm: {},
   navigation: {
     display: "flex",
     justifyContent: "space-between",

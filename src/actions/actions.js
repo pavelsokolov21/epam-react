@@ -7,7 +7,6 @@ import {
   SET_FILM,
   IS_LOADING,
 } from "../constants";
-// import { getMovieById, getMovieByParams } from "../services/services";
 import { fetchFilmsFromDataBase } from "../services/services";
 
 export const isLoadingPage = (status) => ({
@@ -36,35 +35,33 @@ export const setFoundFilms = (foundFilms) => ({
 });
 
 export const submitFilmValue = (sortBy, searchBy, searchInputValue) => (
-  (dispatch) => {
-    const query = `
-      query GetFilms(
-        $searchBy: String,
-        $sortBy: String,
-        $search: String
-        ) {
-        getFilms(
-          searchBy: $searchBy,
-          sortBy: $sortBy,
-          search: $search
-        ) {
-          id title release_date poster_path genres vote_average
+  async (dispatch) => {
+    try {
+      const query = `
+        query GetFilms(
+          $searchBy: String,
+          $sortBy: String,
+          $search: String
+          ) {
+          getFilms(
+            searchBy: $searchBy,
+            sortBy: $sortBy,
+            search: $search
+          ) {
+            id title release_date poster_path genres vote_average
+          }
         }
-      }
-    `;
-    const variables = {
-      searchBy,
-      sortBy,
-      search: searchInputValue,
-    };
-    if (searchInputValue.length === 0) {
-      fetchFilmsFromDataBase(query, variables).then(({ data: { getFilms } }) => {
-        dispatch(setFoundFilms(getFilms));
-      });
-    } else {
-      fetchFilmsFromDataBase(query, variables).then(({ data: { getFilms } }) => {
-        dispatch(setFoundFilms(getFilms));
-      });
+      `;
+      const variables = {
+        searchBy,
+        sortBy,
+        search: searchInputValue,
+      };
+      const { data: { getFilms } } = await fetchFilmsFromDataBase(query, variables);
+      dispatch(setFoundFilms(getFilms));
+    } catch (e) {
+      dispatch(isLoadingPage(false));
+      throw new Error(e.message);
     }
   }
 );
@@ -74,24 +71,25 @@ export const fetchFilmsDataSuccess = (films) => ({
   payload: films,
 });
 
-export const fetchFilms = (sortBy) => (dispatch) => {
-  const query = `
-    query GetFilms($sortBy: String) {
-      getFilms(sortBy: $sortBy) {
-        id title release_date poster_path genres vote_average
+export const fetchFilms = (sortBy) => async (dispatch) => {
+  try {
+    const query = `
+      query GetFilms($sortBy: String) {
+        getFilms(sortBy: $sortBy) {
+          id title release_date poster_path genres vote_average
+        }
       }
-    }
-  `;
-  const variables = {
-    sortBy,
-  };
-  fetchFilmsFromDataBase(query, variables).then(({ data: { getFilms } }) => {
+    `;
+    const variables = {
+      sortBy,
+    };
+    const { data: { getFilms } } = await fetchFilmsFromDataBase(query, variables);
     dispatch(fetchFilmsDataSuccess(getFilms));
     dispatch(isLoadingPage(false));
-  }).catch((e) => {
+  } catch (e) {
     dispatch(isLoadingPage(false));
     throw new Error(e.message);
-  });
+  }
 };
 
 export const setCurrentFilm = (film) => ({
@@ -99,15 +97,15 @@ export const setCurrentFilm = (film) => ({
   payload: film,
 });
 
-export const fetchFilm = (id) => (dispatch) => {
-  const query = `
-    query {
-      getFilm(id: ${id}) {
-        id title release_date poster_path tagline runtime overview genres
+export const fetchFilm = (id) => async (dispatch) => {
+  try {
+    const query = `
+      query {
+        getFilm(id: "${id}") {
+          id title release_date poster_path tagline runtime overview genres
+        }
       }
-    }
-  `;
-  fetchFilmsFromDataBase(query, {}).then(({ data: { getFilm } }) => {
+    `;
     const queryForAllFilm = `
       query GetFilms($filter: String) {
         getFilms(filter: $filter) {
@@ -115,14 +113,20 @@ export const fetchFilm = (id) => (dispatch) => {
         }
       }
     `;
+    const { data: { getFilm } } = await fetchFilmsFromDataBase(query, {});
+
+    const [genre = ""] = getFilm.genres;
     const variable = {
-      filter: getFilm.genres[0],
+      filter: genre,
     };
-    fetchFilmsFromDataBase(queryForAllFilm, variable).then(({ data: { getFilms } }) => {
-      const dataWithoutCurrentFilm = getFilms.filter(({ id }) => id !== getFilm.id);
-      dispatch(setFoundFilms(dataWithoutCurrentFilm));
-    });
+    const { data: { getFilms } } = await fetchFilmsFromDataBase(queryForAllFilm, variable);
+
+    const dataWithoutCurrentFilm = getFilms.filter(({ id }) => id !== getFilm.id);
+    dispatch(setFoundFilms(dataWithoutCurrentFilm));
     dispatch(setCurrentFilm(getFilm));
     dispatch(isLoadingPage(false));
-  });
+  } catch (e) {
+    dispatch(isLoadingPage(false));
+    throw new Error(e.message);
+  }
 };

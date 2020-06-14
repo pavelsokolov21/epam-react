@@ -67,7 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 CurrentFilmPage.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     tagline: PropTypes.string,
     vote_average: PropTypes.number,
@@ -81,7 +81,7 @@ CurrentFilmPage.propTypes = {
     runtime: PropTypes.number,
   })).isRequired,
   currentFilm: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     tagline: PropTypes.string,
     vote_average: PropTypes.number,

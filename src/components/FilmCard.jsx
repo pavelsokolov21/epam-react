@@ -46,9 +46,11 @@ export const FilmCard = (props) => {
   const {
     title, img, genres, dateRelease,
   } = props;
+  const [firstGenre = "", secondGenre = ""] = genres;
+
   const genre = genres.length === 1
-    ? genres[0]
-    : `${genres[0]} & ${genres[1]}`;
+    ? firstGenre
+    : `${secondGenre} & ${secondGenre}`;
 
   return (
     <div className={classes.film}>
