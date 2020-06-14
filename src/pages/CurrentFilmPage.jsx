@@ -36,7 +36,8 @@ const CurrentFilmPage = (props) => {
     return <Loading />;
   }
 
-  const sortByText = `Sorted by ${currentFilm.genres[0]} genre`;
+  const [currentFilmGenre = ""] = currentFilm.genres;
+  const sortByText = `Sorted by ${currentFilmGenre} genre`;
   return (
     <>
       <Header>

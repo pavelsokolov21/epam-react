@@ -107,9 +107,9 @@ export const fetchFilm = (id) => async (dispatch) => {
       }
     `;
     const queryForAllFilm = `
-      query GetFilms($filter: String) {
-        getFilms(filter: $filter) {
-          id title release_date poster_path genres
+      query GetFilmsByFilter($filter: String) {
+        getFilmsByFilter(filter: $filter) {
+          id title release_date poster_path genres vote_average
         }
       }
     `;
@@ -119,11 +119,11 @@ export const fetchFilm = (id) => async (dispatch) => {
     const variable = {
       filter: genre,
     };
-    const { data: { getFilms } } = await fetchFilmsFromDataBase(queryForAllFilm, variable);
+    const { data: { getFilmsByFilter } } = await fetchFilmsFromDataBase(queryForAllFilm, variable);
 
-    const dataWithoutCurrentFilm = getFilms.filter(({ id }) => id !== getFilm.id);
-    dispatch(setFoundFilms(dataWithoutCurrentFilm));
+    const dataWithoutCurrentFilm = getFilmsByFilter.filter(({ id }) => id !== getFilm.id);
     dispatch(setCurrentFilm(getFilm));
+    dispatch(setFoundFilms(dataWithoutCurrentFilm));
     dispatch(isLoadingPage(false));
   } catch (e) {
     dispatch(isLoadingPage(false));
