@@ -20,7 +20,9 @@ const useStyles = createUseStyles({
 
 export const Input = (props) => {
   const classes = useStyles();
-  const { value, onChange, placeholder } = props;
+  const {
+    value, onChange, placeholder, dataTestAttr,
+  } = props;
 
   return (
     <input
@@ -29,16 +31,19 @@ export const Input = (props) => {
       value={value}
       onChange={({ target: { value } }) => onChange(value)}
       type="text"
+      data-test-input={dataTestAttr}
     />
   );
 };
 
 Input.defaultProps = {
   placeholder: "",
+  dataTestAttr: "",
 };
 
 Input.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  dataTestAttr: PropTypes.string,
 };

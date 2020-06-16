@@ -2,48 +2,43 @@
 describe("Search films", () => {
   beforeEach(() => {
     cy
-      .visit("/")
-      .wait(4000);
+      .visit("/");
   });
 
   it("should search films by title", () => {
-    cy.get("input")
+    cy.get("input[data-test-input='search-input']")
       .click()
       .type("tomb");
 
-    cy.get("button")
-      .contains("search")
+    cy.get("button[data-test-button='search']")
       .click();
 
-    cy.get("main .row a").should("have.length", 1);
+    cy.get("a[data-test-card]").should("have.length", 1);
   });
 
   it("should search films by genre", () => {
-    cy.get("input")
+    cy.get("input[data-test-input='search-input']")
       .click()
       .type("Act");
 
-    cy.get("button")
-      .contains("genre")
+    cy.get("button[data-test-button='search-by-genre']")
       .click();
 
-    cy.get("button")
-      .contains("search")
+    cy.get("button[data-test-button='search']")
       .click();
 
     cy.get("main .row a").should("have.length", 4);
   });
 
   it("should render films not found", () => {
-    cy.get("input")
+    cy.get("input[data-test-input='search-input']")
       .click()
       .type("testtestetst");
 
-    cy.get("button")
-      .contains("search")
+    cy.get("button[data-test-button='search']")
       .click();
 
-    cy.get("main .row p")
+    cy.get("p[data-test-notFound='not-found']")
       .should("have.text", "Films not found");
   });
 });
@@ -51,49 +46,30 @@ describe("Search films", () => {
 describe("Sort films", () => {
   beforeEach(() => {
     cy
-      .visit("/")
-      .wait(4000);
+      .visit("/");
   });
 
   it("should sort films by rating", () => {
-    cy.get("button")
-      .contains("rating")
+    cy.get("button[data-test-button='sort-by-rating']")
       .click();
 
-    cy.get("main .row a")
-      .get("h4")
-      .contains("Ready Player One")
+    cy.get("a[data-test-card='film-5ee55f3430a4bf954a062fe3'] h4")
       .should("have.text", "Ready Player One");
   });
 });
 
 describe("One film", () => {
-  beforeEach(() => {
-    cy
-      .visit("/")
-      .wait(4000);
-  });
-
   it("should redirect to clicked film", () => {
+    cy.visit("/");
+
     cy
-      .get("main .row a")
-      .first()
+      .get("a[data-test-card='film-5ee55f3430a4bf954a062fe3']")
       .click();
 
-    cy.url().should("include", "/movies/333339");
-  });
-
-  it("should go back", () => {
-    cy
-      .get("main .row a")
-      .first()
-      .click();
-
-    cy.wait(2000);
+    cy.url().should("include", "/movies/5ee55f3430a4bf954a062fe3");
 
     cy
-      .get("button")
-      .contains("search")
+      .get("button[data-test-button='go-home']")
       .click();
 
     cy.url().should("eq", "http://localhost:8081/");

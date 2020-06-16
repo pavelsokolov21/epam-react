@@ -44,6 +44,7 @@ export const Search = (props) => {
           placeholder="Enter searching film"
           value={inputValue}
           onChange={onChangeInput}
+          dataTestAttr="search-input"
         />
       </div>
       <div className="row">
@@ -54,6 +55,7 @@ export const Search = (props) => {
               type="primary"
               active={searchBy === "title"}
               onClick={() => toggleSearchBy("title")}
+              dataTestAttr="search-by-title"
             >
               &nbsp;title
             </Button>
@@ -61,6 +63,7 @@ export const Search = (props) => {
               type="primary"
               active={searchBy === "genres"}
               onClick={() => toggleSearchBy("genres")}
+              dataTestAttr="search-by-genre"
             >
               &nbsp;genre
             </Button>
@@ -71,6 +74,7 @@ export const Search = (props) => {
             fontSize={15}
             width={200}
             background="rgb(255, 41, 41)"
+            dataTestAttr="search"
           >
            &nbsp;search
           </Button>

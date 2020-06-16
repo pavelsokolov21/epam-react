@@ -26,14 +26,19 @@ const useStyles = createUseStyles({
 export const Films = ({ films, onClick }) => {
   const classes = useStyles();
 
-  const notFound = <p className={classes.filmsNotFoundTitle}>Films not found</p>;
+  const notFound = <p className={classes.filmsNotFoundTitle} data-test-notFound="not-found">Films not found</p>;
   return (
     <main>
       <div className="container">
         <div className="row">
           <div className={(films.length !== 0) ? classes.films : classes.default}>
             {films.map((film) => (
-              <Link onClick={onClick} to={`/movies/${film.id}`} key={film.id}>
+              <Link
+                onClick={onClick}
+                to={`/movies/${film.id}`}
+                key={film.id}
+                data-test-card={`film-${film.id}`}
+              >
                 <FilmCard
                   title={film.title}
                   img={film.poster_path}

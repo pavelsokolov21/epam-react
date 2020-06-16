@@ -71,6 +71,7 @@ export const FilmInfo = ({ filmInfo }) => {
             type="primary"
             background="white"
             color="rgb(255, 41, 41)"
+            dataTestAttr="go-home"
           >
             search
           </Button>

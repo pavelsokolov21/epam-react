@@ -30,6 +30,7 @@ export const SortButtons = (props) => {
         onClick={() => onClick("release-date")}
         active={sortBy === "release-date"}
         fontSize="15px"
+        dataTestAttr="sort-by-release-date"
       >
         &nbsp;release date
       </Button>
@@ -38,6 +39,7 @@ export const SortButtons = (props) => {
         onClick={() => onClick("rating")}
         active={sortBy === "rating"}
         fontSize="15px"
+        dataTestAttr="sort-by-rating"
       >
         &nbsp;rating
       </Button>

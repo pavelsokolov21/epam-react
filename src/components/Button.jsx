@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
 
 export const Button = (props) => {
   const {
-    onClick, children, active, type,
+    onClick, children, active, type, dataTestAttr,
   } = props;
 
   const classes = useStyles(props);
@@ -40,7 +40,7 @@ export const Button = (props) => {
   const buttonClass = `${classes.btn} ${classsByType} ${active ? "active" : ""}`;
 
   return (
-    <button className={buttonClass} onClick={onClick}>
+    <button className={buttonClass} onClick={onClick} data-test-button={dataTestAttr}>
       {children}
     </button>
   );
@@ -51,6 +51,7 @@ Button.defaultProps = {
   active: false,
   type: "primary",
   onClick: () => {},
+  dataTestAttr: "",
 };
 
 Button.propTypes = {
@@ -58,4 +59,5 @@ Button.propTypes = {
   children: PropTypes.string,
   active: PropTypes.bool,
   type: PropTypes.string,
+  dataTestAttr: PropTypes.string,
 };
