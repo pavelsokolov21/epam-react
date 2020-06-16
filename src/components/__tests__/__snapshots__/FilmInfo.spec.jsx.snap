@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AboutFilm component should rendrer with initial state 1`] = `
-<div
-  className="currentFilm-0-2-1"
->
+<div>
   <div
-    className="navigation-0-2-2"
+    className="navigation-0-2-1"
   >
     <div>
       <a
@@ -13,7 +11,7 @@ exports[`AboutFilm component should rendrer with initial state 1`] = `
         onClick={[Function]}
       >
         <h1
-          className="logo-0-2-11"
+          className="logo-0-2-10"
         >
           netflixroulette
         </h1>
@@ -24,7 +22,8 @@ exports[`AboutFilm component should rendrer with initial state 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn-0-2-12 btn-d0-0-2-13 undefined "
+        className="btn-0-2-11 btn-d0-0-2-14 btn_primary-0-2-12 btn_primary-d1-0-2-15 "
+        data-test-button="go-home"
         onClick={[Function]}
       >
         search
@@ -32,42 +31,42 @@ exports[`AboutFilm component should rendrer with initial state 1`] = `
     </a>
   </div>
   <div
-    className="aboutFilm-0-2-3"
+    className="aboutFilm-0-2-2"
   >
     <img
       alt="Tomb Riderblablabla"
-      className="aboutFilmImg-0-2-4"
+      className="aboutFilmImg-0-2-3"
       src=""
     />
     <div
-      className="aboutFilmText-0-2-5"
+      className="aboutFilmText-0-2-4"
     >
       <h2
-        className="aboutFilmTextTitle-0-2-6"
+        className="aboutFilmTextTitle-0-2-5"
       >
         Tomb Rider
       </h2>
       <h4
-        className="aboutFilmTextTagline-0-2-7"
+        className="aboutFilmTextTagline-0-2-6"
       >
         blablabla
       </h4>
       <div
-        className="time-0-2-8"
+        className="time-0-2-7"
       >
         <span
-          className="timeItem-0-2-9"
+          className="timeItem-0-2-8"
         >
           2020
         </span>
         <span
-          className="timeItem-0-2-9"
+          className="timeItem-0-2-8"
         >
           150 min
         </span>
       </div>
       <p
-        className="overview-0-2-10"
+        className="overview-0-2-9"
       >
         blablabla
       </p>

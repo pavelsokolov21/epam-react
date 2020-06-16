@@ -12,6 +12,7 @@ exports[`Films component should render with state from props 1`] = `
         className="films-0-2-1"
       >
         <a
+          data-test-card="film-1"
           href="/movies/1"
           onClick={[Function]}
         >
@@ -36,7 +37,7 @@ exports[`Films component should render with state from props 1`] = `
                   <p
                     className="genre-0-2-9"
                   >
-                    Actions & Adventure
+                    Adventure & Adventure
                   </p>
                 </div>
                 <div
@@ -49,6 +50,7 @@ exports[`Films component should render with state from props 1`] = `
           </div>
         </a>
         <a
+          data-test-card="film-2"
           href="/movies/2"
           onClick={[Function]}
         >
@@ -73,7 +75,7 @@ exports[`Films component should render with state from props 1`] = `
                   <p
                     className="genre-0-2-9"
                   >
-                    Robots & Actions
+                    Actions & Actions
                   </p>
                 </div>
                 <div
@@ -86,6 +88,7 @@ exports[`Films component should render with state from props 1`] = `
           </div>
         </a>
         <a
+          data-test-card="film-3"
           href="/movies/3"
           onClick={[Function]}
         >
@@ -123,6 +126,7 @@ exports[`Films component should render with state from props 1`] = `
           </div>
         </a>
         <a
+          data-test-card="film-4"
           href="/movies/4"
           onClick={[Function]}
         >

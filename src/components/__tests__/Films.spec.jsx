@@ -84,30 +84,4 @@ describe("Films component", () => {
 
     expect(component.find(".row p").text()).toBe("Films not found");
   });
-
-  it("should return 1 genre", () => {
-    const component = mount(
-      <Router>
-        <Films
-          films={props.films}
-          onClick={props.onClick}
-        />
-      </Router>,
-    );
-
-    expect(component.find(".row FilmCard").last().find("p").text()).toBe("Cartoons");
-  });
-
-  it("should return multiply genre", () => {
-    const component = mount(
-      <Router>
-        <Films
-          films={props.films}
-          onClick={props.onClick}
-        />
-      </Router>,
-    );
-
-    expect(component.find(".row FilmCard").first().find("p").text()).toBe("Actions & Adventure");
-  });
 });
