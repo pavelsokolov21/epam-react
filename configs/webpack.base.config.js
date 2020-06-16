@@ -40,10 +40,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: "awesome-typescript-loader",
         },
       },
       {
@@ -108,7 +108,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
       components: `${PATHS.src}/components`,
       containers: `${PATHS.src}/containers`,

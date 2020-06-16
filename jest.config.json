@@ -9,9 +9,9 @@
     "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
   },
   "collectCoverageFrom": [
-    "src/components/**/*.(js|jsx)",
-    "src/reducers/**/*.js",
-    "src/utils/**/*.js"
+    "src/components/**/*.(ts|tsx)",
+    "src/reducers/**/*.ts",
+    "src/utils/**/*.ts"
   ],
   "testPathIgnorePatterns": [
     "<rootDir>/node_modules/",
@@ -19,5 +19,6 @@
     "<rootDir>/stories/",
     "<rootDir>/.storybook/",
     "<rootDir>/storybook-static/"
-  ]
+  ],
+  "allowSyntheticDefaultImports": true
 }
