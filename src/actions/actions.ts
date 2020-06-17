@@ -14,6 +14,10 @@ import {
 } from "../types";
 import { fetchFilmsFromDataBase } from "../services/services";
 
+interface Id {
+  id: number;
+}
+
 export const isLoadingPage = (status: boolean) => ({
   type: IS_LOADING,
   payload: status,
@@ -132,8 +136,8 @@ export const fetchFilm = (id: number): ThunkAction<void, RootState, unknown, Act
         filter: genre,
       };
       const { data: { getFilmsByFilter } } = await fetchFilmsFromDataBase(queryForAllFilm, variable);
-  
-      const dataWithoutCurrentFilm = getFilmsByFilter.filter(({ id }) => id !== getFilm.id);
+
+      const dataWithoutCurrentFilm = getFilmsByFilter.filter(({ id }: Id) => id !== getFilm.id);
       dispatch(setCurrentFilm(getFilm));
       dispatch(setFoundFilms(dataWithoutCurrentFilm));
       dispatch(isLoadingPage(false));
@@ -143,3 +147,11 @@ export const fetchFilm = (id: number): ThunkAction<void, RootState, unknown, Act
     }
   }
 );
+
+export type Actions = ReturnType<typeof isLoadingPage>
+  | ReturnType<typeof setSearchBy>
+  | ReturnType<typeof setSortBy>
+  | ReturnType<typeof onChangeSearchInput>
+  | ReturnType<typeof setFoundFilms>
+  | ReturnType<typeof fetchFilmsDataSuccess>
+  | ReturnType<typeof setCurrentFilm>;

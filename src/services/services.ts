@@ -1,6 +1,13 @@
 const apiBase = "http://localhost:8080/graphql";
 
-export const fetchFilmsFromDataBase = async (query, variables) => {
+interface Variables {
+  searchBy?: string;
+  sortBy?: string;
+  search?: string;
+  filter?: string;
+}
+
+export const fetchFilmsFromDataBase = async (query: string, variables: Variables) => {
   try {
     const response = await fetch(`${apiBase}`, {
       method: "post",

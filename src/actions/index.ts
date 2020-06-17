@@ -9,4 +9,5 @@ export {
   isLoadingPage,
   fetchFilm,
   fetchFilms,
+  Actions,
 } from "./actions";

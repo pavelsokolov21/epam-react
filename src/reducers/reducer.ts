@@ -10,6 +10,7 @@ import {
   SET_FILM,
   IS_LOADING,
 } from "../constants";
+import { Actions } from "../actions";
 
 export const initialState: RootState = {
   filmsData: [],
@@ -20,7 +21,7 @@ export const initialState: RootState = {
   isLoading: true,
 };
 
-export const filmsReducer = (state = Map(initialState), action) => {
+export const filmsReducer = (state = Map(initialState), action: Actions) => {
   switch (action.type) {
     case IS_LOADING:
       return state.update("isLoading", () => action.payload);
