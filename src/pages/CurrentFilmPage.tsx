@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/react-hooks";
 
-import { AnyAction } from "redux";
 import { Film } from "../types";
 import {
   Header,
@@ -11,45 +11,43 @@ import {
   FilmInfo,
   Footer,
 } from "../components";
+import { GET_FILM, GET_FILMS_BY_FILTER } from "../queries";
 
-interface Props {
-  filmsData: Film[];
-  currentFilm: Film;
-  isLoading: boolean;
-  fetchFilm: (id: number) => void;
-  isLoadingPage: (status: boolean) => void;
-}
-
-export const CurrentFilmPage: React.FC<Props> = (props) => {
-  const {
-    filmsData,
-    currentFilm,
-    isLoading,
-    fetchFilm,
-    isLoadingPage,
-  } = props;
-
+export const CurrentFilmPage: React.FC = (props) => {
   const { id } = useParams();
-  useEffect(() => {
-    fetchFilm(id);
-  }, [id]);
+  const [filter, setFilter] = useState<string>("ac");
+  const { loading, error, data } = useQuery<{film: Film}>(
+    GET_FILM, 
+    { variables: { id } }
+  );
+  const sortedFilms = useQuery(
+    GET_FILMS_BY_FILTER,
+    { variables: { filter } }
+  );
 
-  if (isLoading) {
+  if (loading || sortedFilms.loading) {
     return <Loading />;
   }
 
-  const sortByText = `Sorted by ${currentFilm.genres[0]} genre`;
+  if (error) {
+    throw new Error("Fetched a film error");
+  }
+
+  const { film } = data;
+  const { filmsByFilter } = sortedFilms.data;
+  const [genre = ""] = film.genres;
+  const sortByText = `Sorted by ${genre} genre`;
   return (
     <>
       <Header>
         <FilmInfo
-          filmInfo={currentFilm}
+          filmInfo={film}
         />
       </Header>
       <Sort metaText={sortByText} />
       <Films
-        onClick={() => isLoadingPage(true)}
-        films={filmsData}
+        onClick={() => {}}
+        films={filmsByFilter}
       />
       <Footer />
     </>
