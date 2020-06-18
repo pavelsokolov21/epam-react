@@ -19,6 +19,5 @@
     "<rootDir>/stories/",
     "<rootDir>/.storybook/",
     "<rootDir>/storybook-static/"
-  ],
-  "allowSyntheticDefaultImports": true
+  ]
 }
