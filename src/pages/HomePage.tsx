@@ -1,97 +1,70 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
-import { AnyAction } from "redux";
+import React, { useState } from "react";
+import { useQuery } from "@apollo/react-hooks";
 
-import {
-  Film, SearchType, SortType,
-} from "../types";
-import {
-  onChangeSearchInput, setSearchBy, setSortBy, submitFilmValue, fetchFilms, isLoadingPage,
-} from "../actions";
 import {
   Header, Footer, Search, Films, Sort, SortButtons, Loading,
 } from "../components";
 import { countFilmsFound } from "../utils";
-import {
-  getSortedFilms, getSearchInputValue, getSearchBy, getSortBy, getIsLoading,
-} from "../selectors";
-import { FilmsReducerType } from "../reducers";
+import { SearchType, SortType, Film } from "../types";
+import { GET_ALL_FILMS } from "../queries";
 
-interface Props {
-  isLoading: boolean;
-  filmsData: Film[];
-  searchBy: SearchType;
-  sortBy: SortType;
-  searchInputValue: string;
-  onChangeSearchInput: (value: string) => void;
-  toggleSearchBy: (type: string) => void;
-  toggleSortBy: (type: string) => void;
-  fetchFilms: (sortBy: SortType) => void;
-  submitFilmValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
-  isLoadingPage: (status: boolean) => void;
-}
-
-const HomePage: React.FC<Props> = (props) => {
-  const {
-    isLoading,
-    filmsData,
+export const HomePage: React.FC = () => {
+  const [searchBy, setSearchBy] = useState<SearchType>("title");
+  const [sortBy, setSortBy] = useState<SortType>("rating");
+  const [searchInputValue, setSearchInputValue] = useState<string>("");
+  const [variablesOfFetch, setVariablesOfFetch] = useState({
     searchBy,
     sortBy,
-    searchInputValue,
-    onChangeSearchInput,
-    toggleSearchBy,
-    toggleSortBy,
-    fetchFilms,
-    submitFilmValue,
-    isLoadingPage,
-  } = props;
+    search: searchInputValue
+  });
 
-  useEffect(() => {
-    fetchFilms(sortBy);
-  }, []);
+  const { loading, error, data } = useQuery<{films: Film[]}>(
+    GET_ALL_FILMS, 
+    { variables: variablesOfFetch }
+  );
 
-  if (isLoading) {
+  if (loading) {
     return <Loading />;
   }
 
+  if(error) {
+    throw new Error("Failed fetch data");
+  }
+
+  const submitFilmValue = () => {
+    setVariablesOfFetch({
+      searchBy,
+      sortBy: "rating",
+      search: searchInputValue
+    });
+  }
+
+  const sortAllfilms = (type: SortType) => {
+    setVariablesOfFetch({
+      searchBy,
+      sortBy: type,
+      search: searchInputValue
+    });
+    setSortBy(type);
+  }
+
+  const { films } = data;
   return (
     <>
       <Header>
         <Search
-          toggleSearchBy={toggleSearchBy}
+          toggleSearchBy={setSearchBy}
           searchBy={searchBy}
           inputValue={searchInputValue}
-          onChangeInput={onChangeSearchInput}
-          submitValue={() => submitFilmValue(sortBy, searchBy, searchInputValue)}
+          onChangeInput={setSearchInputValue}
+          submitValue={submitFilmValue}
         />
       </Header>
-      <Sort metaText={countFilmsFound(filmsData)}>
-        {filmsData.length !== 0 && <SortButtons sortBy={sortBy} onClick={toggleSortBy} />}
+      <Sort metaText={countFilmsFound(films)}>
+        {films.length !== 0 && <SortButtons sortBy={sortBy} onClick={sortAllfilms} />}
       </Sort>
-      <Films films={filmsData} onClick={() => isLoadingPage(true)} />
+      <Films films={films} onClick={() => console.log()} />
       <Footer />
     </>
   );
 };
-
-const mapStateToProps = (state: FilmsReducerType) => ({
-  filmsData: getSortedFilms(state),
-  searchInputValue: getSearchInputValue(state),
-  searchBy: getSearchBy(state),
-  sortBy: getSortBy(state),
-  isLoading: getIsLoading(state),
-});
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => ({
-  onChangeSearchInput: (value: string) => dispatch(onChangeSearchInput(value)),
-  toggleSearchBy: (type: SearchType) => dispatch(setSearchBy(type)),
-  toggleSortBy: (type: SortType) => dispatch(setSortBy(type)),
-  fetchFilms: (sortBy: SortType) => dispatch(fetchFilms(sortBy)),
-  submitFilmValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => (
-    dispatch(submitFilmValue(sortBy, searchBy, searchInputValue))
-  ),
-  isLoadingPage: (status: boolean) => dispatch(isLoadingPage(status)),
-});
-
-export const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);

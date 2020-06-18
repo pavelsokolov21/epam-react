@@ -41,7 +41,7 @@ const useStyles = createUseStyles({
 type ButtonType = "primary" | "secondary";
 
 interface Props {
-  onClick?: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
+  onClick?: () => void;
   children?: ReactNode;
   active?: boolean;
   type?: ButtonType;
@@ -65,5 +65,5 @@ export const Button: React.FC<Props> = (props) => {
   const classByType = type === "secondary" ? classes.btn_secondary : classes.btn_primary;
   const buttonClass = `${classes.btn} ${classByType} ${active ? "active" : ""}`;
 
-  return <button className={buttonClass} onClick={() => onClick} data-test-button={dataTestAttr}>{children}</button>;
+  return <button className={buttonClass} onClick={onClick} data-test-button={dataTestAttr}>{children}</button>;
 };

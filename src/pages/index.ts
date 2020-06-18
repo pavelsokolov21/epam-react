@@ -1,3 +1,3 @@
-export { ConnectedCurrentFilmPage } from "./CurrentFilmPage";
-export { ConnectedHomePage } from "./HomePage";
+export { CurrentFilmPage } from "./CurrentFilmPage";
+export { HomePage } from "./HomePage";
 export { NoMatch } from "./NoMatch";

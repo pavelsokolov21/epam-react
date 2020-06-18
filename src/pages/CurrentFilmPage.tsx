@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
 
-import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 import { Film } from "../types";
-import { fetchFilm, isLoadingPage } from "../actions";
 import {
   Header,
   Sort,
@@ -14,12 +11,6 @@ import {
   FilmInfo,
   Footer,
 } from "../components";
-import {
-  getSortedFilms,
-  getCurrentFilm,
-  getIsLoading,
-} from "../selectors";
-import { FilmsReducerType } from "../reducers";
 
 interface Props {
   filmsData: Film[];
@@ -29,7 +20,7 @@ interface Props {
   isLoadingPage: (status: boolean) => void;
 }
 
-const CurrentFilmPage: React.FC<Props> = (props) => {
+export const CurrentFilmPage: React.FC<Props> = (props) => {
   const {
     filmsData,
     currentFilm,
@@ -64,19 +55,3 @@ const CurrentFilmPage: React.FC<Props> = (props) => {
     </>
   );
 };
-
-const mapStateToProps = (state: FilmsReducerType) => ({
-  filmsData: getSortedFilms(state),
-  currentFilm: getCurrentFilm(state),
-  isLoading: getIsLoading(state),
-});
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => ({
-  fetchFilm: (id: number) => dispatch(fetchFilm(id)),
-  isLoadingPage: (status: boolean) => dispatch(isLoadingPage(status)),
-});
-
-export const ConnectedCurrentFilmPage = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CurrentFilmPage);

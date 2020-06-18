@@ -31,7 +31,7 @@ interface Props {
 export const Films: React.FC<Props> = ({ films, onClick }) => {
   const classes = useStyles();
 
-  const notFound = <p className={classes.filmsNotFoundTitle} data-test-notFound="not-found">Films not found</p>;
+  const notFound = <p className={classes.filmsNotFoundTitle} data-test-notfound="not-found">Films not found</p>;
   return (
     <main>
       <div className="container">

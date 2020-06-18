@@ -38,7 +38,7 @@ describe("Search films", () => {
     cy.get("button[data-test-button='search']")
       .click();
 
-    cy.get("p[data-test-notFound='not-found']")
+    cy.get("p[data-test-notfound='not-found']")
       .should("have.text", "Films not found");
   });
 });

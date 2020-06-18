@@ -11,7 +11,7 @@ describe("Search component", () => {
     inputValue: string;
     onChangeInput: (value: string) => void;
     toggleSearchBy: (searchBy: SearchType) => void;
-    submitValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
+    submitValue: () => void;
   }
 
   let props: Props;

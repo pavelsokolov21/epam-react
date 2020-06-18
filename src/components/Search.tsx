@@ -32,8 +32,8 @@ interface Props {
   searchBy: SearchType;
   inputValue: string;
   onChangeInput: (value: string) => void;
-  toggleSearchBy: (type: string) => void;
-  submitValue: (sortBy: SortType, searchBy: SearchType, searchInputValue: string) => void;
+  toggleSearchBy: (type: SearchType) => void;
+  submitValue: () => void;
 }
 
 export const Search: React.FC<Props> = (props) => {
