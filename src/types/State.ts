@@ -1,10 +1,8 @@
-import { Map } from "immutable";
-
 import { Film } from "./Film";
 import { SearchType, SortType } from "./types";
 
-export interface RootState {
-  filmsData: Film[] | [];
+export interface State {
+  filmsData: Film[];
   searchBy: SearchType;
   sortBy: SortType;
   searchInputValue: string;

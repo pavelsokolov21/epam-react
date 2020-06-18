@@ -10,7 +10,7 @@ import {
   IS_LOADING,
 } from "../constants";
 import {
-  Film, SearchType, SortType, RootState,
+  Film, SearchType, SortType, State,
 } from "../types";
 import { fetchFilmsFromDataBase } from "../services/services";
 
@@ -47,7 +47,7 @@ export const submitFilmValue = (
   sortBy: SortType,
   searchBy: SearchType,
   searchInputValue: string,
-): ThunkAction<void, RootState, unknown, Action<string>> => (
+): ThunkAction<void, State, unknown, Action<string>> => (
   async (dispatch) => {
     try {
       const query = `
@@ -84,7 +84,7 @@ export const fetchFilmsDataSuccess = (films: Film[]) => ({
   payload: films,
 });
 
-export const fetchFilms = (sortBy: SortType): ThunkAction<void, RootState, unknown, Action<string>> => (
+export const fetchFilms = (sortBy: SortType): ThunkAction<void, State, unknown, Action<string>> => (
   async (dispatch) => {
     try {
       const query = `
@@ -112,7 +112,7 @@ export const setCurrentFilm = (film: Film) => ({
   payload: film,
 });
 
-export const fetchFilm = (id: number): ThunkAction<void, RootState, unknown, Action<string>> => (
+export const fetchFilm = (id: number): ThunkAction<void, State, unknown, Action<string>> => (
   async (dispatch) => {
     try {
       const query = `

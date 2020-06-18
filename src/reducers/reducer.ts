@@ -1,6 +1,6 @@
 import { Map } from "immutable";
 
-import { RootState } from "../types";
+import { State } from "../types";
 import {
   TOGGLE_SEARCH_BY,
   CHANGE_SEARCH_INPUT,
@@ -12,7 +12,7 @@ import {
 } from "../constants";
 import { Actions } from "../actions";
 
-export const initialState: RootState = {
+export const initialState: State = {
   filmsData: [],
   searchBy: "title",
   sortBy: "release-date",
