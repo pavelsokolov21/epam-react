@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -35,7 +35,7 @@ export const Input: React.FC<Props> = (props) => {
       className={classes.searchInput}
       placeholder={placeholder}
       value={value}
-      onChange={({ target: { value } }) => onChange(value)}
+      onChange={({ currentTarget }: ChangeEvent<HTMLInputElement>) => onChange(currentTarget.value)}
       type="text"
       data-test-input={dataTestAttr}
     />

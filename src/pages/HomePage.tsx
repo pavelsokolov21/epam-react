@@ -63,7 +63,7 @@ export const HomePage: React.FC = () => {
       <Sort metaText={countFilmsFound(films)}>
         {films.length !== 0 && <SortButtons sortBy={sortBy} onClick={sortAllfilms} />}
       </Sort>
-      <Films films={films} onClick={() => console.log()} />
+      <Films films={films} />
       <Footer />
     </>
   );

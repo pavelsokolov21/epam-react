@@ -8,8 +8,8 @@ import { SearchType, SortType } from "../../types";
 describe("Search component", () => {
   interface Props {
     searchBy: SearchType;
-    inputValue: string;
-    onChangeInput: (value: string) => void;
+    value: string;
+    onChange: (value: string) => void;
     toggleSearchBy: (searchBy: SearchType) => void;
     submitValue: () => void;
   }
@@ -23,8 +23,8 @@ describe("Search component", () => {
   beforeEach(() => {
     props = {
       searchBy: "title",
-      inputValue: "",
-      onChangeInput: jest.fn(),
+      value: "",
+      onChange: jest.fn(),
       toggleSearchBy: jest.fn(),
       submitValue: jest.fn(),
     };

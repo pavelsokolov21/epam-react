@@ -3,12 +3,12 @@ import { Film } from "../../types";
 
 describe("count film", () => {
   const dataOne: Film[] = [
-    { id: 1 },
+    { id: "1" },
 
   ];
   const dataTwo: Film[] = [
-    { id: 1 },
-    { id: 2 },
+    { id: "1" },
+    { id: "2" },
   ];
   it("should return empty str", () => {
     expect(countFilmsFound([])).toBe("");

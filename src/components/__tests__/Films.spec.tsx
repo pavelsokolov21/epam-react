@@ -2,21 +2,13 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { mount } from "enzyme";
 import renderer from "react-test-renderer";
+
 import { Films } from "../Films";
+import { Film } from "../../types";
 
 describe("Films component", () => {
-  interface FakeFilm {
-    id: number;
-    title: string;
-    genres: string[];
-    vote_average: number;
-    release_date: string;
-    poster_path: string;
-  }
-
   interface Props {
-    films: FakeFilm[];
-    onClick: () => void;
+    films: Film[];
   }
 
   let props: Props;
@@ -24,7 +16,7 @@ describe("Films component", () => {
     props = {
       films: [
         {
-          id: 1,
+          id: "1",
           title: "Tomb Dider",
           genres: ["Actions", "Adventure"],
           vote_average: 8,
@@ -32,7 +24,7 @@ describe("Films component", () => {
           poster_path: "",
         },
         {
-          id: 2,
+          id: "2",
           title: "Transformers",
           genres: ["Robots", "Actions"],
           vote_average: 2,
@@ -40,7 +32,7 @@ describe("Films component", () => {
           poster_path: "",
         },
         {
-          id: 3,
+          id: "3",
           title: "Green line",
           genres: ["Drama"],
           vote_average: 3,
@@ -48,7 +40,7 @@ describe("Films component", () => {
           poster_path: "",
         },
         {
-          id: 4,
+          id: "4",
           title: "Zoopark",
           genres: ["Cartoons"],
           vote_average: 10,
@@ -56,7 +48,6 @@ describe("Films component", () => {
           poster_path: "",
         },
       ],
-      onClick: jest.fn(),
     };
   });
 
@@ -65,7 +56,6 @@ describe("Films component", () => {
       <Router>
         <Films
           films={props.films}
-          onClick={props.onClick}
         />
       </Router>,
     ).toJSON();
@@ -78,7 +68,6 @@ describe("Films component", () => {
       <Router>
         <Films
           films={props.films}
-          onClick={props.onClick}
         />
       </Router>,
     );
@@ -91,7 +80,6 @@ describe("Films component", () => {
       <Router>
         <Films
           films={[]}
-          onClick={props.onClick}
         />
       </Router>,
     );
