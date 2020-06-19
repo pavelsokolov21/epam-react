@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
+import { Film } from "../types";
 
 const useStyles = createUseStyles({
   navigation: {
@@ -49,14 +50,7 @@ const useStyles = createUseStyles({
 });
 
 interface Props {
-  filmInfo: {
-    title?: string;
-    poster_path?: string;
-    tagline?: string;
-    release_date?: string;
-    runtime?: number;
-    overview?: string;
-  },
+  filmInfo: Film,
   dataTestAttr?: string;
 }
 

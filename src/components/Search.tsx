@@ -30,15 +30,15 @@ const useStyles = createUseStyles({
 
 interface Props {
   searchBy: SearchType;
-  inputValue: string;
-  onChangeInput: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
   toggleSearchBy: (type: SearchType) => void;
   submitValue: () => void;
 }
 
 export const Search: React.FC<Props> = (props) => {
   const {
-    searchBy, inputValue, onChangeInput, toggleSearchBy, submitValue,
+    searchBy, value, onChange, toggleSearchBy, submitValue,
   } = props;
   const classes = useStyles();
 
@@ -50,8 +50,8 @@ export const Search: React.FC<Props> = (props) => {
       <div className="row">
         <Input
           placeholder="Enter searching film"
-          value={inputValue}
-          onChange={onChangeInput}
+          value={value}
+          onChange={onChange}
           dataTestAttr="search-input"
         />
       </div>

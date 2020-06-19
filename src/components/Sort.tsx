@@ -13,8 +13,7 @@ const useStyles = createUseStyles({
 });
 
 interface Props {
-  metaText: string;
-  children?: ReactNode
+  metaText: ReactNode;
 }
 
 export const Sort: React.FC<Props> = (props) => {

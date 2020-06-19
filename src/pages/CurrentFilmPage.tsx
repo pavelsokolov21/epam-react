@@ -13,7 +13,7 @@ import {
 } from "../components";
 import { GET_FILM, GET_FILMS_BY_FILTER } from "../queries";
 
-export const CurrentFilmPage: React.FC = (props) => {
+export const CurrentFilmPage: React.FC = () => {
   const { id } = useParams();
   const [filter, setFilter] = useState<string>("ac");
   const { loading, error, data } = useQuery<{film: Film}>(
@@ -46,7 +46,6 @@ export const CurrentFilmPage: React.FC = (props) => {
       </Header>
       <Sort metaText={sortByText} />
       <Films
-        onClick={() => {}}
         films={filmsByFilter}
       />
       <Footer />

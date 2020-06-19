@@ -25,10 +25,9 @@ const useStyles = createUseStyles({
 
 interface Props {
   films: Film[];
-  onClick: () => void;
 }
 
-export const Films: React.FC<Props> = ({ films, onClick }) => {
+export const Films: React.FC<Props> = ({ films }) => {
   const classes = useStyles();
 
   const notFound = <p className={classes.filmsNotFoundTitle} data-test-notfound="not-found">Films not found</p>;
@@ -39,14 +38,13 @@ export const Films: React.FC<Props> = ({ films, onClick }) => {
           <div className={(films.length !== 0) ? classes.films : classes.default}>
             {films.map((film) => (
               <Link
-                onClick={onClick}
                 to={`/movies/${film.id}`}
                 key={film.id}
                 data-test-card={`film-${film.id}`}
               >
                 <FilmCard
                   title={film.title}
-                  img={film.poster_path}
+                  imgUrl={film.poster_path}
                   genres={film.genres}
                   dateRelease={film.release_date.slice(0, 4)}
                 />

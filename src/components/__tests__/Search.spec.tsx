@@ -15,7 +15,11 @@ describe("Search component", () => {
   }
 
   let props: Props;
-  // let component ? ***how get type for this var***
+  let component = mount<Router>(
+    <Router>
+      <Search {...props} />
+    </Router>,
+  );
   beforeEach(() => {
     props = {
       searchBy: "title",
@@ -24,6 +28,13 @@ describe("Search component", () => {
       toggleSearchBy: jest.fn(),
       submitValue: jest.fn(),
     };
+  });
+  afterEach(() => {
+    component = mount<Router>(
+      <Router>
+        <Search {...props} />
+      </Router>,
+    );
   });
 
   it("should render with initial state", () => {
@@ -36,25 +47,7 @@ describe("Search component", () => {
     expect(tree.toJSON()).toMatchSnapshot();
   });
 
-  it("should call function on click", () => {
-    const component = mount<Router>(
-      <Router>
-        <Search {...props} />
-      </Router>,
-    );
-
-    component.find("Button").first().simulate("click");
-    component.find("Button").at(1).simulate("click");
-
-    expect(props.toggleSearchBy).toBeCalled();
-  });
-
   it("should one button have active", () => {
-    const component = mount<Router>(
-      <Router>
-        <Search {...props} />
-      </Router>,
-    );
     const firstButton = component.find("Button").first();
     const secondButton = component.find("Button").at(1);
 

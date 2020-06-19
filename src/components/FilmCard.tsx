@@ -42,7 +42,7 @@ const useStyles = createUseStyles({
 
 interface Props {
   title: string;
-  img: string;
+  imgUrl: string;
   genres: string[];
   dateRelease: string;
 }
@@ -50,7 +50,7 @@ interface Props {
 export const FilmCard: React.FC<Props> = (props) => {
   const classes = useStyles();
   const {
-    title, img, genres, dateRelease,
+    title, imgUrl, genres, dateRelease,
   } = props;
   const [firstGenre = "", secondGenre = ""] = genres;
 
@@ -61,7 +61,7 @@ export const FilmCard: React.FC<Props> = (props) => {
   return (
     <div className={classes.film}>
       <figure>
-        <img className={classes.filmImg} src={img} alt={title + dateRelease} />
+        <img className={classes.filmImg} src={imgUrl} alt={title + dateRelease} />
         <figcaption className={classes.filmDescription}>
           <div>
             <h4 className={classes.title}>{title}</h4>

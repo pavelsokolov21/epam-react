@@ -12,12 +12,23 @@ describe("SortButtons component", () => {
   }
 
   let props: Props;
-  // let component; *** how get type for this var***
+  let component = mount<Router>(
+    <Router>
+      <SortButtons {...props} />
+    </Router>,
+  );
   beforeEach(() => {
     props = {
       onClick: jest.fn(),
       sortBy: "rating",
     };
+  });
+  afterEach(() => {
+    component = mount<Router>(
+      <Router>
+        <SortButtons {...props} />
+      </Router>,
+    );
   });
 
   it("should render with props", () => {
@@ -30,15 +41,4 @@ describe("SortButtons component", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it("should clicked on button", () => {
-    const component = mount<Router>(
-      <Router>
-        <SortButtons {...props} />
-      </Router>,
-    );
-
-    component.find("Button").first().simulate("click");
-
-    expect(props.onClick).toBeCalled();
-  });
 });

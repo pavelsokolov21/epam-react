@@ -42,7 +42,6 @@ type ButtonType = "primary" | "secondary";
 
 interface Props {
   onClick?: () => void;
-  children?: ReactNode;
   active?: boolean;
   type?: ButtonType;
   width?: string;

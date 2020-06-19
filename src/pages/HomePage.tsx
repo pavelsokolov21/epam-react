@@ -55,8 +55,8 @@ export const HomePage: React.FC = () => {
         <Search
           toggleSearchBy={setSearchBy}
           searchBy={searchBy}
-          inputValue={searchInputValue}
-          onChangeInput={setSearchInputValue}
+          value={searchInputValue}
+          onChange={setSearchInputValue}
           submitValue={submitFilmValue}
         />
       </Header>

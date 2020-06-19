@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
 interface Props {
   value: string;
   onChange: (value: string) => void;
-  placeholder: string;
+  placeholder?: string;
   dataTestAttr?: string;
 }
 
