@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should render with props 1`] = `
+<header
+  className="headerBg-0-2-1"
+>
+  <div
+    className="container"
+  >
+    <div />
+  </div>
+</header>
+`;

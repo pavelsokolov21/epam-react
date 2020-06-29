@@ -1,0 +1,46 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "tsx": true
+        },
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "tsconfigRootDir": ".",
+        "project": "tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "excludedFiles": "*.spec.js",
+    "rules": {
+        "prettier/prettier": "off",
+        "no-shadow": "off",
+        "import/no-unresolved": "off",
+        "linebreak-style": "off",
+        "no-unused-expressions": "off",
+        "quotes": ["error", "double"],
+        "no-console": "error",
+        "react/prefer-stateless-function": "off",
+        "react/button-has-type": "off",
+        "react/jsx-filename-extension": "off",
+        "import/prefer-default-export": "off",
+        "import/extensions": "off",
+        "esModuleInterop": "off",
+        "react/prop-types": "off"
+    }
+}

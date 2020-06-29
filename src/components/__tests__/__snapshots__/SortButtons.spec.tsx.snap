@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortButtons component should render with props 1`] = `
+<div
+  className="sortButtonsContainer-0-2-1"
+>
+  <p
+    className="sortButtonsTitle-0-2-3"
+  >
+    Sort by
+  </p>
+  <button
+    className="btn-0-2-4 btn-d4-0-2-11 btn_secondary-0-2-6 "
+    data-test-button="sort-by-release-date"
+    onClick={[Function]}
+  >
+     release date
+  </button>
+  <button
+    className="btn-0-2-4 btn-d6-0-2-13 btn_secondary-0-2-6 active"
+    data-test-button="sort-by-rating"
+    onClick={[Function]}
+  >
+     rating
+  </button>
+</div>
+`;
