@@ -1,4 +1,5 @@
 const path = require("path");
+const { DefinePlugin } = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -118,6 +119,11 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
+    new DefinePlugin({
+      'process.env': {
+        'REACT_APP_API_HOST': JSON.stringify(process.env.REACT_APP_API_HOST),
+      }
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
     }),

@@ -1,4 +1,5 @@
 FROM node:12 as build
+ENV REACT_APP_API_HOST="/graphql"
 
 WORKDIR /app
 
